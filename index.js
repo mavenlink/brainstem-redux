@@ -146,9 +146,20 @@ DEFAULT_STATE = {
 }
 
 reducer = (state = DEFAULT_STATE, action) => {
-  if (action.type != 'ADD_MODEL' && action.type != 'CHANGE_MODEL') return state;
-
   const { brainstemKey, attributes } = action;
+
+  switch (action.type) {
+    case 'ADD_MODEL':
+    case 'CHANGE_MODEL':
+      return updateModel(state, brainstemKey, attributes);
+    case 'REMOVE_MODEL':
+      return removeModel(state, brainstemKey, attributes);
+    default:
+      return state;
+  }
+}
+
+updateModel = (state, brainstemKey, attributes) => {
   const { id } = attributes;
 
   let newState = Object.assign({}, state);
@@ -157,6 +168,20 @@ reducer = (state = DEFAULT_STATE, action) => {
     newState.brainstem.models[brainstemKey], // copy of old state
     { [id]: attributes } // only thing that changed
   );
+
+  return newState;
+}
+
+removeModel = (state, brainstemKey, attributes) => {
+  const { id } = attributes;
+
+  let newState = Object.assign({}, state);
+
+  let models = Object.assign({}, newState.brainstem.models[brainstemKey]);
+
+  delete models[id];
+
+  newState.brainstem.models[brainstemKey] = models;
 
   return newState;
 }
@@ -172,7 +197,7 @@ for (let collectionName of collectionNames) {
       brainstemKey: model.brainstemKey,
       attributes: model.toJSON(),
     });
-  })
+  });
 
   storageManager.storage(collectionName).on('change', (model) => {
     store.dispatch({
@@ -180,7 +205,16 @@ for (let collectionName of collectionNames) {
       brainstemKey: model.brainstemKey,
       attributes: model.toJSON(),
     });
-  })
+  });
+
+  storageManager.storage(collectionName).on('remove', (model) => {
+    console.log('REMOVE EVENT')
+    store.dispatch({
+      type: 'REMOVE_MODEL',
+      brainstemKey: model.brainstemKey,
+      attributes: model.toJSON(),
+    });
+  });
 }
 
 posts = storageManager.storage('posts')
@@ -193,3 +227,5 @@ user = users.add({ id: 1, username: 'acid-burn', email: 'acid-burn@hackers.net',
 user.set({ username: 'Acid-Burn' }) // change event
 user.set({ username: 'Acid-Burn2', email: 'acid-burn2@hackers.net' }) // change event
 user.set({ address: { city: 'SLC', state: 'UT' } }) // change event
+
+posts.remove(posts.first());
