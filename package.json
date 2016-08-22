@@ -14,6 +14,7 @@
   "author": "Juan Carlos Medina",
   "license": "MIT",
   "dependencies": {
+    "brainstem-js": "^0.4.11",
     "redux": "^3.5.2"
   }
 }

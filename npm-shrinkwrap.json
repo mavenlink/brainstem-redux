@@ -2,6 +2,33 @@
   "name": "brainstem-redux",
   "version": "0.0.0",
   "dependencies": {
+    "backbone": {
+      "version": "1.1.2",
+      "from": "backbone@1.1.2",
+      "resolved": "https://registry.npmjs.org/backbone/-/backbone-1.1.2.tgz",
+      "dependencies": {
+        "underscore": {
+          "version": "1.8.3",
+          "from": "underscore@>=1.5.0",
+          "resolved": "https://registry.npmjs.org/underscore/-/underscore-1.8.3.tgz"
+        }
+      }
+    },
+    "brainstem-js": {
+      "version": "0.4.11",
+      "from": "brainstem-js@latest",
+      "resolved": "https://registry.npmjs.org/brainstem-js/-/brainstem-js-0.4.11.tgz"
+    },
+    "inflection": {
+      "version": "1.10.0",
+      "from": "inflection@>=1.8.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/inflection/-/inflection-1.10.0.tgz"
+    },
+    "jquery": {
+      "version": "2.2.4",
+      "from": "jquery@2.2.4",
+      "resolved": "https://registry.npmjs.org/jquery/-/jquery-2.2.4.tgz"
+    },
     "js-tokens": {
       "version": "1.0.3",
       "from": "js-tokens@>=1.0.1 <2.0.0",
@@ -31,6 +58,11 @@
       "version": "0.2.4",
       "from": "symbol-observable@>=0.2.3 <0.3.0",
       "resolved": "https://registry.npmjs.org/symbol-observable/-/symbol-observable-0.2.4.tgz"
+    },
+    "underscore": {
+      "version": "1.4.4",
+      "from": "underscore@1.4.4",
+      "resolved": "https://registry.npmjs.org/underscore/-/underscore-1.4.4.tgz"
     }
   }
 }
