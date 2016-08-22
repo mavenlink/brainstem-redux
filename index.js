@@ -192,6 +192,8 @@ collectionNames = storageManager.collectionNames()
 
 for (let collectionName of collectionNames) {
   storageManager.storage(collectionName).on('all', (eventName, model) => {
+    if (!(model instanceof BrainstemModel)) return;
+
     store.dispatch({
       type: eventName.toUpperCase() + '_MODEL',
       brainstemKey: model.brainstemKey,
