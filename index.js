@@ -187,12 +187,18 @@ store.subscribe(() => {
   const brainstemTree = store.getState().brainstem;
 
   for (let brainstemKey in brainstemTree) {
-    let models = brainstemTree[brainstemKey];
+    const models = brainstemTree[brainstemKey];
 
     for (let modelId in models) {
-      let modelAttributes = models[modelId];
+      const modelAttributes = models[modelId];
+      const collection = storageManager.storage(brainstemKey);
+      const existingModel = collection.get(modelId);
 
-      storageManager.storage(brainstemKey).get(modelId).set(modelAttributes)
+      if (existingModel) {
+        existingModel.set(modelAttributes);
+      } else {
+        collection.add(modelAttributes);
+      }
     }
   }
 
