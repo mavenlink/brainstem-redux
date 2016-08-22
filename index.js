@@ -2,29 +2,26 @@
 
 store := {
   brainstem: {
-    models: {
-      stories: {
-        1: {
-          title: 'foo 1',
-          status: 'completed'
+    stories: {
+      1: {
+        title: 'foo 1',
+        status: 'completed'
+      },
+      42: {
+        attributes: {
+          id: 42,
+          title: 'foo 2',
+          status: 'not started'
         },
-        42: {
-          attributes: {
-            id: 42,
-            title: 'foo 2',
-            status: 'not started'
-          },
-          state: 'sync' | 'request'
-        }
-      },
-      posts: {}
-    },
-    collections: {
-      stories: {
-        ids: [{ type: story, id: 1 }, ref:42],
         state: 'sync' | 'request'
-      },
-      posts: [53, 89]
+      }
+    },
+    posts: {},
+    users: {
+      1: {
+        username: 'Bob McBobster',
+        email: 'bob@bobster.com',
+      }
     }
   },
   task-tracker: {}
@@ -136,11 +133,9 @@ createStore = require('redux').createStore;
 
 DEFAULT_STATE = {
   brainstem: {
-    models: {
-      posts: {
-      },
-      users: {
-      }
+    posts: {
+    },
+    users: {
     }
   }
 }
@@ -165,7 +160,7 @@ updateModel = (state, brainstemKey, attributes) => {
   let newState = Object.assign({}, state);
 
   Object.assign(
-    newState.brainstem.models[brainstemKey], // copy of old state
+    newState.brainstem[brainstemKey], // copy of old state
     { [id]: attributes } // only thing that changed
   );
 
@@ -177,11 +172,11 @@ removeModel = (state, brainstemKey, attributes) => {
 
   let newState = Object.assign({}, state);
 
-  let models = Object.assign({}, newState.brainstem.models[brainstemKey]);
+  let models = Object.assign({}, newState.brainstem[brainstemKey]);
 
   delete models[id];
 
-  newState.brainstem.models[brainstemKey] = models;
+  newState.brainstem[brainstemKey] = models;
 
   return newState;
 }
