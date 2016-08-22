@@ -145,8 +145,8 @@ DEFAULT_STATE = {
   }
 }
 
-addModel = (state = DEFAULT_STATE, action) => {
-  if (action.type != 'ADD_MODEL') return state;
+reducer = (state = DEFAULT_STATE, action) => {
+  if (action.type != 'ADD_MODEL' && action.type != 'CHANGE_MODEL') return state;
 
   const { brainstemKey, attributes } = action;
   const { id } = attributes;
@@ -161,7 +161,7 @@ addModel = (state = DEFAULT_STATE, action) => {
   return newState;
 }
 
-store = createStore(addModel)
+store = createStore(reducer)
 
 collectionNames = storageManager.collectionNames()
 
@@ -173,6 +173,14 @@ for (let collectionName of collectionNames) {
       attributes: model.toJSON(),
     });
   })
+
+  storageManager.storage(collectionName).on('change', (model) => {
+    store.dispatch({
+      type: 'CHANGE_MODEL',
+      brainstemKey: model.brainstemKey,
+      attributes: model.toJSON(),
+    });
+  })
 }
 
 posts = storageManager.storage('posts')
@@ -180,4 +188,8 @@ posts.add({ id: 1, title: 'What is redux?', message: 'I do not know but it might
 posts.add({ id: 42, title: 'Life is good', message: 'Gooooood' });
 
 users = storageManager.storage('users')
-users.add({ id: 1, username: 'acid-burn', email: 'acid-burn@hackers.net' });
+user = users.add({ id: 1, username: 'acid-burn', email: 'acid-burn@hackers.net', address: { city: 'SF', state: 'CA' } });
+
+user.set({ username: 'Acid-Burn' }) // change event
+user.set({ username: 'Acid-Burn2', email: 'acid-burn2@hackers.net' }) // change event
+user.set({ address: { city: 'SLC', state: 'UT' } }) // change event
