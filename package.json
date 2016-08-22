@@ -12,5 +12,8 @@
     "redux"
   ],
   "author": "Juan Carlos Medina",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "redux": "^3.5.2"
+  }
 }
