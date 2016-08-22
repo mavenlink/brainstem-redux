@@ -191,26 +191,9 @@ store = createStore(reducer)
 collectionNames = storageManager.collectionNames()
 
 for (let collectionName of collectionNames) {
-  storageManager.storage(collectionName).on('add', (model) => {
+  storageManager.storage(collectionName).on('all', (eventName, model) => {
     store.dispatch({
-      type: 'ADD_MODEL',
-      brainstemKey: model.brainstemKey,
-      attributes: model.toJSON(),
-    });
-  });
-
-  storageManager.storage(collectionName).on('change', (model) => {
-    store.dispatch({
-      type: 'CHANGE_MODEL',
-      brainstemKey: model.brainstemKey,
-      attributes: model.toJSON(),
-    });
-  });
-
-  storageManager.storage(collectionName).on('remove', (model) => {
-    console.log('REMOVE EVENT')
-    store.dispatch({
-      type: 'REMOVE_MODEL',
+      type: eventName.toUpperCase() + '_MODEL',
       brainstemKey: model.brainstemKey,
       attributes: model.toJSON(),
     });
