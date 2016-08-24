@@ -128,8 +128,7 @@ Users = BrainstemCollection.extend({
 
 storageManager.addCollection('users', Users);
 
-
-createStore = require('redux').createStore;
+const { createStore, applyMiddleware } = require('redux')
 
 DEFAULT_STATE = {
   brainstem: {
@@ -181,7 +180,17 @@ removeModel = (state, brainstemKey, attributes) => {
   return newState;
 }
 
-store = createStore(reducer)
+const logger = store => next => action => {
+  console.log('dispatching', action)
+  let result = next(action)
+  console.log('next state', store.getState())
+  return result
+}
+
+store = createStore(
+  reducer,
+  applyMiddleware(logger)
+)
 
 store.subscribe(() => {
   const brainstemTree = store.getState().brainstem;

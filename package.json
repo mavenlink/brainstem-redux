@@ -17,5 +17,6 @@
     "brainstem-js": "^0.4.11",
     "redux": "^3.5.2",
     "webpack": "^1.13.2"
-  }
+  },
+  "devDependencies": {}
 }
