@@ -272,7 +272,7 @@ const ReactDom = require('react-dom')
 document.addEventListener('DOMContentLoaded', function(event) {
   const PostBox = require('./example/post-box')
 
-  postBoxOptions = {
+  const postBoxOptions = {
     posts: [
       { id: 1, title: 'Imma Post', message: 'Gimme mo post' },
       { id: 2, title: 'Imma Post', message: 'Gimme mo post' },
