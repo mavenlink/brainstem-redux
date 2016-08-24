@@ -270,26 +270,13 @@ const React = require('react')
 const ReactDom = require('react-dom')
 
 document.addEventListener('DOMContentLoaded', function(event) {
-  const PostBox = require('./example/post-box')
-
-  const postBoxOptions = {
-    posts: [
-      { id: 1, title: 'Imma Post', message: 'Gimme mo post' },
-      { id: 2, title: 'Imma Post', message: 'Gimme mo post' },
-      { id: 3, title: 'Imma Post', message: 'Gimme mo post' },
-      { id: 4, title: 'Imma Post', message: 'Gimme mo post' },
-      { id: 5, title: 'Imma Post', message: 'Gimme mo post' },
-      { id: 6, title: 'Imma Post', message: 'Gimme mo post' },
-      { id: 7, title: 'Imma Post', message: 'Gimme mo post' },
-      { id: 8, title: 'Imma Post', message: 'Gimme mo post' },
-      { id: 9, title: 'Imma Post', message: 'Gimme mo post' },
-      { id: 21, title: 'Imma Post', message: 'Gimme mo post' },
-      { id: 22, title: 'Imma Post', message: 'Gimme mo post' },
-    ]
-  }
+  const { Provider } = require('react-redux')
+  const AllPostsBox = require('./example/all-posts-box')
 
   ReactDom.render(
-    React.createElement(PostBox, postBoxOptions),
+    React.createElement(Provider, { store: store },
+      React.createElement(AllPostsBox, null)
+    ),
     document.getElementById('all-posts-list')
   );
 });
