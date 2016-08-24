@@ -24,7 +24,12 @@ store := {
       }
     }
   },
-  task-tracker: {}
+  task-tracker: {},
+  postsAutocompleter: {
+    filtersPosts: [post_id, post_id, ...],
+    filterText: 'some text',
+    isFetching: false | true,
+  }
 }
 
 
