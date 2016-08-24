@@ -287,4 +287,12 @@ document.addEventListener('DOMContentLoaded', function(event) {
     ),
     document.getElementById('all-posts-list')
   );
+
+
+  const AutocompletePostsList = require('./example/post-autocomplete-box')
+
+  ReactDom.render(
+    React.createElement(AutocompletePostsList, null),
+    document.getElementById('autocomplete-posts-list')
+  );
 });
