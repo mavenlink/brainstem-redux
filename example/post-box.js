@@ -1,5 +1,4 @@
 const React = require('react')
-const ReactDom = require('react-dom')
 const PostList = require('./post-list')
 
 module.exports = React.createClass({
