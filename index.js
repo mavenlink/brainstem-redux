@@ -266,6 +266,9 @@ user.set({ address: { city: 'SLC', state: 'UT' } }) // change event
 
 posts.remove(posts.first());
 
+store.dispatch({ type: 'ADD_MODEL', brainstemKey: 'posts', attributes: { id: 76, title: 'Hello', message: 'World!' } })
+storageManager.storage('posts').add({ id: 97, title: 'World?', message: 'I live everywhere!' })
+
 const React = require('react')
 const ReactDom = require('react-dom')
 
