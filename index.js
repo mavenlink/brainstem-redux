@@ -141,7 +141,6 @@ DEFAULT_STATE = {
 
 reducer = (state = DEFAULT_STATE, action) => {
   const { brainstemKey, attributes } = action;
-
   switch (action.type) {
     case 'ADD_MODEL':
     case 'CHANGE_MODEL':
@@ -266,3 +265,31 @@ user.set({ username: 'Acid-Burn2', email: 'acid-burn2@hackers.net' }) // change 
 user.set({ address: { city: 'SLC', state: 'UT' } }) // change event
 
 posts.remove(posts.first());
+
+const React = require('react')
+const ReactDom = require('react-dom')
+
+document.addEventListener('DOMContentLoaded', function(event) {
+  const PostBox = require('./example/post-box')
+
+  postBoxOptions = {
+    posts: [
+      { id: 1, title: 'Imma Post', message: 'Gimme mo post' },
+      { id: 2, title: 'Imma Post', message: 'Gimme mo post' },
+      { id: 3, title: 'Imma Post', message: 'Gimme mo post' },
+      { id: 4, title: 'Imma Post', message: 'Gimme mo post' },
+      { id: 5, title: 'Imma Post', message: 'Gimme mo post' },
+      { id: 6, title: 'Imma Post', message: 'Gimme mo post' },
+      { id: 7, title: 'Imma Post', message: 'Gimme mo post' },
+      { id: 8, title: 'Imma Post', message: 'Gimme mo post' },
+      { id: 9, title: 'Imma Post', message: 'Gimme mo post' },
+      { id: 21, title: 'Imma Post', message: 'Gimme mo post' },
+      { id: 22, title: 'Imma Post', message: 'Gimme mo post' },
+    ]
+  }
+
+  ReactDom.render(
+    React.createElement(PostBox, postBoxOptions),
+    document.getElementById('all-posts-list')
+  );
+});
