@@ -6,7 +6,7 @@ module.exports = React.createClass({
   render: function() {
     return React.DOM.div(null,
       React.DOM.h1(null, 'Autocomplete Posts'),
-      React.createElement(PostFilterInput),
+      React.createElement(PostFilterInput, null),
       React.createElement(PostList, this.props)
     )
   }

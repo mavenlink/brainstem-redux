@@ -1,7 +1,11 @@
 const React = require('react')
 
 module.exports = React.createClass({
-  render: function() {
-    return React.DOM.input(null)
-  }
+  handleInput (event) {
+    console.log(event)
+  },
+
+  render () {
+    return React.DOM.input({ onInput: this.handleInput })
+  },
 })
