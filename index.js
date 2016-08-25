@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
   );
 
 
-  const AutocompletePostsList = require('./example/post-autocomplete-box')
+  const AutocompletePostsList = require('./example/components/post-autocomplete-box')
   const allPosts = [
     { id: 1, message: 'Hello' },
     { id: 2, message: 'Hello!' },
