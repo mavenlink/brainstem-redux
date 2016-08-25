@@ -9,6 +9,7 @@ const {
 } = require('redux');
 
 const logger = require('./example/middleware/logger');
+const initialState = require('./example/state-initializer');
 
 const Posts = require('./example/posts');
 const Users = require('./example/users');
@@ -17,18 +18,8 @@ storageManager = StorageManager.get();
 storageManager.addCollection('posts', Posts);
 storageManager.addCollection('users', Users);
 
-
-DEFAULT_STATE = {
-  brainstem: {
-    posts: {
-    },
-    users: {
-    }
-  }
-}
-
 store = createStore(
-  require('./lib/reducer'),
+  require('./lib/reducer')(initialState),
   applyMiddleware(logger)
 )
 
