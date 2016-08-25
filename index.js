@@ -1,18 +1,20 @@
-BrainstemModel = require('brainstem-js').Model;
-BrainstemCollection = require('brainstem-js').Collection;
-StorageManager = require('brainstem-js').StorageManager;
+const {
+  BrainstemCollection,
+  StorageManager,
+} = require('brainstem-js');
 
-storageManager = StorageManager.get();
+const {
+  createStore,
+  applyMiddleware,
+} = require('redux');
 
 const Posts = require('./example/posts');
-
-storageManager.addCollection('posts', Posts);
-
 const Users = require('./example/users');
 
+storageManager = StorageManager.get();
+storageManager.addCollection('posts', Posts);
 storageManager.addCollection('users', Users);
 
-const { createStore, applyMiddleware } = require('redux')
 
 DEFAULT_STATE = {
   brainstem: {
