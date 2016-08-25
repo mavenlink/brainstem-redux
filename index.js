@@ -8,6 +8,8 @@ const {
   applyMiddleware,
 } = require('redux');
 
+const logger = require('./example/middleware/logger');
+
 const Posts = require('./example/posts');
 const Users = require('./example/users');
 
@@ -23,13 +25,6 @@ DEFAULT_STATE = {
     users: {
     }
   }
-}
-
-const logger = store => next => action => {
-  console.log('dispatching', action)
-  let result = next(action)
-  console.log('next state', store.getState())
-  return result
 }
 
 store = createStore(
