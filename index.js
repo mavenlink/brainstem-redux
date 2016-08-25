@@ -53,7 +53,9 @@ store = createStore(
   applyMiddleware(logger)
 )
 
+// Transforms a storage manager backbone event into a (dispatched) redux brainstem action
 require('./lib/action-dispatcher')(storageManager, store);
+// Redux change listening to sync the redux brainstem store into the storage manager
 require('./lib/sync-storage-manager')(storageManager, store);
 
 posts = storageManager.storage('posts')
