@@ -26,7 +26,7 @@ store := {
   },
   task-tracker: {},
   postsAutocompleter: {
-    filtersPosts: [post_id, post_id, ...],
+    posts: [post_id, post_id, ...],
     filterText: 'some text',
     isFetching: false | true,
   }
@@ -290,9 +290,14 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
 
   const AutocompletePostsList = require('./example/post-autocomplete-box')
+  const allPosts = [
+    { id: 1, message: 'Hello' },
+    { id: 2, message: 'Hello!' },
+    { id: 3, message: 'World!' },
+  ]
 
   ReactDom.render(
-    React.createElement(AutocompletePostsList, null),
+    React.createElement(AutocompletePostsList, { allPosts: allPosts, filterText: 'Banana' }),
     document.getElementById('autocomplete-posts-list')
   );
 });

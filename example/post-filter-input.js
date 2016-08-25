@@ -1,11 +1,10 @@
 const React = require('react')
 
 module.exports = React.createClass({
-  handleInput (event) {
-    console.log(event)
-  },
-
   render () {
-    return React.DOM.input({ onInput: this.handleInput })
+    return React.DOM.input({
+      onChange: this.props.handleInput,
+      value: this.props.filterText
+    })
   },
 })
