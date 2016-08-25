@@ -1,5 +1,5 @@
 const { Collection } = require('brainstem-js');
-const Post = require('./post');
+const Post = require('./models/post');
 
 module.exports = Collection.extend({
   model: Post,
