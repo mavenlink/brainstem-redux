@@ -4,7 +4,7 @@ const PostList = require('./post-list')
 
 module.exports = React.createClass({
   getInitialState: function() {
-    return { filterText: this.props.filterText }
+    return { filterText: this.props.filterText || '' }
   },
 
   handleInput (event) {

@@ -289,15 +289,12 @@ document.addEventListener('DOMContentLoaded', function(event) {
   );
 
 
-  const AutocompletePostsList = require('./example/components/post-autocomplete-box')
-  const allPosts = [
-    { id: 1, message: 'Hello' },
-    { id: 2, message: 'Hello!' },
-    { id: 3, message: 'World!' },
-  ]
+  const AutocompletePostsList = require('./example/containers/all-posts-autocomplete-box')
 
   ReactDom.render(
-    React.createElement(AutocompletePostsList, { allPosts: allPosts, filterText: 'Banana' }),
+    React.createElement(Provider, { store: store },
+      React.createElement(AutocompletePostsList, null)
+    ),
     document.getElementById('autocomplete-posts-list')
   );
 });
