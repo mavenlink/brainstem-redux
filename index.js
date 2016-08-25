@@ -4,11 +4,7 @@ StorageManager = require('brainstem-js').StorageManager;
 
 storageManager = StorageManager.get();
 
-Post = BrainstemModel.extend({
-  paramRoot: 'post',
-  brainstemKey: 'posts',
-  urlRoot: '/api/v1/posts'
-});
+const Post = require('./example/post');
 
 Posts = BrainstemCollection.extend({
   model: Post,
