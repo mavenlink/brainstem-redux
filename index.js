@@ -279,7 +279,7 @@ const ReactDom = require('react-dom')
 
 document.addEventListener('DOMContentLoaded', function(event) {
   const { Provider } = require('react-redux')
-  const AllPostsBox = require('./example/all-posts-box')
+  const AllPostsBox = require('./example/containers/all-posts-box')
 
   ReactDom.render(
     React.createElement(Provider, { store: store },
