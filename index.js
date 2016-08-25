@@ -11,8 +11,8 @@ const {
 const logger = require('./example/middleware/logger');
 const initialState = require('./example/state-initializer');
 
-const Posts = require('./example/posts');
-const Users = require('./example/users');
+const Posts = require('./example/collections/posts');
+const Users = require('./example/collections/users');
 
 storageManager = StorageManager.get();
 storageManager.addCollection('posts', Posts);
