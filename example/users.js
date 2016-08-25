@@ -1,7 +1,7 @@
-const { BrainstemCollection } = require('brainstem-js');
+const { Collection } = require('brainstem-js');
 const User = require('./user');
 
-BrainstemCollection.extend({
+module.exports = Collection.extend({
   model: User,
   url: '/api/v1/users'
 });

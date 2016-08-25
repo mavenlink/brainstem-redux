@@ -1,6 +1,6 @@
-const { BrainstemModel } = require('brainstem-js');
+const { Model } = require('brainstem-js');
 
-module.exports = BrainstemModel.extend({
+module.exports = Model.extend({
   paramRoot: 'user',
   brainstemKey: 'users',
   urlRoot: '/api/v1/users'
