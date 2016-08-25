@@ -83,19 +83,7 @@ store.subscribe(() => {
   }
 });
 
-collectionNames = storageManager.collectionNames()
-
-for (let collectionName of collectionNames) {
-  storageManager.storage(collectionName).on('all', (eventName, model) => {
-    if (!(model instanceof BrainstemModel)) return;
-
-    store.dispatch({
-      type: eventName.toUpperCase() + '_MODEL',
-      brainstemKey: model.brainstemKey,
-      attributes: model.toJSON(),
-    });
-  });
-}
+require('./lib/action-dispatcher')(storageManager, store);
 
 posts = storageManager.storage('posts')
 posts.add({ id: 1, title: 'What is redux?', message: 'I do not know but it might be awesome' });
