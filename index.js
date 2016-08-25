@@ -8,11 +8,7 @@ const Posts = require('./example/posts');
 
 storageManager.addCollection('posts', Posts);
 
-User = BrainstemModel.extend({
-  paramRoot: 'user',
-  brainstemKey: 'users',
-  urlRoot: '/api/v1/users'
-});
+const User = require('./example/user');
 
 Users = BrainstemCollection.extend({
   model: User,
