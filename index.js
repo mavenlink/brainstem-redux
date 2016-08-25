@@ -4,12 +4,12 @@ const {
 } = require('brainstem-js');
 
 const {
-  createStore,
   applyMiddleware,
+  combineReducers,
+  createStore,
 } = require('redux');
 
 const logger = require('./example/middleware/logger');
-const exampleInitialState = require('./example/state-initializer');
 const Posts = require('./example/collections/posts');
 const Users = require('./example/collections/users');
 
@@ -17,13 +17,12 @@ storageManager = StorageManager.get();
 storageManager.addCollection('posts', Posts);
 storageManager.addCollection('users', Users);
 
-const generateBrainstemStoreSlice = require('./lib/brainstem-store-generator')
-const initialState = Object.assign({}, exampleInitialState, generateBrainstemStoreSlice(storageManager));
-
 store = createStore(
-  require('./lib/reducer')(initialState),
+  combineReducers({
+    brainstem: require('./lib/reducer')(storageManager),
+  }),
   applyMiddleware(logger)
-)
+);
 
 // Transforms a storage manager backbone event into a (dispatched) redux brainstem action
 require('./lib/action-dispatcher')(storageManager, store);
