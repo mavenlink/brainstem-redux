@@ -9,14 +9,16 @@ const {
 } = require('redux');
 
 const logger = require('./example/middleware/logger');
-const initialState = require('./example/state-initializer');
-
+const exampleInitialState = require('./example/state-initializer');
 const Posts = require('./example/collections/posts');
 const Users = require('./example/collections/users');
 
 storageManager = StorageManager.get();
 storageManager.addCollection('posts', Posts);
 storageManager.addCollection('users', Users);
+
+const generateBrainstemStoreSlice = require('./lib/brainstem-store-generator')
+const initialState = Object.assign({}, exampleInitialState, generateBrainstemStoreSlice(storageManager));
 
 store = createStore(
   require('./lib/reducer')(initialState),
