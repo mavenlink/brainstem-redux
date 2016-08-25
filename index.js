@@ -53,37 +53,8 @@ store = createStore(
   applyMiddleware(logger)
 )
 
-store.subscribe(() => {
-  const brainstemTree = store.getState().brainstem;
-
-  for (let brainstemKey in brainstemTree) {
-    const models = brainstemTree[brainstemKey];
-    const collection = storageManager.storage(brainstemKey);
-
-    for (let modelId in models) {
-      const modelAttributes = models[modelId];
-      const existingModel = collection.get(modelId);
-
-      if (existingModel) {
-        existingModel.set(modelAttributes);
-      } else {
-        collection.add(modelAttributes);
-      }
-    }
-
-    const reduxModelIds = Object.keys(models);
-    const storageModelIds = collection.pluck('id');
-    const removedIds = storageModelIds.filter(id => {
-      return reduxModelIds.indexOf(String(id)) == -1
-    });
-
-    for (let removedId of removedIds) {
-      collection.remove(removedId);
-    }
-  }
-});
-
 require('./lib/action-dispatcher')(storageManager, store);
+require('./lib/sync-storage-manager')(storageManager, store);
 
 posts = storageManager.storage('posts')
 posts.add({ id: 1, title: 'What is redux?', message: 'I do not know but it might be awesome' });
