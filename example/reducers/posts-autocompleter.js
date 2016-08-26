@@ -5,12 +5,18 @@ const initialState = {
 };
 
 module.exports = (state = initialState, action) => {
-  if (action.type == 'POSTS_AUTOCOMPLETER_REQUEST_POSTS') {
-    return Object.assign({}, state, {
-      filterText: action.search,
-      isFetching: true
-    });
-  } else {
-    return state;
+  switch (action.type) {
+    case 'POSTS_AUTOCOMPLETER_REQUEST_POSTS':
+      return Object.assign({}, state, {
+        filterText: action.search,
+        isFetching: true,
+      });
+    case 'POSTS_AUTOCOMPLETER_SYNC_POSTS':
+      return Object.assign({}, state, {
+        isFetching: false,
+        posts: action.posts,
+      });
+    default:
+      return state;
   }
 };

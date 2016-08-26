@@ -1,9 +1,14 @@
 const { connect } = require('react-redux')
 const PostAutocompleteBox = require('../components/post-autocomplete-box')
 
+const fetchCollection = require('../../lib/actions')
+const actionCreators = require('../actions/posts-autocompleter')
+
 const mapStateToProps = (state) => {
   return {
-    allPosts: state.postsAutocompleter.posts,
+    allPosts: state.postsAutocompleter.posts.map(post_id => {
+      return state.brainstem.posts[post_id]
+    }),
     filterText: state.postsAutocompleter.filterText,
   }
 }
@@ -11,17 +16,16 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onInput: (event) => {
-      dispatch({
-        type: 'POSTS_AUTOCOMPLETER_REQUEST_POSTS',
-        search: event.target.value,
-      })
-      // - [ ] Dispatch an action to:
-      //   - [x] update `isFetching` on redux feature store slice
-      //   - [ ] *fetch a backbone collection for this specific feature*
-      // - The fetch will on success:
-      //   - [x] Update the global storage manager -> redux brainstem store slice
-      //   - [ ] Update the redux feature store slice with references of the backbone collection models
-      //   - [ ] Update `isFetching` to false
+      dispatch(
+        fetchCollection({
+          brainstemKey: 'posts',
+          fetchOptions: {
+            search: event.target.value
+          },
+          preFetchAction: actionCreators.posts.preFetch(event.target.value),
+          postFetchAction: actionCreators.posts.postFetch,
+        })
+      )
     }
   }
 }
