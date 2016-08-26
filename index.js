@@ -9,7 +9,9 @@ const {
   createStore,
 } = require('redux');
 
-const logger = require('./example/middleware/logger');
+const thunkMiddleware = require('redux-thunk').default;
+
+const loggerMiddleware = require('./example/middleware/logger');
 const Posts = require('./example/collections/posts');
 const Users = require('./example/collections/users');
 
@@ -22,7 +24,10 @@ store = createStore(
     brainstem: require('./lib/reducer')(storageManager),
     postsAutocompleter: require('./example/reducers/posts-autocompleter'),
   }),
-  applyMiddleware(logger)
+  applyMiddleware(
+    thunkMiddleware,
+    loggerMiddleware
+  )
 );
 
 // Transforms a storage manager backbone event into a (dispatched) redux brainstem action
