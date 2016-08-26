@@ -12,6 +12,7 @@ const {
 const thunkMiddleware = require('redux-thunk').default;
 
 const loggerMiddleware = require('./example/middleware/logger');
+const Post = require('./example/models/post');
 const Posts = require('./example/collections/posts');
 const Users = require('./example/collections/users');
 
@@ -50,6 +51,67 @@ posts.remove(posts.first());
 
 store.dispatch({ type: 'ADD_MODEL', brainstemKey: 'posts', attributes: { id: 76, title: 'Hello', message: 'World!' } })
 storageManager.storage('posts').add({ id: 97, title: 'World?', message: 'I live everywhere!' })
+
+storageManager.enableExpectations()
+
+const getMatchingPosts = (text) => {
+  return [
+    new Post({ id: 900, message: 'woah' }),
+    new Post({ id: 901, message: 'woah!' }),
+    new Post({ id: 902, message: 'i am an autocomplete post' }),
+    new Post({ id: 903, message: 'whos an autocomplete post' }),
+    new Post({ id: 904, message: 'you are not an autocomplete post' }),
+    new Post({ id: 905, message: 'no' }),
+  ].filter((postModel) => postModel.get('message').indexOf(text) > -1)
+}
+
+storageManager.stub('posts', {
+  search: '',
+  immediate: true,
+  response: function(responseBody) {
+    responseBody.results = [];
+  }
+});
+
+storageManager.stub('posts', {
+  search: 'w',
+  immediate: true,
+  response: function(responseBody) {
+    responseBody.results = getMatchingPosts('w');
+  }
+});
+
+storageManager.stub('posts', {
+  search: 'wo',
+  immediate: true,
+  response: function(responseBody) {
+    responseBody.results = getMatchingPosts('woah');
+  }
+})
+
+storageManager.stub('posts', {
+  search: 'a',
+  immediate: true,
+  response: function(responseBody) {
+    responseBody.results = getMatchingPosts('a');
+  }
+})
+
+storageManager.stub('posts', {
+  search: 'au',
+  immediate: true,
+  response: function(responseBody) {
+    responseBody.results = getMatchingPosts('auto');
+  }
+})
+
+storageManager.stub('posts', {
+  search: 'n',
+  immediate: true,
+  response: function(responseBody) {
+    responseBody.results = getMatchingPosts('n');
+  }
+})
 
 const React = require('react')
 const ReactDom = require('react-dom')
