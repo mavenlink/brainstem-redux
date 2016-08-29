@@ -24,6 +24,7 @@ const mapDispatchToProps = (dispatch) => {
           },
           preFetchAction: actionCreators.posts.preFetch(event.target.value),
           postFetchAction: actionCreators.posts.postFetch,
+          trackKey: 'all-posts-autocomplete-box',
         })
       )
     }
