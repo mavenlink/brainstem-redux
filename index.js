@@ -22,7 +22,7 @@ storageManager.addCollection('users', Users);
 
 store = createStore(
   combineReducers({
-    brainstem: require('./lib/reducers/reducer')(storageManager),
+    brainstem: require('./lib/reducers/index')(storageManager),
     postsAutocompleter: require('./example/reducers/posts-autocompleter'),
   }),
   applyMiddleware(
