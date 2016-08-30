@@ -4,6 +4,7 @@
   "description": "Client-side Brainstem store in Redux",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
