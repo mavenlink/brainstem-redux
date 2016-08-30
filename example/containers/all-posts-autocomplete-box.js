@@ -17,11 +17,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onInput: (event) => {
       dispatch(
-        fetchCollection({
-          brainstemKey: 'posts',
-          fetchOptions: {
-            search: event.target.value
-          },
+        fetchCollection('posts', {
+          fetchOptions: { search: event.target.value },
           preFetchAction: actionCreators.posts.preFetch(event.target.value),
           postFetchAction: actionCreators.posts.postFetch,
           trackKey: 'all-posts-autocomplete-box',
