@@ -13,6 +13,10 @@
     "redux"
   ],
   "author": "Juan Carlos Medina",
+  "contributors": [
+    { "name": "Juan Carlos Medina", "email": "juanca.med@gmail.com" },
+    { "name": "Andy Leavitt", "email": "andyleavitt@gmail.com" }
+  ],
   "license": "MIT",
   "dependencies": {
     "brainstem-js": "0.4.10",
