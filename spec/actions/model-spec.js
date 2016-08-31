@@ -46,11 +46,11 @@ describe('model action creators', function() {
     });
 
     it('send save to the subscriber for the existing model', function() {
-      posts = this.storageManager.storage('posts');
+      const posts = this.storageManager.storage('posts');
       posts.add({ id: 1, title: 'What is redux?', message: 'I do not know but it might be awesome' });
-      model = posts.last();
+      const model = posts.last();
 
-      spy = spyOn(model, 'save');
+      const spy = spyOn(model, 'save');
 
       this.store.dispatch(this.save('posts', '1', {
         title: 'new post'
