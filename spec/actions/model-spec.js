@@ -1,10 +1,13 @@
 describe('model action creators', function() {
   beforeEach(function() {
-    this.fetch = require('../../lib/actions/model')(this.storageManager).fetch;
     this.storageManager.enableExpectations();
   });
 
   describe('fetch', function() {
+    beforeEach(function() {
+      this.fetch = require('../../lib/actions/model')(this.storageManager).fetch;
+    });
+
     it('fetches the model', function() {
       const expectation = this.storageManager.stubModel('posts', '76', { filters: { foo: 'baz' } });
       this.store.dispatch(this.fetch('posts', '76', {
@@ -34,6 +37,26 @@ describe('model action creators', function() {
 
         expect(abort).toHaveBeenCalledTimes(0)
       });
+    });
+  });
+
+  describe('save', function() {
+    beforeEach(function() {
+      this.save = require('../../lib/actions/model')(this.storageManager).save;
+    });
+
+    it('send save to the subscriber for the existing model', function() {
+      posts = this.storageManager.storage('posts');
+      posts.add({ id: 1, title: 'What is redux?', message: 'I do not know but it might be awesome' });
+      model = posts.last();
+
+      spy = spyOn(model, 'save');
+
+      this.store.dispatch(this.save('posts', '1', {
+        title: 'new post'
+      }))
+
+      expect(spy).toHaveBeenCalled()
     });
   });
 });
