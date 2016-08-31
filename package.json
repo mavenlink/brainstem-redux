@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "test": "karma start karma.config.js"
+    "test": "karma start karma.config.js --single-run"
   },
   "keywords": [
     "brainstem",
