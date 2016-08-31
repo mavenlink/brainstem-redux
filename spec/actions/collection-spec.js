@@ -21,7 +21,7 @@ describe('collection action creators', function() {
       this.store.dispatch(this.fetch('posts', { trackKey: 'foo' }));
       this.store.dispatch(this.fetch('posts', { trackKey: 'foo' }));
 
-      expect(abort).toHaveBeenCalledTimes(1)
+      expect(abort).toHaveBeenCalledTimes(1);
     });
 
     it('does not abort non-pending previous XHR', function() {
@@ -31,7 +31,7 @@ describe('collection action creators', function() {
       this.store.dispatch(this.fetch('posts', { trackKey: 'foo' }));
       this.store.dispatch(this.fetch('posts', { trackKey: 'foo' }));
 
-      expect(abort).toHaveBeenCalledTimes(0)
+      expect(abort).toHaveBeenCalledTimes(0);
     });
   });
 });

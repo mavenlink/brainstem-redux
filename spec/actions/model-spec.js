@@ -61,14 +61,14 @@ describe('model action creators', function() {
 
     it('subscriber saves a non-persisted model', function() {
       const save = jasmine.createSpy('save')
-      const ModelSpy = spyOn(this.storageManager.storage('posts'), 'model')
+      const ModelSpy = spyOn(this.storageManager.storage('posts'), 'model');
       ModelSpy.and.returnValue({ save });
 
       this.store.dispatch(this.save('posts', undefined, {
         title: 'new post'
       }))
 
-      expect(ModelSpy).toHaveBeenCalledWith({ id: undefined })
+      expect(ModelSpy).toHaveBeenCalledWith({ id: undefined });
       expect(save).toHaveBeenCalled()
     });
   });
