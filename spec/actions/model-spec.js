@@ -58,5 +58,18 @@ describe('model action creators', function() {
 
       expect(spy).toHaveBeenCalled()
     });
+
+    it('subscriber saves a non-persisted model', function() {
+      const save = jasmine.createSpy('save')
+      const ModelSpy = spyOn(this.storageManager.storage('posts'), 'model')
+      ModelSpy.and.returnValue({ save });
+
+      this.store.dispatch(this.save('posts', undefined, {
+        title: 'new post'
+      }))
+
+      expect(ModelSpy).toHaveBeenCalledWith({ id: undefined })
+      expect(save).toHaveBeenCalled()
+    });
   });
 });
