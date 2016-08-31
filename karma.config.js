@@ -4,11 +4,12 @@ const webpackConfig = Object.assign(require('./webpack.config'), {
 
 module.exports = (config) =>
   config.set({
-    browsers: ['PhantomJS'],
+    browsers: ['Chrome'],
 
     frameworks: ['jasmine'],
 
     files: [
+      'spec/helpers/**/*.js',
       'spec/**/*.js',
     ],
 
