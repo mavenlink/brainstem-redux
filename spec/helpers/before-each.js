@@ -1,19 +1,20 @@
+const {
+  StorageManager,
+} = require('brainstem-js');
+
+const {
+  applyMiddleware,
+  combineReducers,
+  createStore,
+} = require('redux');
+
+
+const thunkMiddleware = require('redux-thunk').default;
+
+const Posts = require('../../example/collections/posts');
+const Users = require('../../example/collections/users');
+
 beforeEach(function() {
-  const {
-    StorageManager,
-  } = require('brainstem-js');
-
-  const {
-    applyMiddleware,
-    combineReducers,
-    createStore,
-  } = require('redux');
-
-  const thunkMiddleware = require('redux-thunk').default;
-
-  const Posts = require('../../example/collections/posts');
-  const Users = require('../../example/collections/users');
-
   this.storageManager = StorageManager.get();
   this.storageManager.addCollection('posts', Posts);
   this.storageManager.addCollection('users', Users);

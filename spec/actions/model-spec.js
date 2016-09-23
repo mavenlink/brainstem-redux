@@ -7,7 +7,7 @@ describe('model action creators', function() {
 
   describe('fetch', function() {
     beforeEach(function() {
-      this.fetch = require('../../lib/actions/model')(this.storageManager).fetch;
+      this.fetch = require('../../lib/actions/model').fetch;
     });
 
     it('fetches the model', function() {
@@ -44,7 +44,7 @@ describe('model action creators', function() {
 
   describe('save', function() {
     beforeEach(function() {
-      this.save = require('../../lib/actions/model')(this.storageManager).save;
+      this.save = require('../../lib/actions/model').save;
     });
 
     it('send save to the subscriber for the existing model', function() {
