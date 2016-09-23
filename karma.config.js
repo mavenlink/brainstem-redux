@@ -10,8 +10,9 @@ module.exports = (config) =>
     frameworks: ['jasmine'],
 
     files: [
-      'spec/helpers/**/*.js',
-      'spec/**/*.js',
+      'spec/actions/*.js',
+      'spec/reducers/*.js',
+      'spec/sync/*.js',
     ],
 
     preprocessors: {

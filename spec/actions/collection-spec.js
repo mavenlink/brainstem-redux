@@ -1,4 +1,6 @@
 describe('collection action creators', function() {
+  require('../helpers/before-each');
+
   beforeEach(function() {
     this.fetch = require('../../lib/actions/collection')(this.storageManager).fetch;
     this.storageManager.enableExpectations();

@@ -1,4 +1,6 @@
 describe('subscriber on the redux store', function() {
+  require('../helpers/before-each');
+
   beforeEach(function() {
     this.posts = this.storageManager.storage('posts');
     this.store.dispatch({

@@ -1,4 +1,6 @@
 describe('model action creators', function() {
+  require('../helpers/before-each');
+
   beforeEach(function() {
     this.storageManager.enableExpectations();
   });

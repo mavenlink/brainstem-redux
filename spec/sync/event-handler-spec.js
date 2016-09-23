@@ -1,4 +1,6 @@
 describe('handling events from storageManager', function() {
+  require('../helpers/before-each');
+
   beforeEach(function() {
     this.posts = this.storageManager.storage('posts');
     this.posts.add({ id: 1, title: 'What is redux?', message: 'I do not know but it might be awesome' });

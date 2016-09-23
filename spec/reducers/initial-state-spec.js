@@ -1,4 +1,6 @@
 describe('initializing the store', () => {
+  require('../helpers/before-each')
+
   it('sets up the store with a brainstem key', function() {
     expect(Object.keys(this.store.getState())).toContain('brainstem');
   });
