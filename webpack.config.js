@@ -1,3 +1,5 @@
+const Path = require('path')
+
 module.exports = {
   entry: './index.js',
 
@@ -5,4 +7,10 @@ module.exports = {
     path: './bin',
     filename: 'index.js',
   },
+
+  resolve: {
+    alias: {
+      example: Path.resolve('./', 'example')
+    }
+  }
 }
