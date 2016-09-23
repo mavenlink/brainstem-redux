@@ -5,8 +5,14 @@ describe('sync-brainstem middleware', function() {
     this.posts = this.storageManager.storage('posts');
     this.store.dispatch({
       type: 'ADD_MODEL',
-      brainstemKey: 'posts',
-      attributes: { id: 76, title: 'Hello', message: 'World!' }
+      payload: {
+        brainstemKey: 'posts',
+        attributes: {
+          id: 76,
+          title: 'Hello',
+          message: 'World!'
+        }
+      }
     });
   });
 
@@ -17,8 +23,14 @@ describe('sync-brainstem middleware', function() {
   it('changes existing attributes on a model in the storageManager', function() {
     this.store.dispatch({
       type: 'CHANGE_MODEL',
-      brainstemKey: 'posts',
-      attributes: { id: 76, title: 'Goodbye', message: 'Cruel World!' }
+      payload: {
+        brainstemKey: 'posts',
+        attributes: {
+          id: 76,
+          title: 'Goodbye',
+          message: 'Cruel World!'
+        }
+      }
     });
 
     expect(this.posts.last().toJSON()).toEqual(this.store.getState().brainstem.posts[76]);
@@ -27,8 +39,10 @@ describe('sync-brainstem middleware', function() {
   it('removes a model from the storageManager', function() {
     this.store.dispatch({
       type: 'REMOVE_MODEL',
-      brainstemKey: 'posts',
-      attributes: { id: 76 }
+      payload: {
+        brainstemKey: 'posts',
+        attributes: { id: 76 }
+      }
     });
 
     expect(this.posts.get(76)).not.toBeDefined();

@@ -3,14 +3,14 @@ module.exports = {
     preFetch: filterText => {
       return {
         type: 'POSTS_AUTOCOMPLETER_REQUEST_POSTS',
-        filterText: filterText,
+        payload: { filterText },
       };
     },
 
     postFetch: postIds => {
       return {
         type: 'POSTS_AUTOCOMPLETER_SYNC_POSTS',
-        posts: postIds,
+        payload: { posts: postIds },
       };
     },
   }
