@@ -1,5 +1,6 @@
 const webpackConfig = Object.assign(require('./webpack.config'), {
   entry: {},
+  devtool: 'inline-source-map',
 });
 
 module.exports = (config) =>
@@ -14,7 +15,7 @@ module.exports = (config) =>
     ],
 
     preprocessors: {
-      'spec/**/*': ['webpack'],
+      'spec/**/*': ['webpack', 'sourcemap'],
     },
 
     webpack: webpackConfig,
