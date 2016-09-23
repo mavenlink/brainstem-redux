@@ -10,8 +10,9 @@ const {
 } = require('redux');
 
 const thunkMiddleware = require('redux-thunk').default;
-
+const syncBrainstemMiddleware = require('./example/middleware/sync-brainstem');
 const loggerMiddleware = require('./example/middleware/logger');
+
 const Post = require('./example/models/post');
 const Posts = require('./example/collections/posts');
 const Users = require('./example/collections/users');
@@ -27,14 +28,13 @@ store = createStore(
   }),
   applyMiddleware(
     thunkMiddleware,
+    syncBrainstemMiddleware,
     loggerMiddleware
   )
 );
 
 // Transforms a storage manager backbone event into a (dispatched) redux brainstem action
 require('./lib/sync/event-handler')(storageManager, store);
-// Redux change listening to sync the redux brainstem store into the storage manager
-require('./lib/sync/subscriber')(storageManager, store);
 
 posts = storageManager.storage('posts')
 posts.add({ id: 1, title: 'What is redux?', message: 'I do not know but it might be awesome' });

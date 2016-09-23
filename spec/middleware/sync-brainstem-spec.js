@@ -1,4 +1,4 @@
-describe('subscriber on the redux store', function() {
+describe('sync-brainstem middleware', function() {
   require('../helpers/before-each');
 
   beforeEach(function() {
