@@ -10,7 +10,8 @@ module.exports = {
 
   resolve: {
     alias: {
-      example: Path.resolve('./', 'example')
+      example: Path.resolve('./', 'example'),
+      lib: Path.resolve('./', 'lib'),
     }
   }
 }
