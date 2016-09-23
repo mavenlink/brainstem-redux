@@ -3,6 +3,7 @@
   "version": "0.0.2-a",
   "description": "Client-side Brainstem store in Redux",
   "main": "index.js",
+  "engine": "node 6.5.0",
   "scripts": {
     "start": "webpack-dev-server",
     "test": "karma start karma.config.js --single-run",
