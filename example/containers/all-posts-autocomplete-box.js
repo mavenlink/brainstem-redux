@@ -1,7 +1,7 @@
 const { connect } = require('react-redux')
 const PostAutocompleteBox = require('../components/post-autocomplete-box')
 
-const { fetch: fetchCollection } = require('../../lib/actions/collection')
+const { fetch: fetchCollection } = require('../../lib/actions/collection')(storageManager)
 const actionCreators = require('../actions/posts-autocompleter')
 
 const mapStateToProps = (state) => {
