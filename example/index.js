@@ -10,7 +10,7 @@ const {
 } = require('redux');
 
 const thunkMiddleware = require('redux-thunk').default;
-const syncBrainstemMiddleware = require('lib/middleware/sync-brainstem');
+const syncBrainstemMiddleware = require('lib/middleware/update-storage-manager');
 const loggerMiddleware = require('example/middleware/logger');
 
 const Post = require('example/models/post');
