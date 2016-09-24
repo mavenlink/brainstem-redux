@@ -22,7 +22,7 @@ beforeEach(function() {
 
   this.store = createStore(
     combineReducers({
-      brainstem: require('lib/reducers/index')(this.storageManager),
+      brainstem: require('lib/reducers/index'),
       postsAutocompleter: require('example/reducers/posts-autocompleter'),
     }),
     applyMiddleware(
@@ -32,5 +32,5 @@ beforeEach(function() {
   );
 
   // Transforms a storage manager backbone event into a (dispatched) redux brainstem action
-  require('lib/sync/update-store')(this.storageManager, this.store);
+  require('lib/sync/update-store')(this.store);
 });

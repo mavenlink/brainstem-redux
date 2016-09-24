@@ -8,14 +8,11 @@ Brainstem-redux syncs data between your Brainstem storageManager and your Redux 
 3. `redux-thunk`
 
 ## Usage
-Use Brainstem-redux when creating your top-level reducer and your store. You must pass your storageManager into the brainstem reducer, then pass that into your `combineReducers` call with the key of `brainstem`. When you create your store, you must pass in `updateStorageManager` to redux's `applyMiddleware` function.
+Use Brainstem-redux when creating your top-level reducer and your store. You must pass the brainstem reducer into your `combineReducers` call with the key of `brainstem`. When you create your store, you must pass in `updateStorageManager` to redux's `applyMiddleware` function.
 ```
 const { reducer, updateStore, updateStorageManager } = require('brainstem-redux')
 const { combineReducers, createStore, applyMiddleware } = require('redux')
-const storageManager = require('brainstem-js').StorageManager.get()
 const thunkMiddleware = require('redux-thunk')
-
-const brainstemReducer = reducer(storageManager)
 
 const appReducer = combineReducers({ myAppReducer: myAppReducer, brainstem: brainstemReducer })
 
