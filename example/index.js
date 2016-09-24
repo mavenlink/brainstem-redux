@@ -34,7 +34,7 @@ store = createStore(
 );
 
 // Transforms a storage manager backbone event into a (dispatched) redux brainstem action
-require('lib/sync/event-handler')(storageManager, store);
+require('lib/sync/update-store')(storageManager, store);
 
 posts = storageManager.storage('posts')
 posts.add({ id: 1, title: 'What is redux?', message: 'I do not know but it might be awesome' });

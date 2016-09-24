@@ -32,5 +32,5 @@ beforeEach(function() {
   );
 
   // Transforms a storage manager backbone event into a (dispatched) redux brainstem action
-  require('lib/sync/event-handler')(this.storageManager, this.store);
+  require('lib/sync/update-store')(this.storageManager, this.store);
 });
