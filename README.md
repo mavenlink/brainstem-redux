@@ -1,19 +1,33 @@
-# REACT -> STORAGE MANAGER
+# Brainstem-redux
 
-- React updates posts -> store gets updated
-- Store invokes all listeners
-- Listener tries to update all models on storage manager
-- Changed post actually updates and emits a change event
-- Change event is handled by dispatched a CHANGE_MODEL action
-- Store invokes all listeners
-- Listener tries to update all models on storage manager
-- Post does not change so backbone does not emit any event
+Brainstem-redux syncs data between your Brainstem storageManager and your Redux store.
 
-# STORAGE MANAGER -> REACT
+## Dependencies
+1. `brainstem-js`
+2. `redux`
+3. `redux-thunk`
 
-- Storage manager emits a change event
-- Change event is handled by dispatching a CHANGE_MODEL action
-- Store is updated
-- Store invokes all listeners
-- Listener tries to update all models on storage manager
-- Model does not change so backbone does not emit any event
+## Usage
+Use Brainstem-redux when creating your top-level reducer and your store. You must pass your storageManager into the brainstem reducer, then pass that into your `combineReducers` call with the key of `brainstem`. When you create your store, you must pass in `updateStorageManager` to redux's `applyMiddleware` function.
+```
+const { reducer, updateStore, updateStorageManager } = require('brainstem-redux')
+const { combineReducers, createStore, applyMiddleware } = require('redux')
+const storageManager = require('brainstem-js').StorageManager.get()
+const thunkMiddleware = require('redux-thunk')
+
+const brainstemReducer = reducer(storageManager)
+
+const appReducer = combineReducers({ myAppReducer: myAppReducer, brainstem: brainstemReducer })
+
+const store = createStore(appReducer, applyMiddleware(thunkMiddleware, updateStorageManager))
+```
+
+When you want to fetch or save your models or fetch your collections, use the `modelActions` and `collectionActions` to make sure both your store and storageManager get updated.
+
+## API
+Brainstem-redux exposes five methods:
+1. `reducer`: reducer that can be mixed into your own reducer and will hold all of the data in your storageManager
+2. `updateStore`: function that loops through all of the collections in your storageManager and sets up event listeners that will dispatch the appropriate actions to your store when your storageManager emits events
+3. `updateStorageManager`: middleware that updates your storageManager based on the actions you dispatch to your store
+4. `modelActions`: methods that dispatch actions for your models to your store
+5. `collectionActions`: methods that dispatch actions for your collections to your store
