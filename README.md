@@ -3,9 +3,8 @@
 Brainstem-redux syncs data between your Brainstem storageManager and your Redux store.
 
 ## Dependencies
-1. `brainstem-js`
-2. `redux`
-3. `redux-thunk`
+
+    npm install --save brainstem-js redux redux-thunk
 
 ## Usage
 Use Brainstem-redux when creating your top-level reducer and your store. You must pass the brainstem reducer into your `combineReducers` call with the key of `brainstem`. When you create your store, you must pass in `updateStorageManager` to redux's `applyMiddleware` function.
