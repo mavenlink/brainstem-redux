@@ -1,6 +1,10 @@
 # Brainstem-redux
 
-Brainstem-redux syncs data between your Brainstem storageManager and your Redux store.
+- Brainstem-redux syncs data between your Brainstem `storageManager` and your Redux `store`.
+- Provides [(thunked) action creators](http://redux.js.org/docs/advanced/AsyncActions.html)
+  - Model fetching
+  - Model saving
+  - Collection fetching
 
 ## Dependencies
 
