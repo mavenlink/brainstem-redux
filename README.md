@@ -1,6 +1,6 @@
 # Brainstem-redux
 
-- Brainstem-redux syncs data between your Brainstem `storageManager` and your Redux `store`.
+- Brainstem-redux syncs data between your Brainstem storage manager and your Redux store
 - Provides [(thunked) action creators](http://redux.js.org/docs/advanced/AsyncActions.html)
   - Model fetching
   - Model saving
@@ -15,8 +15,8 @@
 ### Use Brainstem-redux when creating your top-level reducer and your store. 
 
 1. Apply the brainstem-redux reducer with the key of `brainstem`. 
-2. When you create your store, apply the `updateStorageManager` middleware (syncs `store` -> `storageManager`)
-3. Finally, set up event handlers to sync the `storeManager` -> `store`
+2. When you create your store, apply the `updateStorageManager` middleware (syncs store -> storage manager)
+3. Finally, set up event handlers to sync the storage manager -> store
 
 ```
 const { 
@@ -50,7 +50,7 @@ require('lib/sync/update-store')(store);
 
 ### Use Brainstem-redux action creators
 
-When you want to fetch or save your models or fetch your collections, use the `modelActions` and `collectionActions` to make sure both your store and storageManager get updated. These action creators feature a few things to facilitate most common usages of fetch / save. 
+When you want to fetch or save your models or fetch your collections, use the `modelActions` and `collectionActions` to make sure both your store and storage manager get updated. These action creators feature a few things to facilitate most common usages of fetch / save. 
 
 Each action creator takes an object of options. 
 
