@@ -96,9 +96,10 @@ modelActions.fetch('posts', {
 ```
 
 ## API
-Brainstem-redux exposes five methods:
-1. `reducer`: reducer that can be mixed into your own reducer and will hold all of the data in your storageManager
-2. `updateStore`: function that loops through all of the collections in your storageManager and sets up event listeners that will dispatch the appropriate actions to your store when your storageManager emits events
-3. `updateStorageManager`: middleware that updates your storageManager based on the actions you dispatch to your store
-4. `modelActions`: methods that dispatch actions for your models to your store
-5. `collectionActions`: methods that dispatch actions for your collections to your store
+`brainstem-redux` exposes five methods:
+
+1. `reducer`: store reducer which manages the top-level `brainstem` slice of the store
+2. `updateStore`: event handling of all the collections in your storage manager; dispatches the appropriate actions to the redux store
+3. `updateStorageManager`: *middleware* that syncs the redux store with your storage manager
+4. `modelActions`: action creators for your models
+5. `collectionActions`: action creators for your collections
