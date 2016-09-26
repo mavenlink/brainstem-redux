@@ -54,9 +54,10 @@ When you want to fetch or save your models or fetch your collections, use the `m
 
 Each action creator takes an object of options. 
 
-    `trackKey` (string) - unique key to track XHR requests where existing XHRs with the same key are cancelled
-    `preFetchAction` (action) - action to dispatch before sending the XHR
-    `postFetchAction` (action creator) - action creator to dispatch after successfully sending the XHR; invoked with the relevant results (e.g. model ID or IDs) 
+ - `fetchOptions` (object) - fetch options
+ - `trackKey` (string) - unique key to track XHR requests where existing XHRs with the same key are cancelled
+ - `preFetchAction` (action) - action to dispatch before sending the XHR
+ - `postFetchAction` (action creator) - action creator to dispatch after successfully sending the XHR; invoked with the relevant results (e.g. model ID or IDs) 
 
 1. Fetch a model
 
