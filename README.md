@@ -11,15 +11,39 @@
     npm install --save brainstem-js redux redux-thunk
 
 ## Usage
-Use Brainstem-redux when creating your top-level reducer and your store. You must pass the brainstem reducer into your `combineReducers` call with the key of `brainstem`. When you create your store, you must pass in `updateStorageManager` to redux's `applyMiddleware` function.
+
+### Use Brainstem-redux when creating your top-level reducer and your store. 
+1. You must pass the brainstem-redux reducer into your `combineReducers` with the key of `brainstem`. 
+2. When you create your store, apply the `updateStorageManager` middleware (syncs `store` -> `storageManager`)
+3. Finally, set up event handlers to sync the `storeManager` -> `store`
 ```
-const { reducer, updateStore, updateStorageManager } = require('brainstem-redux')
-const { combineReducers, createStore, applyMiddleware } = require('redux')
-const thunkMiddleware = require('redux-thunk')
+const { 
+  reducer: brainstemReducer, 
+  updateStore, 
+  updateStorageManager 
+} = require('brainstem-redux')
 
-const appReducer = combineReducers({ myAppReducer: myAppReducer, brainstem: brainstemReducer })
+const { 
+  combineReducers, 
+  createStore, 
+  applyMiddleware 
+} = require('redux')
 
-const store = createStore(appReducer, applyMiddleware(thunkMiddleware, updateStorageManager))
+const thunkMiddleware = require('redux-thunk').default
+
+// 1
+const appReducer = combineReducers({ 
+  brainstem: brainstemReducer, 
+  otherReducers: ...
+})
+
+// 2
+const storeMiddleware = applyMiddleware(thunkMiddleware, updateStorageManager)
+
+const store = createStore(appReducer, storeMiddleware)
+
+// 3
+require('lib/sync/update-store')(storageManager, store);
 ```
 
 When you want to fetch or save your models or fetch your collections, use the `modelActions` and `collectionActions` to make sure both your store and storageManager get updated.
