@@ -13,9 +13,11 @@
 ## Usage
 
 ### Use Brainstem-redux when creating your top-level reducer and your store. 
-1. You must pass the brainstem-redux reducer into your `combineReducers` with the key of `brainstem`. 
+
+1. Apply the brainstem-redux reducer with the key of `brainstem`. 
 2. When you create your store, apply the `updateStorageManager` middleware (syncs `store` -> `storageManager`)
 3. Finally, set up event handlers to sync the `storeManager` -> `store`
+
 ```
 const { 
   reducer: brainstemReducer, 
@@ -43,7 +45,7 @@ const storeMiddleware = applyMiddleware(thunkMiddleware, updateStorageManager)
 const store = createStore(appReducer, storeMiddleware)
 
 // 3
-require('lib/sync/update-store')(storageManager, store);
+require('lib/sync/update-store')(store);
 ```
 
 When you want to fetch or save your models or fetch your collections, use the `modelActions` and `collectionActions` to make sure both your store and storageManager get updated.
