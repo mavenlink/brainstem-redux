@@ -48,7 +48,51 @@ const store = createStore(appReducer, storeMiddleware)
 require('lib/sync/update-store')(store);
 ```
 
-When you want to fetch or save your models or fetch your collections, use the `modelActions` and `collectionActions` to make sure both your store and storageManager get updated.
+### Use Brainstem-redux action creators
+
+When you want to fetch or save your models or fetch your collections, use the `modelActions` and `collectionActions` to make sure both your store and storageManager get updated. These action creators feature a few things to facilitate most common usages of fetch / save. 
+
+Each action creator takes an object of options. 
+
+    `trackKey` (string) - unique key to track XHR requests where existing XHRs with the same key are cancelled
+    `preFetchAction` (action) - action to dispatch before sending the XHR
+    `postFetchAction` (action creator) - action creator to dispatch after successfully sending the XHR; invoked with the relevant results (e.g. model ID or IDs) 
+
+1. Fetch a model
+
+```
+const { modelActions } = require('brainstem-redux')
+
+modelActions.fetch('posts', 42, { 
+  fetchOptions: { 
+    include: ['subject'] 
+  }
+})
+```
+
+2. Save a model
+
+```
+const { modelActions } = require('brainstem-redux')
+
+modelActions.save('posts', 42, { 
+  fetchOptions: { 
+    include: ['subject'] 
+  }
+})
+```
+
+3. Fetch a collection
+
+```
+const { collectionActions } = require('brainstem-redux')
+
+modelActions.fetch('posts', { 
+  fetchOptions: { 
+    include: ['subject'] 
+  }
+})
+```
 
 ## API
 Brainstem-redux exposes five methods:
