@@ -1,6 +1,6 @@
 {
   "name": "brainstem-redux",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Client-side Brainstem store in Redux",
   "main": "index.js",
   "scripts": {
@@ -30,7 +30,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "brainstem-js": "0.4.10",
+    "brainstem-js": "^0.4.10",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0"
   },
