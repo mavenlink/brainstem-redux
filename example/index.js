@@ -1,7 +1,5 @@
-const {
-  BrainstemCollection,
-  StorageManager,
-} = require('brainstem-js');
+const { BrainstemCollection } = require('brainstem-js');
+const storageManager = require('../sync/storage-manager').retrieveStorageManager();
 
 const {
   applyMiddleware,
@@ -17,7 +15,6 @@ const Post = require('example/models/post');
 const Posts = require('example/collections/posts');
 const Users = require('example/collections/users');
 
-storageManager = StorageManager.get();
 storageManager.addCollection('posts', Posts);
 storageManager.addCollection('users', Users);
 
