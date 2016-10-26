@@ -1,6 +1,6 @@
-var index = require('../index.js');
+var index = require('../api.js');
 
-describe('index', function() {
+describe('API', function() {
   it('has all the methods', function() {
     expect(typeof index.reducer).toEqual('function');
     expect(typeof index.updateStore).toEqual('function');

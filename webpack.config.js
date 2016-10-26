@@ -1,7 +1,7 @@
 const Path = require('path')
 
 module.exports = {
-  entry: './index.js',
+  entry: './api.js',
 
   output: {
     path: './bin',

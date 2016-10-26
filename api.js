@@ -1,5 +1,5 @@
 module.exports = {
-  reducer: require('./lib/reducers/index'),
+  reducer: require('./lib/reducers'),
   updateStore: require('./lib/sync/update-store'),
   updateStorageManager: require('./lib/middleware/update-storage-manager'),
   modelActions: require('./lib/actions/model'),

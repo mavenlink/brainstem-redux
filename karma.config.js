@@ -14,7 +14,7 @@ module.exports = (config) =>
       'spec/reducers/*.js',
       'spec/middleware/*.js',
       'spec/sync/*.js',
-      'spec/index-spec.js',
+      'spec/api-spec.js',
     ],
 
     preprocessors: {
