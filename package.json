@@ -4,10 +4,14 @@
   "description": "Client-side Brainstem store in Redux",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "ci:lint": "npm run lint",
+    "ci:test": "npm run karma -- --single-run",
+    "compile": "webpack",
+    "karma": "karma start karma.config.js",
     "lint": "eslint 'lib/**/*.js' 'spec/**/*' *.js",
-    "test": "karma start karma.config.js --single-run",
-    "test-browser": "karma start karma.config.js"
+    "start": "webpack-dev-server",
+    "test": "npm run ci:lint && npm run ci:test",
+    "test:watch": "npm run karma"
   },
   "keywords": [
     "brainstem",
