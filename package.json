@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "lint": "eslint 'example/**/*.js' 'lib/**/*.js' 'spec/**/*' *.js",
+    "lint": "eslint 'lib/**/*.js' 'spec/**/*' *.js",
     "test": "karma start karma.config.js --single-run",
     "test-browser": "karma start karma.config.js"
   },
