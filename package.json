@@ -2,7 +2,7 @@
   "name": "brainstem-redux",
   "version": "0.0.7-a",
   "description": "Client-side Brainstem store in Redux",
-  "main": "index.js",
+  "main": "bin/index.js",
   "scripts": {
     "ci:lint": "npm run lint",
     "ci:test": "npm run karma -- --single-run",
