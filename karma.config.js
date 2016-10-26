@@ -5,7 +5,7 @@ const webpackConfig = Object.assign(require('./webpack.config'), {
 
 module.exports = (config) =>
   config.set({
-    browsers: ['Chrome', 'PhantomJS'],
+    browsers: ['Chrome', 'PhantomJS', 'Firefox'],
 
     frameworks: ['jasmine'],
 
