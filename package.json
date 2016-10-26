@@ -9,6 +9,7 @@
     "compile": "webpack",
     "karma": "karma start karma.config.js",
     "lint": "eslint 'lib/**/*.js' 'spec/**/*' *.js",
+    "prepublish": "npm run compile",
     "start": "webpack-dev-server",
     "test": "npm run ci:lint && npm run ci:test",
     "test:watch": "npm run karma"
