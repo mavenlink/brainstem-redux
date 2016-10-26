@@ -1,6 +1,6 @@
 {
   "name": "brainstem-redux",
-  "version": "0.0.8-a",
+  "version": "0.0.8",
   "description": "Client-side Brainstem store in Redux",
   "main": "bin/index.js",
   "scripts": {
