@@ -13,7 +13,8 @@ module.exports = {
   },
 
   output: {
-    path: './bin',
     filename: 'index.js',
+    libraryTarget: 'commonjs2',
+    path: './bin',
   },
 };
