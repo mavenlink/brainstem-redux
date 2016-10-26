@@ -1,17 +1,17 @@
-const { connect } = require('react-redux')
-const PostAutocompleteBox = require('../components/post-autocomplete-box')
+const { connect } = require('react-redux');
+const PostAutocompleteBox = require('../components/post-autocomplete-box');
 
-const { fetch: fetchCollection } = require('lib/actions/collection')
-const actionCreators = require('../actions/posts-autocompleter')
+const { fetch: fetchCollection } = require('lib/actions/collection');
+const actionCreators = require('../actions/posts-autocompleter');
 
 const mapStateToProps = (state) => {
   return {
-    allPosts: state.postsAutocompleter.posts.map(post_id => {
-      return state.brainstem.posts[post_id]
+    allPosts: state.postsAutocompleter.posts.map((post_id) => {
+      return state.brainstem.posts[post_id];
     }),
     filterText: state.postsAutocompleter.filterText,
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -23,12 +23,12 @@ const mapDispatchToProps = (dispatch) => {
           postFetchAction: actionCreators.posts.postFetch,
           trackKey: 'all-posts-autocomplete-box',
         })
-      )
-    }
-  }
-}
+      );
+    },
+  };
+};
 
 module.exports = connect(
   mapStateToProps,
   mapDispatchToProps
-)(PostAutocompleteBox)
+)(PostAutocompleteBox);

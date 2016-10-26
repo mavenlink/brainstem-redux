@@ -1,7 +1,7 @@
-const React = require('react')
+const React = require('react');
 
 module.exports = React.createClass({
-  render: function() {
-    return React.DOM.li(null, this.props.message)
-  }
-})
+  render() {
+    return React.DOM.li(null, this.props.message);
+  },
+});

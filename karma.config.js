@@ -3,7 +3,7 @@ const webpackConfig = Object.assign(require('./webpack.config'), {
   devtool: 'inline-source-map',
 });
 
-module.exports = (config) =>
+module.exports = config =>
   config.set({
     browsers: ['Chrome', 'PhantomJS', 'Firefox'],
 
@@ -24,6 +24,6 @@ module.exports = (config) =>
     webpack: webpackConfig,
 
     webpackMiddleware: {
-      noInfo: true
+      noInfo: true,
     },
   });
