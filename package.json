@@ -8,7 +8,7 @@
     "ci:test": "npm run karma -- --single-run",
     "compile": "webpack",
     "karma": "karma start karma.config.js",
-    "lint": "eslint 'lib/**/*.js' 'spec/**/*' *.js",
+    "lint": "eslint '**/*.js'",
     "prepublish": "npm run compile",
     "start": "webpack-dev-server",
     "test": "npm run ci:lint && npm run ci:test",
