@@ -1,11 +1,12 @@
 const webpackConfig = Object.assign(require('./webpack.config'), {
-  entry: {},
   devtool: 'inline-source-map',
+  entry: {},
+  output: {},
 });
 
-module.exports = (config) =>
+module.exports = config =>
   config.set({
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'PhantomJS', 'Firefox'],
 
     frameworks: ['jasmine'],
 
@@ -14,7 +15,7 @@ module.exports = (config) =>
       'spec/reducers/*.js',
       'spec/middleware/*.js',
       'spec/sync/*.js',
-      'spec/index-spec.js',
+      'spec/api-spec.js',
     ],
 
     preprocessors: {
@@ -24,6 +25,6 @@ module.exports = (config) =>
     webpack: webpackConfig,
 
     webpackMiddleware: {
-      noInfo: true
+      noInfo: true,
     },
   });

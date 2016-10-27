@@ -1,7 +1,8 @@
-describe('sync-brainstem middleware', function() {
-  require('../helpers/before-each');
+const beforeEachHelpers = require('../helpers/before-each');
 
-  beforeEach(function() {
+describe('sync-brainstem middleware', () => {
+  beforeEach(function () {
+    beforeEachHelpers.call(this);
     this.posts = this.storageManager.storage('posts');
     this.store.dispatch({
       type: 'ADD_MODEL',
@@ -10,17 +11,17 @@ describe('sync-brainstem middleware', function() {
         attributes: {
           id: 76,
           title: 'Hello',
-          message: 'World!'
-        }
-      }
+          message: 'World!',
+        },
+      },
     });
   });
 
-  it('adds new model to storageManager', function() {
+  it('adds new model to storageManager', function () {
     expect(this.posts.last().toJSON()).toEqual(this.store.getState().brainstem.posts[76]);
   });
 
-  it('changes existing attributes on a model in the storageManager', function() {
+  it('changes existing attributes on a model in the storageManager', function () {
     this.store.dispatch({
       type: 'CHANGE_MODEL',
       payload: {
@@ -28,21 +29,21 @@ describe('sync-brainstem middleware', function() {
         attributes: {
           id: 76,
           title: 'Goodbye',
-          message: 'Cruel World!'
-        }
-      }
+          message: 'Cruel World!',
+        },
+      },
     });
 
     expect(this.posts.last().toJSON()).toEqual(this.store.getState().brainstem.posts[76]);
   });
 
-  it('removes a model from the storageManager', function() {
+  it('removes a model from the storageManager', function () {
     this.store.dispatch({
       type: 'REMOVE_MODEL',
       payload: {
         brainstemKey: 'posts',
-        attributes: { id: 76 }
-      }
+        attributes: { id: 76 },
+      },
     });
 
     expect(this.posts.get(76)).not.toBeDefined();

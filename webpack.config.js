@@ -1,17 +1,20 @@
-const Path = require('path')
-
 module.exports = {
-  entry: './index.js',
+  entry: './api.js',
 
-  output: {
-    path: './bin',
-    filename: 'index.js',
+  module: {
+    loaders: [{
+      exclude: /(node_modules)/,
+      loader: 'babel-loader',
+      query: {
+        presets: ['es2015'],
+        plugins: ['transform-runtime'],
+      },
+    }],
   },
 
-  resolve: {
-    alias: {
-      example: Path.resolve('./', 'example'),
-      lib: Path.resolve('./', 'lib'),
-    }
-  }
-}
+  output: {
+    filename: 'index.js',
+    libraryTarget: 'commonjs2',
+    path: './bin',
+  },
+};
