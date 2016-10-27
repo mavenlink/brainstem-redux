@@ -1,0 +1,23 @@
+module.exports = {
+  rules: {
+    'no-undef': 'off',
+    'import/no-unresolved': 'off',
+    'import/no-extraneous-dependencies': 'off',
+    'global-require': 'off',
+    'no-unused-vars': 'off',
+    'no-param-reassign': 'off',
+    'arrow-body-style': 'off',
+    'camelcase': 'off',
+    'react/prop-types': 'off',
+    'react/prefer-es6-class': 'off',
+    'eol-last': 'off',
+    'spaced-comment': 'off',
+    'padded-blocks': 'off',
+    'indent': 'off',
+    'no-tabs': 'off',
+    'comma-dangle': 'off',
+    'no-mixed-spaces-and-tabs': 'off',
+    'curly': 'off',
+    'func-names': 'off',
+  },
+};
