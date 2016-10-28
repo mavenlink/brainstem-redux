@@ -1,6 +1,10 @@
 module.exports = {
   entry: './api.js',
 
+  externals: {
+    'brainstem-js': 'brainstem-js',
+  },
+
   module: {
     loaders: [{
       exclude: /(node_modules)/,
