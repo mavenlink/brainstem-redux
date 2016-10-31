@@ -22,4 +22,8 @@ describe('handling events from storageManager', () => {
 
     expect(this.store.getState().brainstem.posts).toEqual({});
   });
+
+  it('does not throw an exception when the entity is not passed', function () {
+    expect(() => { this.posts.add(); }).not.toThrow();
+  });
 });
