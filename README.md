@@ -1,10 +1,13 @@
-# Brainstem-redux
+# brainstem-redux
 
 - Brainstem-redux syncs data between your Brainstem storage manager and your Redux store
 - Provides [(thunked) action creators](http://redux.js.org/docs/advanced/AsyncActions.html)
   - Model fetching
   - Model saving
   - Collection fetching
+
+[![npm version](https://img.shields.io/npm/v/brainstem-redux.svg?style=flat-square)](https://www.npmjs.com/package/brainstem-redux)
+[![npm downloads](https://img.shields.io/npm/dm/brainstem-redux.svg?style=flat-square)](https://www.npmjs.com/package/brainstem-redux)
 
 ## Dependencies
 
