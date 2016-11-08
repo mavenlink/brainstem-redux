@@ -1,6 +1,6 @@
 {
   "name": "brainstem-redux",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "dependencies": {
     "accepts": {
       "version": "1.1.4",
@@ -506,9 +506,9 @@
       "resolved": "https://registry.npmjs.org/braces/-/braces-1.8.5.tgz"
     },
     "brainstem-js": {
-      "version": "0.4.11",
-      "from": "brainstem-js@>=0.4.10 <0.5.0",
-      "resolved": "https://registry.npmjs.org/brainstem-js/-/brainstem-js-0.4.11.tgz"
+      "version": "0.4.12",
+      "from": "brainstem-js@>=0.4.12 <0.5.0",
+      "resolved": "https://registry.npmjs.org/brainstem-js/-/brainstem-js-0.4.12.tgz"
     },
     "browserify-zlib": {
       "version": "0.1.4",
@@ -2534,6 +2534,11 @@
       "from": "object-component@0.0.3",
       "resolved": "https://registry.npmjs.org/object-component/-/object-component-0.0.3.tgz"
     },
+    "object-hash": {
+      "version": "1.1.5",
+      "from": "object-hash@>=1.1.4 <2.0.0",
+      "resolved": "https://registry.npmjs.org/object-hash/-/object-hash-1.1.5.tgz"
+    },
     "object.omit": {
       "version": "2.0.0",
       "from": "object.omit@>=2.0.0 <3.0.0",
@@ -2818,6 +2823,11 @@
       "from": "readline2@>=1.0.1 <2.0.0",
       "resolved": "https://registry.npmjs.org/readline2/-/readline2-1.0.1.tgz"
     },
+    "rechoir": {
+      "version": "0.6.2",
+      "from": "rechoir@>=0.6.2 <0.7.0",
+      "resolved": "https://registry.npmjs.org/rechoir/-/rechoir-0.6.2.tgz"
+    },
     "redux": {
       "version": "3.6.0",
       "from": "redux@>=3.5.2 <4.0.0",
@@ -2986,11 +2996,6 @@
       "version": "2.2.6",
       "from": "sha.js@2.2.6",
       "resolved": "https://registry.npmjs.org/sha.js/-/sha.js-2.2.6.tgz"
-    },
-    "shelljs": {
-      "version": "0.6.1",
-      "from": "shelljs@>=0.6.0 <0.7.0",
-      "resolved": "https://registry.npmjs.org/shelljs/-/shelljs-0.6.1.tgz"
     },
     "slash": {
       "version": "1.0.0",
