@@ -375,7 +375,7 @@
     },
     "babel-runtime": {
       "version": "6.18.0",
-      "from": "babel-runtime@>=6.9.1 <7.0.0",
+      "from": "babel-runtime@>=6.18.0 <7.0.0",
       "resolved": "https://registry.npmjs.org/babel-runtime/-/babel-runtime-6.18.0.tgz"
     },
     "babel-template": {
@@ -2844,9 +2844,9 @@
       "resolved": "https://registry.npmjs.org/regenerate/-/regenerate-1.3.1.tgz"
     },
     "regenerator-runtime": {
-      "version": "0.9.5",
+      "version": "0.9.6",
       "from": "regenerator-runtime@>=0.9.5 <0.10.0",
-      "resolved": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.9.5.tgz"
+      "resolved": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.9.6.tgz"
     },
     "regex-cache": {
       "version": "0.4.3",
@@ -2996,6 +2996,18 @@
       "version": "2.2.6",
       "from": "sha.js@2.2.6",
       "resolved": "https://registry.npmjs.org/sha.js/-/sha.js-2.2.6.tgz"
+    },
+    "shelljs": {
+      "version": "0.7.5",
+      "from": "shelljs@>=0.7.5 <0.8.0",
+      "resolved": "https://registry.npmjs.org/shelljs/-/shelljs-0.7.5.tgz",
+      "dependencies": {
+        "interpret": {
+          "version": "1.0.1",
+          "from": "interpret@>=1.0.0 <2.0.0",
+          "resolved": "https://registry.npmjs.org/interpret/-/interpret-1.0.1.tgz"
+        }
+      }
     },
     "slash": {
       "version": "1.0.0",

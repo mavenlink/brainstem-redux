@@ -40,7 +40,9 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "babel-runtime": "^6.18.0",
     "brainstem-js": "^0.4.12",
+    "jquery": "2.2.4",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0"
   },
@@ -49,6 +51,7 @@
     "babel-loader": "^6.2.5",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.18.0",
+    "babel-runtime": "^6.18.0",
     "eslint": "^3.8.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-loader": "^1.6.0",

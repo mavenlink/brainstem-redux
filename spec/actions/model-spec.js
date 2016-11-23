@@ -75,5 +75,27 @@ describe('model action creators', () => {
       expect(ModelSpy).toHaveBeenCalledWith({ id: undefined });
       expect(save).toHaveBeenCalled();
     });
+
+    it('returns a deferred when the model is invalid', function () {
+      const attributes = {};
+      const dispatch = this.save('posts', null, attributes, { trackKey: 'john-bonham' });
+
+      const xhr = dispatch();
+
+      console.log(xhr);
+      console.log(modelActions.validate('posts', attributes)());
+
+      // expect(modelActions.validate('time_entries', attributes)).toEqual(false);
+
+
+
+      // expect(xhr.resolve).toEqual(jasmine.any(Function));
+      expect(xhr.done).toEqual(jasmine.any(Function));
+      expect(xhr.fail).toEqual(jasmine.any(Function));
+    });
+  });
+
+  describe('validate', () => {
+
   });
 });
