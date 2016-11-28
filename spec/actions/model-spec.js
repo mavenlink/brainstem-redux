@@ -1,5 +1,6 @@
 const beforeEachHelpers = require('../helpers/before-each');
 const modelActions = require('../../lib/actions/model');
+const $ = require('jquery');
 
 describe('model action creators', () => {
   beforeEach(function () {
@@ -54,7 +55,7 @@ describe('model action creators', () => {
       posts.add({ id: 1, title: 'What is redux?', message: 'I do not know but it might be awesome' });
       const model = posts.last();
 
-      const spy = spyOn(model, 'save');
+      const spy = spyOn(model, 'save').and.returnValue($.Deferred()); // eslint-disable-line new-cap
 
       this.store.dispatch(this.save('posts', '1', {
         title: 'new post',
@@ -64,7 +65,7 @@ describe('model action creators', () => {
     });
 
     it('subscriber saves a non-persisted model', function () {
-      const save = jasmine.createSpy('save');
+      const save = jasmine.createSpy('save').and.returnValue($.Deferred()); // eslint-disable-line new-cap
       const ModelSpy = spyOn(this.storageManager.storage('posts'), 'model');
       ModelSpy.and.returnValue({ save });
 
@@ -76,20 +77,17 @@ describe('model action creators', () => {
       expect(save).toHaveBeenCalled();
     });
 
-    it('returns a deferred when the model is invalid', function () {
-      const attributes = {};
-      const dispatch = this.save('posts', null, attributes, { trackKey: 'john-bonham' });
+    it('returns a deferred when the model is invalid', () => {
+      spyOn($, 'ajax').and.returnValue($.Deferred()); // eslint-disable-line new-cap
 
+      const attributes = {};
+      expect(modelActions.validate('posts', attributes)()).toEqual({ errors: 'needs a user' });
+
+      const dispatch = modelActions.save('posts', null, attributes, { trackKey: 'john-bonham' });
       const xhr = dispatch();
 
-      console.log(xhr);
-      console.log(modelActions.validate('posts', attributes)());
-
-      // expect(modelActions.validate('time_entries', attributes)).toEqual(false);
-
-
-
-      // expect(xhr.resolve).toEqual(jasmine.any(Function));
+      expect(xhr.resolve).toBeUndefined();
+      expect(xhr.reject).toBeUndefined();
       expect(xhr.done).toEqual(jasmine.any(Function));
       expect(xhr.fail).toEqual(jasmine.any(Function));
     });

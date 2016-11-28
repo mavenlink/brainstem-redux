@@ -1,14 +1,17 @@
 const { Model } = require('brainstem-js');
 
-module.exports = Model.extend({
+const Post = Model.extend({
   paramRoot: 'post',
   brainstemKey: 'posts',
   urlRoot: '/api/v1/posts',
-  validate: () => {
-    // why does `this` compile to undefined???
-    if (this.get('user_id') === undefined) {
-      return false;
+  validate() {
+    let isValid;
+
+    if (this.get('title') === undefined) {
+      isValid = { errors: 'needs a user' };
     }
+
+    return isValid;
   }
 });
 
