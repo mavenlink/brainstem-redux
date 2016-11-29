@@ -92,8 +92,4 @@ describe('model action creators', () => {
       expect(xhr.fail).toEqual(jasmine.any(Function));
     });
   });
-
-  describe('validate', () => {
-
-  });
 });
