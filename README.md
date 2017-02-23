@@ -74,19 +74,27 @@ modelActions.fetch('posts', 42, {
 })
 ```
 
-2. Save a model
+1. Save a model (create)
 
 ```
 const { modelActions } = require('brainstem-redux')
 
 modelActions.save('posts', 42, { 
-  fetchOptions: { 
-    include: ['subject'] 
-  }
+  title: 'New post'
 })
 ```
 
-3. Fetch a collection
+1. Save a model (update)
+
+```
+const { modelActions } = require('brainstem-redux')
+
+modelActions.save('posts', 42, { 
+  title: 'Update post'
+})
+```
+
+1. Fetch a collection
 
 ```
 const { collectionActions } = require('brainstem-redux')
