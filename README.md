@@ -93,6 +93,7 @@ modelActions.save('posts', 42, {
   title: 'Update post'
 })
 ```
+* Note that `update` creates a new Brainstem model and will not make a request if the model is [invalid](https://github.com/mavenlink/brainstem-redux/blob/master/lib/actions/model.js#L53-L58). Adding a reject handler addresses this locally.
 
 1. Fetch a collection
 
