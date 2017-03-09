@@ -92,4 +92,32 @@ describe('model action creators', () => {
       expect(xhr.fail).toEqual(jasmine.any(Function));
     });
   });
+
+  describe('destroy', () => {
+    beforeEach(function () {
+      this.destroy = modelActions.destroy;
+    });
+
+    it('sends destroy to the subscriber for the existing model', function () {
+      const posts = this.storageManager.storage('posts');
+      posts.add({ id: 1, title: 'What is redux?', message: 'I do not know but it might be awesome' });
+      const model = posts.last();
+      this.spy = spyOn(model, 'destroy').and.returnValue($.Deferred()); // eslint-disable-line new-cap
+      this.store.dispatch(this.destroy('posts', '1'));
+
+      expect(this.spy).toHaveBeenCalled();
+    });
+
+    it('cancels previous requests with the same provided track key if they are pending', function () {
+      const xhrResultDouble = {
+        abort: jasmine.createSpy('abort'),
+        state: () => 'pending',
+      };
+      spyOn(this.storageManager.storage('posts').model.prototype, 'destroy').and.returnValue(xhrResultDouble);
+
+      this.store.dispatch(this.destroy('posts', '1', { trackKey: 'post-destroy' }));
+      this.store.dispatch(this.destroy('posts', '1', { trackKey: 'post-destroy' }));
+      expect(xhrResultDouble.abort).toHaveBeenCalledTimes(1)
+    })
+  });
 });
