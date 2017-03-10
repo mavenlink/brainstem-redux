@@ -117,7 +117,16 @@ describe('model action creators', () => {
 
       this.store.dispatch(this.destroy('posts', '1', { trackKey: 'post-destroy' }));
       this.store.dispatch(this.destroy('posts', '1', { trackKey: 'post-destroy' }));
-      expect(xhrResultDouble.abort).toHaveBeenCalledTimes(1)
-    })
+      expect(xhrResultDouble.abort).toHaveBeenCalledTimes(1);
+    });
+
+    it('is chainable with a success and failure callback', function () {
+      spyOn($, 'ajax').and.returnValue($.Deferred()); // eslint-disable-line new-cap
+
+      const dispatch = this.destroy('posts', '1');
+      const xhr = dispatch();
+      expect(xhr.done).toEqual(jasmine.any(Function));
+      expect(xhr.fail).toEqual(jasmine.any(Function));
+    });
   });
 });
