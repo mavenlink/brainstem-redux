@@ -115,3 +115,6 @@ modelActions.fetch('posts', {
 3. `updateStorageManager`: *middleware* that syncs the redux store with your storage manager
 4. `modelActions`: action creators for your models
 5. `collectionActions`: action creators for your collections
+
+## Local Development
+In order to develop against a local checkout, run `yarn link` in `brainstem-redux`, then `yarn link brainstem-redux` in the project you want to use it in and restart webpack. Also, make sure to `yarn compile` when making changes in `brainstem-redux`.
