@@ -1,6 +1,6 @@
 {
   "name": "brainstem-redux",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "dependencies": {
     "acorn-jsx": {
       "version": "3.0.1",
