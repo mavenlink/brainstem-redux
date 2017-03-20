@@ -1,6 +1,6 @@
 {
   "name": "brainstem-redux",
-  "version": "0.0.17",
+  "version": "0.0.19",
   "description": "Client-side Brainstem store in Redux",
   "main": "bin/index.js",
   "scripts": {
@@ -36,11 +36,19 @@
     {
       "name": "Alan Wong",
       "email": "naganowl@gmail.com"
+    },
+    {
+      "name": "Brad Midgley",
+      "email": "bmidgley@gmail.com"
+    },
+    {
+      "name": "Brandon Duff",
+      "email": "bduff@mavenlink.com"
     }
   ],
   "license": "MIT",
   "dependencies": {
-    "brainstem-js": "^0.4.14",
+    "brainstem-js": "^0.4.17",
     "jquery": "2.2.4",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0"
