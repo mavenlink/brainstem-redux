@@ -1,6 +1,6 @@
 {
   "name": "brainstem-redux",
-  "version": "0.0.20",
+  "version": "0.0.21-a",
   "dependencies": {
     "accepts": {
       "version": "1.3.3",
@@ -1190,14 +1190,9 @@
       "resolved": "https://registry.npmjs.org/braces/-/braces-1.8.5.tgz"
     },
     "brainstem-js": {
-      "version": "0.4.18-b",
-      "from": "brainstem-js@0.4.18-b",
-      "resolved": "https://registry.npmjs.org/brainstem-js/-/brainstem-js-0.4.18-b.tgz"
-    },
-    "browserify-aes": {
-      "version": "0.4.0",
-      "from": "browserify-aes@0.4.0",
-      "resolved": "https://registry.npmjs.org/browserify-aes/-/browserify-aes-0.4.0.tgz"
+      "version": "0.4.25",
+      "from": "brainstem-js@>=0.4.25 <0.5.0",
+      "resolved": "https://registry.npmjs.org/brainstem-js/-/brainstem-js-0.4.25.tgz"
     },
     "browserify-zlib": {
       "version": "0.1.4",
