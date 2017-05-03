@@ -1,18 +1,18 @@
 {
   "name": "brainstem-redux",
-  "version": "0.0.20",
+  "version": "0.0.22",
   "description": "Client-side Brainstem store in Redux",
   "main": "bin/index.js",
   "scripts": {
-    "ci:lint": "npm run lint",
-    "ci:test": "npm run karma -- --single-run",
+    "ci:lint": "yarn lint",
+    "ci:test": "yarn karma -- --single-run",
     "compile": "webpack",
     "karma": "karma start karma.config.js",
     "lint": "eslint '**/*.js'",
-    "prepublish": "npm run compile",
+    "prepublish": "yarn compile",
     "start": "webpack-dev-server",
-    "test": "npm run ci:lint && npm run ci:test",
-    "test:watch": "npm run karma"
+    "test": "yarn ci:lint && yarn ci:test",
+    "test:watch": "yarn karma"
   },
   "keywords": [
     "brainstem",
@@ -48,7 +48,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "brainstem-js": "^0.4.17",
+    "brainstem-js": "^0.4.25",
     "jquery": "2.2.4",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0"
