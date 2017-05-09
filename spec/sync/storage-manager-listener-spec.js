@@ -6,8 +6,11 @@ describe('storageManagerListener', () => {
   });
 
   describe('when a store is not passed in the first time it is invoked', () => {
-    it('throws an error', () => {
+    it('throws an error when nothing is passed in', () => {
       expect(() => getStorageManagerListener()).toThrow(new Error('You must pass in a redux store the first time you call getStorageManagerListener'));
+    });
+
+    it('throws an error when an object that is not a store is passed in', () => {
       expect(() => getStorageManagerListener({})).toThrow(new Error('You must pass in a redux store the first time you call getStorageManagerListener'));
     });
   });
