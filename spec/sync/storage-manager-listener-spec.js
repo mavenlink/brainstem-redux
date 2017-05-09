@@ -23,10 +23,21 @@ describe('storageManagerListener', () => {
   });
 
   describe('when a store is passed in again', () => {
-    it('overrides the original store and returns a new handler bound to the new store', () => {
-      const listenerWithFirstStore = getStorageManagerListener({ dispatch: () => {} });
-      const listenerWithOtherStore = getStorageManagerListener({ dispatch: () => {} });
-      expect(listenerWithFirstStore).not.toBe(listenerWithOtherStore);
+    describe('when it is the same store', () => {
+      it('returns the same listener', () => {
+        const store = { dispatch: () => {} };
+        const listenerWithFirstStore = getStorageManagerListener(store);
+        const listenerWithOtherStore = getStorageManagerListener(store);
+        expect(listenerWithFirstStore).toBe(listenerWithOtherStore);
+      });
+    });
+
+    describe('when it is a different store', () => {
+      it('overrides the original store and returns a new handler bound to the new store', () => {
+        const listenerWithFirstStore = getStorageManagerListener({ dispatch: () => {} });
+        const listenerWithOtherStore = getStorageManagerListener({ dispatch: () => {} });
+        expect(listenerWithFirstStore).not.toBe(listenerWithOtherStore);
+      });
     });
   });
 });
