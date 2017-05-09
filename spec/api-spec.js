@@ -5,6 +5,7 @@ describe('API', () => {
     expect(typeof index.reducer).toEqual('function');
     expect(typeof index.updateStore).toEqual('function');
     expect(typeof index.updateStorageManager).toEqual('function');
+    expect(typeof index.stopUpdatingStore).toEqual('function');
     expect(index.modelActions).toBeDefined();
     expect(index.collectionActions).toBeDefined();
   });
