@@ -1,5 +1,5 @@
 const beforeEachHelpers = require('../helpers/before-each');
-const stopUpdatingStore = require('../../lib/sync/stop-updating-store');
+const stopUpdateStore = require('../../lib/sync/stop-update-store');
 
 describe('stopping listening to events from  storageManager', () => {
   beforeEach(function () {
@@ -8,7 +8,7 @@ describe('stopping listening to events from  storageManager', () => {
   });
 
   it('stops listening for add events and does not update the store', function () {
-    stopUpdatingStore(this.store);
+    stopUpdateStore(this.store);
 
     this.posts.add({ id: 1, title: 'What is redux?', message: 'I do not know but it might be awesome' });
 
@@ -18,7 +18,7 @@ describe('stopping listening to events from  storageManager', () => {
   it('stops listening for change events and does not update the store', function () {
     this.posts.add({ id: 1, title: 'What is redux?', message: 'I do not know but it might be awesome' });
 
-    stopUpdatingStore(this.store);
+    stopUpdateStore(this.store);
 
     this.posts.last().set({ title: 'This is redux!', message: 'Now I know it is awesome' });
 
@@ -30,7 +30,7 @@ describe('stopping listening to events from  storageManager', () => {
     this.posts.add({ id: 1, title: 'What is redux?', message: 'I do not know but it might be awesome' });
     const post = this.posts.last().toJSON();
 
-    stopUpdatingStore(this.store);
+    stopUpdateStore(this.store);
 
     this.posts.remove({ id: 1,
       title: 'What is redux?',

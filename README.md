@@ -112,7 +112,7 @@ modelActions.fetch('posts', {
 
 1. `reducer`: store reducer which manages the top-level `brainstem` slice of the store
 2. `updateStore`: event handling of all the collections in your storage manager; dispatches the appropriate actions to the redux store
-3. `stopUpdatingStore`: helper function to stop updating your redux store from your storage manager; invoke with your redux store as the first argument (useful for test cleanup)
+3. `stopUpdateStore`: helper function to stop updating your redux store from your storage manager; invoke with your redux store as the first argument (useful for test cleanup)
 4. `updateStorageManager`: *middleware* that syncs the redux store with your storage manager
 5. `modelActions`: action creators for your models
 6. `collectionActions`: action creators for your collections

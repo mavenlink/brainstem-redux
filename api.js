@@ -3,7 +3,7 @@ const updateStore = require('./lib/sync/update-store');
 const updateStorageManager = require('./lib/middleware/update-storage-manager');
 const modelActions = require('./lib/actions/model');
 const collectionActions = require('./lib/actions/collection');
-const stopUpdatingStore = require('./lib/sync/stop-updating-store');
+const stopUpdateStore = require('./lib/sync/stop-update-store');
 
 module.exports = {
   reducer,
@@ -11,5 +11,5 @@ module.exports = {
   updateStorageManager,
   modelActions,
   collectionActions,
-  stopUpdatingStore,
+  stopUpdateStore,
 };
