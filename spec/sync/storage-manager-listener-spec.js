@@ -1,4 +1,4 @@
-const getStorageManagerListener = require('./../../lib/sync/storage-manager-listener');
+import getStorageManagerListener from './../../lib/sync/storage-manager-listener';
 
 describe('storageManagerListener', () => {
   it('returns a function', () => {
