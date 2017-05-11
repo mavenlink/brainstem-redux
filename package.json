@@ -1,6 +1,6 @@
 {
   "name": "brainstem-redux",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "Client-side Brainstem store in Redux",
   "main": "bin/index.js",
   "scripts": {
@@ -9,6 +9,7 @@
     "compile": "webpack",
     "karma": "karma start karma.config.js",
     "lint": "eslint '**/*.js'",
+    "lint-fix": "eslint '**/*.js' --fix",
     "prepublish": "yarn compile",
     "start": "webpack-dev-server",
     "test": "yarn ci:lint && yarn ci:test",
@@ -64,7 +65,7 @@
     "eslint-plugin-import": "^1.16.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.4.1",
-    "jasmine-core": "^2.4.1",
+    "jasmine-core": "2.5.2",
     "karma": "^1.2.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-firefox-launcher": "^1.0.0",
