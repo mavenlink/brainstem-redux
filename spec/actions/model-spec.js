@@ -129,4 +129,36 @@ describe('model action creators', () => {
       expect(xhr.fail).toEqual(jasmine.any(Function));
     });
   });
+
+  describe('set', () => {
+    beforeEach(function () {
+      this.model = { set: jasmine.createSpy('set') };
+    });
+
+    it('returns a resolved promise', function () {
+      const doneAction = jasmine.createSpy('doneAction');
+
+      const result = this.store.dispatch(modelActions.set(this.model, 'foo', 'bar')).done(doneAction);
+
+      expect(doneAction).toHaveBeenCalled();
+      expect(result.resolve).toBeUndefined();
+      expect(result.reject).toBeUndefined();
+    });
+
+    describe('when the attribute and value are passed separately', () => {
+      it('calls set on the passed object with the passed attribute and value when dispatched', function () {
+        this.store.dispatch(modelActions.set(this.model, 'foo', 'bar'));
+        expect(this.model.set).toHaveBeenCalledWith('foo', 'bar');
+        expect(this.model.set).toHaveBeenCalledTimes(1);
+      });
+    });
+
+    describe('when the attribute and value are passed as an object', () => {
+      it('calls set on the passed object with the argument when dispatched', function () {
+        this.store.dispatch(modelActions.set(this.model, { foo: 'bar' }));
+        expect(this.model.set).toHaveBeenCalledWith({ foo: 'bar' });
+        expect(this.model.set).toHaveBeenCalledTimes(1);
+      });
+    });
+  });
 });
