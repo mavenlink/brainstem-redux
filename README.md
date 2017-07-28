@@ -53,7 +53,7 @@ require('lib/sync/update-store')(store);
 
 ### Use Brainstem-redux action creators
 
-When you want to fetch or save your models or fetch your collections, use the `modelActions` and `collectionActions` to make sure both your store and storage manager get updated. These action creators feature a few things to facilitate most common usages of fetch / save.
+When you want to fetch, save, or destroy your models or fetch your collections, use the `modelActions` and `collectionActions` to make sure both your store and storage manager get updated. These action creators feature a few things to facilitate most common usages of fetch / save / destroy.
 
 Each action creator takes an object of options.
 
@@ -62,7 +62,7 @@ Each action creator takes an object of options.
  - `preFetchAction` (action) - action to dispatch before sending the XHR
  - `postFetchAction` (action creator) - action creator to dispatch after successfully sending the XHR; invoked with the relevant results (e.g. model ID or IDs)
 
-1. Fetch a model
+* Fetch a model
 
 ```
 const { modelActions } = require('brainstem-redux')
@@ -74,7 +74,7 @@ modelActions.fetch('posts', 42, {
 })
 ```
 
-1. Save a model (create)
+* Save a model (create)
 
 ```
 const { modelActions } = require('brainstem-redux')
@@ -84,7 +84,9 @@ modelActions.save('posts', 42, {
 })
 ```
 
-1. Save a model (update)
+* Save a model (update)
+  * Note that `update` creates a new Brainstem model and will not make a request if the model is [invalid](https://github.com/mavenlink/brainstem-redux/blob/master/lib/actions/model.js#L53-L58). Adding a reject handler addresses this locally.
+
 
 ```
 const { modelActions } = require('brainstem-redux')
@@ -93,9 +95,16 @@ modelActions.save('posts', 42, {
   title: 'Update post'
 })
 ```
-* Note that `update` creates a new Brainstem model and will not make a request if the model is [invalid](https://github.com/mavenlink/brainstem-redux/blob/master/lib/actions/model.js#L53-L58). Adding a reject handler addresses this locally.
 
-1. Fetch a collection
+* Destroy a model
+
+```
+const { modelActions } = require('brainstem-redux')
+
+modelActions.destroy('posts', 42)
+```
+
+* Fetch a collection
 
 ```
 const { collectionActions } = require('brainstem-redux')
