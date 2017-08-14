@@ -79,7 +79,7 @@ modelActions.fetch('posts', 42, {
 ```
 const { modelActions } = require('brainstem-redux')
 
-modelActions.save('posts', 42, {
+modelActions.save('posts', null, {
   title: 'New post'
 })
 ```
