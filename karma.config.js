@@ -1,7 +1,21 @@
-const webpackConfig = Object.assign(require('./webpack.config'), {
+const webpackConfig = require('./webpack.config');
+
+
+const karmaWebpackLoadersOverrides = [{
+  query: {
+    presets: ['es2015'],
+    plugins: ['transform-runtime'],
+  },
+}];
+const karmaWebpackLoaders = webpackConfig.module.loaders
+  .map((loader, i) => Object.assign({}, loader, karmaWebpackLoadersOverrides[i]));
+const karmaWebpackConfig = Object.assign({}, webpackConfig, {
   devtool: 'inline-source-map',
   entry: {},
   externals: {},
+  module: {
+    loaders: karmaWebpackLoaders,
+  },
   output: {},
 });
 
@@ -23,7 +37,7 @@ module.exports = config =>
       'spec/**/*': ['webpack', 'sourcemap'],
     },
 
-    webpack: webpackConfig,
+    webpack: karmaWebpackConfig,
 
     webpackMiddleware: {
       noInfo: true,
