@@ -706,9 +706,9 @@ braces@^1.8.2:
     preserve "^0.2.0"
     repeat-element "^1.1.2"
 
-brainstem-js@^0.4.25:
-  version "0.4.26"
-  resolved "https://registry.yarnpkg.com/brainstem-js/-/brainstem-js-0.4.26.tgz#ba1e67a43446de7ba701e50812da17142db3e7eb"
+brainstem-js@0.4.30-a:
+  version "0.4.30-a"
+  resolved "https://registry.yarnpkg.com/brainstem-js/-/brainstem-js-0.4.30-a.tgz#17824270947dcfdc60612c6a3812945622f83b19"
   dependencies:
     backbone "1.1.2"
     inflection "^1.8.0"
