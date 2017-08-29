@@ -47,6 +47,10 @@
       "email": "bduff@mavenlink.com"
     }
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mavenlink/brainstem-redux.git"
+  },
   "license": "MIT",
   "dependencies": {
     "brainstem-js": "^0.4.30",
