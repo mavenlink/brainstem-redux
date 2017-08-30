@@ -1,12 +1,17 @@
 const webpackConfig = require('./webpack.config');
 
 
-const karmaWebpackLoadersOverrides = [{
-  query: {
-    presets: ['es2015'],
-    plugins: ['transform-runtime'],
+const karmaWebpackLoadersOverrides = [
+  {
+    query: {
+      presets: ['es2015'],
+      plugins: [
+        'transform-runtime',
+        ['transform-object-rest-spread', { useBuiltIns: true }],
+      ],
+    },
   },
-}];
+];
 const karmaWebpackLoaders = webpackConfig.module.loaders
   .map((loader, i) => Object.assign({}, loader, karmaWebpackLoadersOverrides[i]));
 const karmaWebpackConfig = Object.assign({}, webpackConfig, {
