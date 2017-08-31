@@ -3,9 +3,6 @@
   "version": "0.0.27",
   "description": "Client-side Brainstem store in Redux",
   "main": "bin/index.js",
-  "files": [
-    "bin/index.js"
-  ],
   "scripts": {
     "ci:lint": "yarn lint",
     "ci:test": "yarn karma -- --single-run",
