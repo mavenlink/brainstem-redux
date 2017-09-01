@@ -52,7 +52,7 @@
     "url": "https://github.com/mavenlink/brainstem-redux.git"
   },
   "license": "MIT",
-  "dependencies": {
+  "peerDependencies": {
     "brainstem-js": "^0.4.30",
     "jquery": "2.2.4",
     "redux": "^3.5.2",
