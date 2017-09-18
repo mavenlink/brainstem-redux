@@ -95,6 +95,7 @@
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
     "webpack": "^1.13.2",
+    "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^1.15.0"
   }
 }
