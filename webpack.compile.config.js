@@ -2,6 +2,13 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const webpackConfig = require('./webpack.config.js');
 
 module.exports = Object.assign({}, webpackConfig, {
+  entry: './api.js',
+
+  externals: {
+    'brainstem-js': 'brainstem-js',
+    jquery: 'jquery',
+  },
+
   output: {
     filename: 'index.js',
     libraryTarget: 'commonjs2',
