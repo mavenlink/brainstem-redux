@@ -23,7 +23,7 @@ storageManager.addCollection('users', Users);
 
 const store = createStore(
   combineReducers({
-    brainstem: require('../lib/reducers/index')(storageManager),
+    brainstem: require('../lib/reducers/index'),
     postsAutocompleter: require('./reducers/posts-autocompleter'),
   }),
   applyMiddleware(
@@ -34,7 +34,7 @@ const store = createStore(
 );
 
 // Transforms a storage manager backbone event into a (dispatched) redux brainstem action
-require('../lib/sync/update-store')(storageManager, store);
+require('../lib/sync/update-store')(store);
 
 const posts = storageManager.storage('posts');
 posts.add({ id: 1, title: 'What is redux?', message: 'I do not know but it might be awesome' });
