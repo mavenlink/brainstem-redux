@@ -56,12 +56,12 @@
   },
   "license": "MIT",
   "dependencies": {
+    "lodash.find": "^4.6.0",
     "lodash.isobject": "^3.0.2"
   },
   "peerDependencies": {
     "brainstem-js": "^0.4.30",
     "jquery": "2.2.4",
-    "lodash.find": "^4.6.0",
     "lodash.pickby": "^4.6.0",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0"
