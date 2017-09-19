@@ -1,10 +1,4 @@
 module.exports = {
-  entry: './api.js',
-
-  externals: {
-    'brainstem-js': 'brainstem-js',
-  },
-
   module: {
     loaders: [{
       exclude: /(node_modules)/,
@@ -16,11 +10,5 @@ module.exports = {
         ],
       },
     }],
-  },
-
-  output: {
-    filename: 'index.js',
-    libraryTarget: 'commonjs2',
-    path: './bin',
   },
 };

@@ -1,6 +1,6 @@
 {
   "name": "brainstem-redux",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "description": "Client-side Brainstem store in Redux",
   "main": "bin/index.js",
   "files": [
@@ -9,12 +9,12 @@
   "scripts": {
     "ci:lint": "yarn lint",
     "ci:test": "yarn karma -- --single-run",
-    "compile": "webpack",
+    "compile": "webpack --config webpack.compile.config.js",
     "karma": "karma start karma.config.js",
     "lint": "eslint '**/*.js'",
     "lint-fix": "eslint '**/*.js' --fix",
     "prepublish": "yarn compile",
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --config webpack.dev.config.js",
     "test": "yarn ci:lint && yarn ci:test",
     "test:watch": "yarn karma"
   },
@@ -56,10 +56,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "lodash.find": "^4.6.0",
-    "lodash.isobject": "^3.0.2",
-    "lodash.omit": "^4.5.0",
-    "lodash.pickby": "^4.6.0"
+    "lodash.isobject": "^3.0.2"
   },
   "peerDependencies": {
     "brainstem-js": "^0.4.30",
@@ -89,12 +86,14 @@
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.8.0",
+    "lodash.omit": "^4.5.0",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
     "webpack": "^1.13.2",
+    "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^1.15.0"
   }
 }

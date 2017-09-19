@@ -10,21 +10,21 @@ const {
 } = require('redux');
 
 const thunkMiddleware = require('redux-thunk').default;
-const syncBrainstemMiddleware = require('lib/middleware/update-storage-manager');
-const loggerMiddleware = require('example/middleware/logger');
+const syncBrainstemMiddleware = require('../lib/middleware/update-storage-manager');
+const loggerMiddleware = require('./middleware/logger');
 
-const Post = require('example/models/post');
-const Posts = require('example/collections/posts');
-const Users = require('example/collections/users');
+const Post = require('./models/post');
+const Posts = require('./collections/posts');
+const Users = require('./collections/users');
 
-storageManager = StorageManager.get();
+const storageManager = StorageManager.get();
 storageManager.addCollection('posts', Posts);
 storageManager.addCollection('users', Users);
 
-store = createStore(
+const store = createStore(
   combineReducers({
-    brainstem: require('lib/reducers/index')(storageManager),
-    postsAutocompleter: require('example/reducers/posts-autocompleter'),
+    brainstem: require('../lib/reducers/index'),
+    postsAutocompleter: require('./reducers/posts-autocompleter'),
   }),
   applyMiddleware(
     thunkMiddleware,
@@ -34,14 +34,14 @@ store = createStore(
 );
 
 // Transforms a storage manager backbone event into a (dispatched) redux brainstem action
-require('lib/sync/update-store')(storageManager, store);
+require('../lib/sync/update-store')(store);
 
-posts = storageManager.storage('posts');
+const posts = storageManager.storage('posts');
 posts.add({ id: 1, title: 'What is redux?', message: 'I do not know but it might be awesome' });
 posts.add({ id: 42, title: 'Life is good', message: 'Gooooood' });
 
-users = storageManager.storage('users');
-user = users.add({ id: 1, username: 'acid-burn', email: 'acid-burn@hackers.net', address: { city: 'SF', state: 'CA' } });
+const users = storageManager.storage('users');
+const user = users.add({ id: 1, username: 'acid-burn', email: 'acid-burn@hackers.net', address: { city: 'SF', state: 'CA' } });
 
 user.set({ username: 'Acid-Burn' }); // change event
 user.set({ username: 'Acid-Burn2', email: 'acid-burn2@hackers.net' }); // change event
@@ -124,7 +124,7 @@ const ReactDom = require('react-dom');
 
 document.addEventListener('DOMContentLoaded', (event) => {
   const { Provider } = require('react-redux');
-  const AllPostsBox = require('example/containers/all-posts-box');
+  const AllPostsBox = require('./containers/all-posts-box');
 
   ReactDom.render(
     React.createElement(Provider, { store },
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   );
 
 
-  const AutocompletePostsList = require('example/containers/all-posts-autocomplete-box');
+  const AutocompletePostsList = require('./containers/all-posts-autocomplete-box');
 
   ReactDom.render(
     React.createElement(Provider, { store },
