@@ -4,8 +4,6 @@ module.exports = {
   externals: {
     'brainstem-js': 'brainstem-js',
     jquery: 'jquery',
-    'lodash.find': 'lodash.find',
-    'lodash.pickby': 'lodash.pickby',
   },
 
   module: {
