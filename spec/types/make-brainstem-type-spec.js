@@ -1,4 +1,4 @@
-const omit = require('lodash.omit');
+const omit = require('lodash.omit'); // eslint-disable-line import/no-extraneous-dependencies
 const collectionActions = require('../../lib/actions/collection');
 const modelActions = require('../../lib/actions/model');
 const makeBrainstemType = require('../../lib/types/make-brainstem-type');
