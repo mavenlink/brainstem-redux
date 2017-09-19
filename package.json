@@ -14,7 +14,7 @@
     "lint": "eslint '**/*.js'",
     "lint-fix": "eslint '**/*.js' --fix",
     "prepublish": "yarn compile",
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --config webpack.dev.config.js",
     "test": "yarn ci:lint && yarn ci:test",
     "test:watch": "yarn karma"
   },
