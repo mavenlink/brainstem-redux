@@ -1,5 +1,3 @@
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // eslint-disable-line import/no-extraneous-dependencies
-
 module.exports = {
   entry: './api.js',
 
@@ -22,17 +20,4 @@ module.exports = {
       },
     }],
   },
-
-  output: {
-    filename: 'index.js',
-    libraryTarget: 'commonjs2',
-    path: './bin',
-  },
-
-  plugins: [
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'static',
-      openAnalyzer: false,
-    }),
-  ],
 };

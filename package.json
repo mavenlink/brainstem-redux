@@ -9,7 +9,7 @@
   "scripts": {
     "ci:lint": "yarn lint",
     "ci:test": "yarn karma -- --single-run",
-    "compile": "webpack",
+    "compile": "webpack --config webpack.compile.config.js",
     "karma": "karma start karma.config.js",
     "lint": "eslint '**/*.js'",
     "lint-fix": "eslint '**/*.js' --fix",
