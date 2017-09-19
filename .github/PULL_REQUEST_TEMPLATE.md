@@ -11,3 +11,7 @@
 <!-- Demonstrate the code is solid. Example: The exact commands you ran and their output, screenshots / videos if the pull request changes UI. -->
 
 <!-- Requirement for Mavenlink engineers: Provide links to any related product requirements and builds using this changeset (e.g. mavenlink/mavenlink). -->
+
+**General upkeep checklist**
+
+- [ ] Examples are working
