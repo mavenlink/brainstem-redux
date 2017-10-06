@@ -50,7 +50,7 @@ describe('sync-brainstem middleware', () => {
   });
 
   describe('when skipSyncBrainstem is true', () => {
-    it('does not synce with the storageManager', function () {
+    it('does not sync with the storageManager', function () {
       this.store.dispatch({
         type: 'REMOVE_MODEL',
         payload: {
