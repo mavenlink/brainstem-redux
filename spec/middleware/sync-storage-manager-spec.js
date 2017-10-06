@@ -48,4 +48,21 @@ describe('sync-brainstem middleware', () => {
 
     expect(this.posts.get(76)).not.toBeDefined();
   });
+
+  describe('when skipSyncBrainstem is true', () => {
+    it('does not synce with the storageManager', function () {
+      this.store.dispatch({
+        type: 'REMOVE_MODEL',
+        payload: {
+          brainstemKey: 'posts',
+          attributes: { id: 76 },
+        },
+        meta: {
+          skipSyncBrainstem: true,
+        },
+      });
+
+      expect(this.posts.get(76)).toBeDefined();
+    });
+  });
 });
