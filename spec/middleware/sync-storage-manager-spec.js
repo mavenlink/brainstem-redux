@@ -1,6 +1,8 @@
 const beforeEachHelpers = require('../helpers/before-each');
 
 describe('sync-brainstem middleware', () => {
+  const extractArgsFromCalls = method => method.calls.all().map(call => call.args[0]);
+
   beforeEach(function () {
     beforeEachHelpers.call(this);
     this.posts = this.storageManager.storage('posts');
@@ -49,20 +51,30 @@ describe('sync-brainstem middleware', () => {
     expect(this.posts.get(76)).not.toBeDefined();
   });
 
-  describe('when skipSyncBrainstem is true', () => {
-    it('does not sync with the storageManager', function () {
+  describe('when state.brainstem has changed', () => {
+    it('syncs with the storageManager', function () {
+      spyOn(this.storageManager, 'storage').and.callThrough();
       this.store.dispatch({
         type: 'REMOVE_MODEL',
         payload: {
           brainstemKey: 'posts',
           attributes: { id: 76 },
         },
-        meta: {
-          skipSyncBrainstem: true,
-        },
       });
 
-      expect(this.posts.get(76)).toBeDefined();
+      const actualArgs = extractArgsFromCalls(this.storageManager.storage);
+      expect(actualArgs).toEqual(['posts', 'users']);
+    });
+  });
+
+  describe('when state.brainstem has not changed', () => {
+    it('does not sync with the storageManager', function () {
+      spyOn(this.storageManager, 'storage').and.callThrough();
+      this.store.dispatch({
+        type: 'UNRELATED_ACTION',
+      });
+      const actualArgs = extractArgsFromCalls(this.storageManager.storage);
+      expect(actualArgs).toEqual([]);
     });
   });
 });
