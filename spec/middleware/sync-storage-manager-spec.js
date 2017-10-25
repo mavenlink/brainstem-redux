@@ -1,8 +1,6 @@
 const beforeEachHelpers = require('../helpers/before-each');
 
 describe('sync-brainstem middleware', () => {
-  const extractArgsFromCalls = method => method.calls.all().map(call => call.args[0]);
-
   beforeEach(function () {
     beforeEachHelpers.call(this);
     this.posts = this.storageManager.storage('posts');
@@ -62,8 +60,8 @@ describe('sync-brainstem middleware', () => {
         },
       });
 
-      const actualArgs = extractArgsFromCalls(this.storageManager.storage);
-      expect(actualArgs).toEqual(['posts', 'users']);
+      const actualArgs = this.storageManager.storage.calls.allArgs();
+      expect(actualArgs).toEqual([['posts'], ['users']]);
     });
   });
 
@@ -73,7 +71,7 @@ describe('sync-brainstem middleware', () => {
       this.store.dispatch({
         type: 'UNRELATED_ACTION',
       });
-      const actualArgs = extractArgsFromCalls(this.storageManager.storage);
+      const actualArgs = this.storageManager.storage.calls.allArgs();
       expect(actualArgs).toEqual([]);
     });
   });
