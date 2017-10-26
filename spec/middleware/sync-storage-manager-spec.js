@@ -48,4 +48,31 @@ describe('sync-brainstem middleware', () => {
 
     expect(this.posts.get(76)).not.toBeDefined();
   });
+
+  describe('when state.brainstem has changed', () => {
+    it('syncs with the storageManager', function () {
+      spyOn(this.storageManager, 'storage').and.callThrough();
+      this.store.dispatch({
+        type: 'REMOVE_MODEL',
+        payload: {
+          brainstemKey: 'posts',
+          attributes: { id: 76 },
+        },
+      });
+
+      const actualArgs = this.storageManager.storage.calls.allArgs();
+      expect(actualArgs).toEqual([['posts'], ['users']]);
+    });
+  });
+
+  describe('when state.brainstem has not changed', () => {
+    it('does not sync with the storageManager', function () {
+      spyOn(this.storageManager, 'storage').and.callThrough();
+      this.store.dispatch({
+        type: 'UNRELATED_ACTION',
+      });
+      const actualArgs = this.storageManager.storage.calls.allArgs();
+      expect(actualArgs).toEqual([]);
+    });
+  });
 });
