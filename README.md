@@ -85,12 +85,13 @@ module.exports = Object.assign({},
 );
 ```
 
-`makeBrainstemType` also takes an optional `filter` argument that allows you to return only a subset of the models in a collection:
+`makeBrainstemType` also takes an optional `typeOptions` argument.
+Currently, it supports a `filterPredicate` key that allows you to return only a subset of the models in a collection:
 
 ```js
 const { makeBrainstemType } = require('brainstem-redux');
 
-module.exports = makeBrainstemType('posts', post => !post.published);
+module.exports = makeBrainstemType('posts', { filterPredicate: post => !post.published });
 ```
 
 #### Using a Type
