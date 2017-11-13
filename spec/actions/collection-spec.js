@@ -75,7 +75,7 @@ describe('collection action creators', () => {
     it('uses the adapter', function () {
       const deferred = $.Deferred(); // eslint-disable-line new-cap
       const stubAdapter = {
-        fetch: jasmine.createSpy('fetch').and.returnValue(deferred),
+        fetchCollection: jasmine.createSpy('fetchCollection').and.returnValue(deferred),
       };
       const fetchOptions = { filters: { foo: 'bar' } };
       this.store.dispatch(this.fetch('posts', {
@@ -83,7 +83,7 @@ describe('collection action creators', () => {
         adapter: stubAdapter,
       }));
 
-      expect(stubAdapter.fetch).toHaveBeenCalledWith('posts', { fetchOptions });
+      expect(stubAdapter.fetchCollection).toHaveBeenCalledWith('posts', { fetchOptions });
     });
   });
 });
