@@ -195,7 +195,7 @@ describe('model action creators', () => {
         }));
 
         expect(stubAdapter.saveModel).toHaveBeenCalledWith('posts', '76', attributes, {
-           saveOptions
+          saveOptions,
         });
       });
     });
@@ -205,7 +205,7 @@ describe('model action creators', () => {
         this.destroy = modelActions.destroy;
       });
 
-      it('calls destroy on the adapter', function () {
+      it('calls destroy on the adapter', () => {
         it('calls fetch on the adapter', function () {
           const deferred = $.Deferred(); // eslint-disable-line new-cap
           const stubAdapter = {
@@ -227,7 +227,7 @@ describe('model action creators', () => {
         this.destroy = modelActions.destroy;
       });
 
-      it('calls destroy on the adapter', function () {
+      it('calls destroy on the adapter', () => {
         it('calls fetch on the adapter', function () {
           const deferred = $.Deferred(); // eslint-disable-line new-cap
           const stubAdapter = {
