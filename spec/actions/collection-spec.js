@@ -83,7 +83,11 @@ describe('collection action creators', () => {
         adapter: stubAdapter,
       }));
 
-      expect(stubAdapter.fetchCollection).toHaveBeenCalledWith('posts', { fetchOptions });
+      expect(stubAdapter.fetchCollection).toHaveBeenCalledWith('posts', {
+        dispatch: jasmine.any(Function),
+        getState: jasmine.any(Function),
+        fetchOptions,
+      });
     });
   });
 });

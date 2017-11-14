@@ -173,7 +173,11 @@ describe('model action creators', () => {
           adapter: stubAdapter,
         }));
 
-        expect(stubAdapter.fetchModel).toHaveBeenCalledWith('posts', '76', { fetchOptions });
+        expect(stubAdapter.fetchModel).toHaveBeenCalledWith('posts', '76', {
+          dispatch: jasmine.any(Function),
+          getState: jasmine.any(Function),
+          fetchOptions,
+         });
       });
     });
 
@@ -195,6 +199,8 @@ describe('model action creators', () => {
         }));
 
         expect(stubAdapter.saveModel).toHaveBeenCalledWith('posts', '76', attributes, {
+          dispatch: jasmine.any(Function),
+          getState: jasmine.any(Function),
           saveOptions,
         });
       });
@@ -217,7 +223,11 @@ describe('model action creators', () => {
             adapter: stubAdapter,
           }));
 
-          expect(stubAdapter.destroyModel).toHaveBeenCalledWith('posts', '76', { destroyOptions });
+          expect(stubAdapter.destroyModel).toHaveBeenCalledWith('posts', '76', {
+            dispatch: jasmine.any(Function),
+            getState: jasmine.any(Function),
+            destroyOptions,
+           });
         });
       });
     });
@@ -239,7 +249,11 @@ describe('model action creators', () => {
             adapter: stubAdapter,
           }));
 
-          expect(stubAdapter.validateModel).toHaveBeenCalledWith('posts', { validateOptions });
+          expect(stubAdapter.validateModel).toHaveBeenCalledWith('posts', {
+            dispatch: jasmine.any(Function),
+            getState: jasmine.any(Function),
+            validateOptions,
+           });
         });
       });
     });
