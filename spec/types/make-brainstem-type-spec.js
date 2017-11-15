@@ -114,9 +114,19 @@ describe('makeBrainstemType', () => {
     });
 
     it('forwards the request to brainstem-redux', () => {
-      const options = 'OPTIONS';
-      expect(type.fetchAll(options)).toEqual('RESULT');
-      expect(collectionActions.fetch).toHaveBeenCalledWith(brainstemKey, options);
+      expect(type.fetchAll({ stuff: 'options' })).toEqual('RESULT');
+      expect(collectionActions.fetch).toHaveBeenCalledWith(brainstemKey, { stuff: 'options', adapter: undefined });
+    });
+
+    describe('passing in adapter', () => {
+      it('appends the adapter to the options', () => {
+        const typeWithAdapter = makeBrainstemType(brainstemKey, {
+          adapter: 'adapter',
+        });
+
+        expect(typeWithAdapter.fetchAll({ foo: 'test' })).toEqual('RESULT');
+        expect(collectionActions.fetch).toHaveBeenCalledWith(brainstemKey, { foo: 'test', adapter: 'adapter' });
+      });
     });
   });
 

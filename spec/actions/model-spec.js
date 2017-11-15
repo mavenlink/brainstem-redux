@@ -177,7 +177,7 @@ describe('model action creators', () => {
           dispatch: jasmine.any(Function),
           getState: jasmine.any(Function),
           fetchOptions,
-         });
+        });
       });
     });
 
@@ -227,7 +227,7 @@ describe('model action creators', () => {
             dispatch: jasmine.any(Function),
             getState: jasmine.any(Function),
             destroyOptions,
-           });
+          });
         });
       });
     });
@@ -253,7 +253,7 @@ describe('model action creators', () => {
             dispatch: jasmine.any(Function),
             getState: jasmine.any(Function),
             validateOptions,
-           });
+          });
         });
       });
     });
