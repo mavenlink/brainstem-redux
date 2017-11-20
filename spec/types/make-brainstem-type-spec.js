@@ -142,6 +142,17 @@ describe('makeBrainstemType', () => {
       expect(type.fetch(id, options)).toEqual('RESULT');
       expect(modelActions.fetch).toHaveBeenCalledWith(brainstemKey, id, options);
     });
+
+    describe('passing in adapter', () => {
+      it('appends the adapter to the options', () => {
+        const typeWithAdapter = makeBrainstemType(brainstemKey, {
+          adapter: 'adapter',
+        });
+
+        expect(typeWithAdapter.fetch(1, { foo: 'test' })).toEqual('RESULT');
+        expect(modelActions.fetch).toHaveBeenCalledWith(brainstemKey, 1, { foo: 'test', adapter: 'adapter' });
+      });
+    });
   });
 
   describe('saving a model', () => {
@@ -156,6 +167,17 @@ describe('makeBrainstemType', () => {
       expect(type.save(id, attributes, options)).toEqual('RESULT');
       expect(modelActions.save).toHaveBeenCalledWith(brainstemKey, id, attributes, options);
     });
+
+    describe('passing in adapter', () => {
+      it('appends the adapter to the options', () => {
+        const typeWithAdapter = makeBrainstemType(brainstemKey, {
+          adapter: 'adapter',
+        });
+
+        expect(typeWithAdapter.save(1, {}, { foo: 'test' })).toEqual('RESULT');
+        expect(modelActions.save).toHaveBeenCalledWith(brainstemKey, 1, {}, { foo: 'test', adapter: 'adapter' });
+      });
+    });
   });
 
   describe('deleting a model', () => {
@@ -168,6 +190,17 @@ describe('makeBrainstemType', () => {
       const options = 'OPTIONS';
       expect(type.destroy(id, options)).toEqual('RESULT');
       expect(modelActions.destroy).toHaveBeenCalledWith(brainstemKey, id, options);
+    });
+
+    describe('passing in adapter', () => {
+      it('appends the adapter to the options', () => {
+        const typeWithAdapter = makeBrainstemType(brainstemKey, {
+          adapter: 'adapter',
+        });
+
+        expect(typeWithAdapter.destroy(1, { foo: 'test' })).toEqual('RESULT');
+        expect(modelActions.destroy).toHaveBeenCalledWith(brainstemKey, 1, { foo: 'test', adapter: 'adapter' });
+      });
     });
   });
 
