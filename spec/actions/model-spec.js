@@ -211,49 +211,46 @@ describe('model action creators', () => {
         this.destroy = modelActions.destroy;
       });
 
-      it('calls destroy on the adapter', () => {
-        it('calls fetch on the adapter', function () {
-          const deferred = $.Deferred(); // eslint-disable-line new-cap
-          const stubAdapter = {
-            destroyModel: jasmine.createSpy('destroyModel').and.returnValue(deferred),
-          };
-          const destroyOptions = { filters: { foo: 'bar' } };
-          this.store.dispatch(this.destroy('posts', '76', {
-            destroyOptions,
-            adapter: stubAdapter,
-          }));
+      it('calls destroy on the adapter', function () {
+        const deferred = $.Deferred(); // eslint-disable-line new-cap
+        const stubAdapter = {
+          destroyModel: jasmine.createSpy('destroyModel').and.returnValue(deferred),
+        };
+        const deleteOptions = { filters: { foo: 'bar' } };
+        this.store.dispatch(this.destroy('posts', '76', {
+          deleteOptions,
+          adapter: stubAdapter,
+        }));
 
-          expect(stubAdapter.destroyModel).toHaveBeenCalledWith('posts', '76', {
-            dispatch: jasmine.any(Function),
-            getState: jasmine.any(Function),
-            destroyOptions,
-          });
+        expect(stubAdapter.destroyModel).toHaveBeenCalledWith('posts', '76', {
+          dispatch: jasmine.any(Function),
+          getState: jasmine.any(Function),
+          deleteOptions,
         });
       });
     });
 
     describe('validate', () => {
       beforeEach(function () {
-        this.destroy = modelActions.destroy;
+        this.validate = modelActions.validate;
       });
 
-      it('calls destroy on the adapter', () => {
-        it('calls fetch on the adapter', function () {
-          const deferred = $.Deferred(); // eslint-disable-line new-cap
-          const stubAdapter = {
-            validateModel: jasmine.createSpy('validateModel').and.returnValue(deferred),
-          };
-          const validateOptions = { filters: { foo: 'bar' } };
-          this.store.dispatch(this.validate('posts', {
-            validateOptions,
-            adapter: stubAdapter,
-          }));
+      it('calls validate on the adapter', function () {
+        const deferred = $.Deferred(); // eslint-disable-line new-cap
+        const stubAdapter = {
+          validateModel: jasmine.createSpy('validateModel').and.returnValue(deferred),
+        };
+        const validateOptions = { };
+        const attributes = { foo: 'bar' };
+        this.store.dispatch(this.validate('posts', attributes, {
+          validateOptions,
+          adapter: stubAdapter,
+        }));
 
-          expect(stubAdapter.validateModel).toHaveBeenCalledWith('posts', {
-            dispatch: jasmine.any(Function),
-            getState: jasmine.any(Function),
-            validateOptions,
-          });
+        expect(stubAdapter.validateModel).toHaveBeenCalledWith('posts', attributes, {
+          dispatch: jasmine.any(Function),
+          getState: jasmine.any(Function),
+          validateOptions,
         });
       });
     });
