@@ -51,7 +51,7 @@ describe('model action creators', () => {
         this.save = modelActions.save;
       });
 
-      it('send save to the subscriber for the existing model', function () {
+      it('sends save to the subscriber for the existing model', function () {
         const posts = this.storageManager.storage('posts');
         posts.add({ id: 1, title: 'What is redux?', message: 'I do not know but it might be awesome' });
         const model = posts.last();
