@@ -26,6 +26,15 @@ describe('makeBrainstemType', () => {
       });
     });
 
+    describe('looking up all models in the state that return true for a filterPredicate passed into options', () => {
+      it('returns all models in the state tree', () => {
+        const typeWithDefaultScope = makeBrainstemType(brainstemKey, {
+          filterPredicate: model => model.id === '5',
+        });
+        expect(typeWithDefaultScope.all(state)).toEqual({ [model1.id]: model1 });
+      });
+    });
+
     describe('finding a model by id', () => {
       describe('when the model is present', () => {
         const id = model2.id;
