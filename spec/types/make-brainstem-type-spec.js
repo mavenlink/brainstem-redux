@@ -220,10 +220,11 @@ describe('makeBrainstemType', () => {
     });
 
     describe('when the origin is not the brainstem storage manager', () => {
-      const action = {
-        ...modelAction,
-        meta: { origin: 'OTHER' },
-      };
+      const action = Object.assign(
+        {},
+        modelAction,
+        { meta: { origin: 'OTHER' } },
+      );
 
       it('does not match', () => {
         itDoesNotMatch(action);
@@ -239,7 +240,11 @@ describe('makeBrainstemType', () => {
     });
 
     describe('when the action is for a different model', () => {
-      const action = { ...modelAction, payload: { brainstemKey: 'OTHER_KEY' } };
+      const action = Object.assign(
+        {},
+        modelAction,
+        { payload: { brainstemKey: 'OTHER_KEY' } },
+      );
 
       it('does not match', () => {
         itDoesNotMatch(action);
@@ -247,7 +252,11 @@ describe('makeBrainstemType', () => {
     });
 
     describe('when there is no brainstem key', () => {
-      const action = { ...modelAction, payload: {} };
+      const action = Object.assign(
+        {},
+        modelAction,
+        { payload: {} },
+      );
 
       it('does not match', () => {
         itDoesNotMatch(action);
