@@ -423,3 +423,10 @@ collectionActions.fetch('posts', {
 ## Local Development
 
 In order to develop against a local checkout, run `yarn link` in `brainstem-redux`, then `yarn link brainstem-redux` in the project you want to use it in and restart webpack. Also, make sure to `yarn compile` when making changes in `brainstem-redux`.
+
+## Running example
+
+1. run `yarn start`
+2. navigate to `http://localhost:8080/webpack-dev-server/`
+3. click on `example`
+4. view example app and type an approved string into the search bar 
