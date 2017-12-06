@@ -114,9 +114,20 @@ describe('makeBrainstemType', () => {
     });
 
     it('forwards the request to brainstem-redux', () => {
-      const options = 'OPTIONS';
+      const options = { stuff: 'options' };
       expect(type.fetchAll(options)).toEqual('RESULT');
       expect(collectionActions.fetch).toHaveBeenCalledWith(brainstemKey, options);
+    });
+
+    describe('passing in adapter', () => {
+      it('appends the adapter to the options', () => {
+        const typeWithAdapter = makeBrainstemType(brainstemKey, {
+          adapter: 'adapter',
+        });
+
+        expect(typeWithAdapter.fetchAll({ foo: 'test' })).toEqual('RESULT');
+        expect(collectionActions.fetch).toHaveBeenCalledWith(brainstemKey, { foo: 'test', adapter: 'adapter' });
+      });
     });
   });
 
@@ -130,6 +141,17 @@ describe('makeBrainstemType', () => {
       const options = 'OPTIONS';
       expect(type.fetch(id, options)).toEqual('RESULT');
       expect(modelActions.fetch).toHaveBeenCalledWith(brainstemKey, id, options);
+    });
+
+    describe('passing in adapter', () => {
+      it('appends the adapter to the options', () => {
+        const typeWithAdapter = makeBrainstemType(brainstemKey, {
+          adapter: 'adapter',
+        });
+
+        expect(typeWithAdapter.fetch(1, { foo: 'test' })).toEqual('RESULT');
+        expect(modelActions.fetch).toHaveBeenCalledWith(brainstemKey, 1, { foo: 'test', adapter: 'adapter' });
+      });
     });
   });
 
@@ -145,6 +167,17 @@ describe('makeBrainstemType', () => {
       expect(type.save(id, attributes, options)).toEqual('RESULT');
       expect(modelActions.save).toHaveBeenCalledWith(brainstemKey, id, attributes, options);
     });
+
+    describe('passing in adapter', () => {
+      it('appends the adapter to the options', () => {
+        const typeWithAdapter = makeBrainstemType(brainstemKey, {
+          adapter: 'adapter',
+        });
+
+        expect(typeWithAdapter.save(1, {}, { foo: 'test' })).toEqual('RESULT');
+        expect(modelActions.save).toHaveBeenCalledWith(brainstemKey, 1, {}, { foo: 'test', adapter: 'adapter' });
+      });
+    });
   });
 
   describe('deleting a model', () => {
@@ -157,6 +190,17 @@ describe('makeBrainstemType', () => {
       const options = 'OPTIONS';
       expect(type.destroy(id, options)).toEqual('RESULT');
       expect(modelActions.destroy).toHaveBeenCalledWith(brainstemKey, id, options);
+    });
+
+    describe('passing in adapter', () => {
+      it('appends the adapter to the options', () => {
+        const typeWithAdapter = makeBrainstemType(brainstemKey, {
+          adapter: 'adapter',
+        });
+
+        expect(typeWithAdapter.destroy(1, { foo: 'test' })).toEqual('RESULT');
+        expect(modelActions.destroy).toHaveBeenCalledWith(brainstemKey, 1, { foo: 'test', adapter: 'adapter' });
+      });
     });
   });
 
@@ -176,10 +220,11 @@ describe('makeBrainstemType', () => {
     });
 
     describe('when the origin is not the brainstem storage manager', () => {
-      const action = {
-        ...modelAction,
-        meta: { origin: 'OTHER' },
-      };
+      const action = Object.assign(
+        {},
+        modelAction,
+        { meta: { origin: 'OTHER' } },
+      );
 
       it('does not match', () => {
         itDoesNotMatch(action);
@@ -195,7 +240,11 @@ describe('makeBrainstemType', () => {
     });
 
     describe('when the action is for a different model', () => {
-      const action = { ...modelAction, payload: { brainstemKey: 'OTHER_KEY' } };
+      const action = Object.assign(
+        {},
+        modelAction,
+        { payload: { brainstemKey: 'OTHER_KEY' } },
+      );
 
       it('does not match', () => {
         itDoesNotMatch(action);
@@ -203,7 +252,11 @@ describe('makeBrainstemType', () => {
     });
 
     describe('when there is no brainstem key', () => {
-      const action = { ...modelAction, payload: {} };
+      const action = Object.assign(
+        {},
+        modelAction,
+        { payload: {} },
+      );
 
       it('does not match', () => {
         itDoesNotMatch(action);
