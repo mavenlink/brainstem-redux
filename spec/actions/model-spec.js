@@ -8,125 +8,251 @@ describe('model action creators', () => {
     this.storageManager.enableExpectations();
   });
 
-  describe('fetch', () => {
-    beforeEach(function () {
-      this.fetch = modelActions.fetch;
-    });
-
-    it('fetches the model', function () {
-      const expectation = this.storageManager.stubModel('posts', '76', { filters: { foo: 'baz' } });
-      this.store.dispatch(this.fetch('posts', '76', {
-        fetchOptions: { filters: { foo: 'baz' } },
-      }));
-
-      expect(expectation.requestQueue.length).toBe(1);
-    });
-
-    describe('previous XHRs', () => {
-      it('uses a trackKey to abort previous pending XHR', function () {
-        const abort = jasmine.createSpy('abort');
-        const state = () => 'pending';
-        spyOn(this.storageManager.storage('posts').model.prototype, 'fetch').and.returnValue({ abort, state });
-        this.store.dispatch(this.fetch('posts', '76', { trackKey: 'foo' }));
-        this.store.dispatch(this.fetch('posts', '76', { trackKey: 'foo' }));
-
-        expect(abort).toHaveBeenCalledTimes(1);
+  describe('default adapter', () => {
+    describe('fetch', () => {
+      beforeEach(function () {
+        this.fetch = modelActions.fetch;
       });
 
-      it('does not abort non-pending previous XHR', function () {
-        const abort = jasmine.createSpy('abort');
-        const state = () => 'resolved';
-        spyOn(this.storageManager.storage('posts').model.prototype, 'fetch').and.returnValue({ abort, state });
-        this.store.dispatch(this.fetch('posts', '76', { trackKey: 'foo' }));
-        this.store.dispatch(this.fetch('posts', '76', { trackKey: 'foo' }));
+      it('fetches the model', function () {
+        const expectation = this.storageManager.stubModel('posts', '76', { filters: { foo: 'baz' } });
+        this.store.dispatch(this.fetch('posts', '76', {
+          fetchOptions: { filters: { foo: 'baz' } },
+        }));
 
-        expect(abort).toHaveBeenCalledTimes(0);
+        expect(expectation.requestQueue.length).toBe(1);
+      });
+
+      describe('previous XHRs', () => {
+        it('uses a trackKey to abort previous pending XHR', function () {
+          const abort = jasmine.createSpy('abort');
+          const state = () => 'pending';
+          spyOn(this.storageManager.storage('posts').model.prototype, 'fetch').and.returnValue({ abort, state });
+          this.store.dispatch(this.fetch('posts', '76', { trackKey: 'foo' }));
+          this.store.dispatch(this.fetch('posts', '76', { trackKey: 'foo' }));
+
+          expect(abort).toHaveBeenCalledTimes(1);
+        });
+
+        it('does not abort non-pending previous XHR', function () {
+          const abort = jasmine.createSpy('abort');
+          const state = () => 'resolved';
+          spyOn(this.storageManager.storage('posts').model.prototype, 'fetch').and.returnValue({ abort, state });
+          this.store.dispatch(this.fetch('posts', '76', { trackKey: 'foo' }));
+          this.store.dispatch(this.fetch('posts', '76', { trackKey: 'foo' }));
+
+          expect(abort).toHaveBeenCalledTimes(0);
+        });
+      });
+    });
+
+    describe('save', () => {
+      beforeEach(function () {
+        this.save = modelActions.save;
+      });
+
+      it('sends save to the subscriber for the existing model', function () {
+        const posts = this.storageManager.storage('posts');
+        posts.add({ id: 1, title: 'What is redux?', message: 'I do not know but it might be awesome' });
+        const model = posts.last();
+
+        const spy = spyOn(model, 'save').and.returnValue($.Deferred()); // eslint-disable-line new-cap
+
+        this.store.dispatch(this.save('posts', '1', {
+          title: 'new post',
+        }));
+
+        expect(spy).toHaveBeenCalled();
+      });
+
+      it('subscriber saves a non-persisted model', function () {
+        const save = jasmine.createSpy('save').and.returnValue($.Deferred()); // eslint-disable-line new-cap
+        const ModelSpy = spyOn(this.storageManager.storage('posts'), 'model');
+        ModelSpy.and.returnValue({ save });
+
+        this.store.dispatch(this.save('posts', undefined, {
+          title: 'new post',
+        }));
+
+        expect(ModelSpy).toHaveBeenCalledWith({ id: undefined });
+        expect(save).toHaveBeenCalled();
+      });
+
+      it('returns a deferred when the model is invalid', () => {
+        spyOn($, 'ajax').and.returnValue($.Deferred()); // eslint-disable-line new-cap
+
+        const attributes = {};
+        expect(modelActions.validate('posts', attributes)()).toEqual({ errors: 'needs a user' });
+
+        const dispatch = modelActions.save('posts', null, attributes, { trackKey: 'john-bonham' });
+        const xhr = dispatch();
+
+        expect(xhr.resolve).toBeUndefined();
+        expect(xhr.reject).toBeUndefined();
+        expect(xhr.done).toEqual(jasmine.any(Function));
+        expect(xhr.fail).toEqual(jasmine.any(Function));
+      });
+    });
+
+    describe('destroy', () => {
+      beforeEach(function () {
+        this.destroy = modelActions.destroy;
+      });
+
+      it('sends destroy to the subscriber for the existing model', function () {
+        const posts = this.storageManager.storage('posts');
+        posts.add({ id: 1, title: 'What is redux?', message: 'I do not know but it might be awesome' });
+        const model = posts.last();
+        this.spy = spyOn(model, 'destroy').and.returnValue($.Deferred()); // eslint-disable-line new-cap
+        this.store.dispatch(this.destroy('posts', '1'));
+
+        expect(this.spy).toHaveBeenCalled();
+      });
+
+      it('cancels previous requests with the same provided track key if they are pending', function () {
+        const xhrResultDouble = {
+          abort: jasmine.createSpy('abort'),
+          state: () => 'pending',
+        };
+        spyOn(this.storageManager.storage('posts').model.prototype, 'destroy').and.returnValue(xhrResultDouble);
+
+        this.store.dispatch(this.destroy('posts', '1', { trackKey: 'post-destroy' }));
+        this.store.dispatch(this.destroy('posts', '1', { trackKey: 'post-destroy' }));
+        expect(xhrResultDouble.abort).toHaveBeenCalledTimes(1);
+      });
+
+      it('is chainable with a success and failure callback', function () {
+        spyOn($, 'ajax').and.returnValue($.Deferred()); // eslint-disable-line new-cap
+
+        const dispatch = this.destroy('posts', '1');
+        const xhr = dispatch();
+        expect(xhr.done).toEqual(jasmine.any(Function));
+        expect(xhr.fail).toEqual(jasmine.any(Function));
+      });
+    });
+
+    describe('validate', () => {
+      beforeEach(function () {
+        this.validate = modelActions.validate;
+      });
+
+      it('calls validate with the correct params on a Model instance', function () {
+        const errors = ['error'];
+
+        const validate = jasmine.createSpy('validate').and.returnValue(errors); // eslint-disable-line new-cap
+        const ModelSpy = spyOn(this.storageManager.storage('posts'), 'model');
+        ModelSpy.and.returnValue({ validate });
+
+        const attributes = { title: 'new post' };
+        const validateOptions = { anything: 'anything' };
+
+        this.store.dispatch(this.validate('posts', attributes, {
+          validateOptions,
+        }));
+
+        expect(ModelSpy).toHaveBeenCalledWith();
+        expect(validate).toHaveBeenCalledWith(attributes, validateOptions);
       });
     });
   });
 
-  describe('save', () => {
-    beforeEach(function () {
-      this.save = modelActions.save;
+  describe('when an adapter is passed in', () => {
+    describe('fetch', () => {
+      beforeEach(function () {
+        this.fetch = modelActions.fetch;
+      });
+
+      it('calls fetch on the adapter', function () {
+        const deferred = $.Deferred(); // eslint-disable-line new-cap
+        const stubAdapter = {
+          fetchModel: jasmine.createSpy('fetchModel').and.returnValue(deferred),
+        };
+        const fetchOptions = { filters: { foo: 'bar' } };
+        this.store.dispatch(this.fetch('posts', '76', {
+          fetchOptions,
+          adapter: stubAdapter,
+        }));
+
+        expect(stubAdapter.fetchModel).toHaveBeenCalledWith('posts', '76', {
+          dispatch: jasmine.any(Function),
+          getState: jasmine.any(Function),
+          fetchOptions,
+        });
+      });
     });
 
-    it('send save to the subscriber for the existing model', function () {
-      const posts = this.storageManager.storage('posts');
-      posts.add({ id: 1, title: 'What is redux?', message: 'I do not know but it might be awesome' });
-      const model = posts.last();
+    describe('save', () => {
+      beforeEach(function () {
+        this.save = modelActions.save;
+      });
 
-      const spy = spyOn(model, 'save').and.returnValue($.Deferred()); // eslint-disable-line new-cap
+      it('calls save on the adapter', function () {
+        const deferred = $.Deferred(); // eslint-disable-line new-cap
+        const stubAdapter = {
+          saveModel: jasmine.createSpy('saveModel').and.returnValue(deferred),
+        };
+        const saveOptions = { filters: { foo: 'bar' } };
+        const attributes = {};
+        this.store.dispatch(this.save('posts', '76', attributes, {
+          saveOptions,
+          adapter: stubAdapter,
+        }));
 
-      this.store.dispatch(this.save('posts', '1', {
-        title: 'new post',
-      }));
-
-      expect(spy).toHaveBeenCalled();
+        expect(stubAdapter.saveModel).toHaveBeenCalledWith('posts', '76', attributes, {
+          dispatch: jasmine.any(Function),
+          getState: jasmine.any(Function),
+          saveOptions,
+        });
+      });
     });
 
-    it('subscriber saves a non-persisted model', function () {
-      const save = jasmine.createSpy('save').and.returnValue($.Deferred()); // eslint-disable-line new-cap
-      const ModelSpy = spyOn(this.storageManager.storage('posts'), 'model');
-      ModelSpy.and.returnValue({ save });
+    describe('destroy', () => {
+      beforeEach(function () {
+        this.destroy = modelActions.destroy;
+      });
 
-      this.store.dispatch(this.save('posts', undefined, {
-        title: 'new post',
-      }));
+      it('calls destroy on the adapter', function () {
+        const deferred = $.Deferred(); // eslint-disable-line new-cap
+        const stubAdapter = {
+          destroyModel: jasmine.createSpy('destroyModel').and.returnValue(deferred),
+        };
+        const deleteOptions = { filters: { foo: 'bar' } };
+        this.store.dispatch(this.destroy('posts', '76', {
+          deleteOptions,
+          adapter: stubAdapter,
+        }));
 
-      expect(ModelSpy).toHaveBeenCalledWith({ id: undefined });
-      expect(save).toHaveBeenCalled();
+        expect(stubAdapter.destroyModel).toHaveBeenCalledWith('posts', '76', {
+          dispatch: jasmine.any(Function),
+          getState: jasmine.any(Function),
+          deleteOptions,
+        });
+      });
     });
 
-    it('returns a deferred when the model is invalid', () => {
-      spyOn($, 'ajax').and.returnValue($.Deferred()); // eslint-disable-line new-cap
+    describe('validate', () => {
+      beforeEach(function () {
+        this.validate = modelActions.validate;
+      });
 
-      const attributes = {};
-      expect(modelActions.validate('posts', attributes)()).toEqual({ errors: 'needs a user' });
+      it('calls validate on the adapter', function () {
+        const deferred = $.Deferred(); // eslint-disable-line new-cap
+        const stubAdapter = {
+          validateModel: jasmine.createSpy('validateModel').and.returnValue(deferred),
+        };
+        const validateOptions = { };
+        const attributes = { foo: 'bar' };
+        this.store.dispatch(this.validate('posts', attributes, {
+          validateOptions,
+          adapter: stubAdapter,
+        }));
 
-      const dispatch = modelActions.save('posts', null, attributes, { trackKey: 'john-bonham' });
-      const xhr = dispatch();
-
-      expect(xhr.resolve).toBeUndefined();
-      expect(xhr.reject).toBeUndefined();
-      expect(xhr.done).toEqual(jasmine.any(Function));
-      expect(xhr.fail).toEqual(jasmine.any(Function));
-    });
-  });
-
-  describe('destroy', () => {
-    beforeEach(function () {
-      this.destroy = modelActions.destroy;
-    });
-
-    it('sends destroy to the subscriber for the existing model', function () {
-      const posts = this.storageManager.storage('posts');
-      posts.add({ id: 1, title: 'What is redux?', message: 'I do not know but it might be awesome' });
-      const model = posts.last();
-      this.spy = spyOn(model, 'destroy').and.returnValue($.Deferred()); // eslint-disable-line new-cap
-      this.store.dispatch(this.destroy('posts', '1'));
-
-      expect(this.spy).toHaveBeenCalled();
-    });
-
-    it('cancels previous requests with the same provided track key if they are pending', function () {
-      const xhrResultDouble = {
-        abort: jasmine.createSpy('abort'),
-        state: () => 'pending',
-      };
-      spyOn(this.storageManager.storage('posts').model.prototype, 'destroy').and.returnValue(xhrResultDouble);
-
-      this.store.dispatch(this.destroy('posts', '1', { trackKey: 'post-destroy' }));
-      this.store.dispatch(this.destroy('posts', '1', { trackKey: 'post-destroy' }));
-      expect(xhrResultDouble.abort).toHaveBeenCalledTimes(1);
-    });
-
-    it('is chainable with a success and failure callback', function () {
-      spyOn($, 'ajax').and.returnValue($.Deferred()); // eslint-disable-line new-cap
-
-      const dispatch = this.destroy('posts', '1');
-      const xhr = dispatch();
-      expect(xhr.done).toEqual(jasmine.any(Function));
-      expect(xhr.fail).toEqual(jasmine.any(Function));
+        expect(stubAdapter.validateModel).toHaveBeenCalledWith('posts', attributes, {
+          dispatch: jasmine.any(Function),
+          getState: jasmine.any(Function),
+          validateOptions,
+        });
+      });
     });
   });
 });
