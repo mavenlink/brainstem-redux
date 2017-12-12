@@ -9,7 +9,7 @@ describe('adapters default', () => {
     expect(defaultAdapter.collectionToIds(collection)).toEqual([1, 2, 3]);
   });
 
-  test('collectionToArray', () => {
+  test('extractPayload', () => {
     const collection = new Collection([
       { id: 1, foo: 'bar' },
       { id: 2, foo: 'baz' },
@@ -20,7 +20,7 @@ describe('adapters default', () => {
     };
     spyOn(collection, '_getCacheObject').and.returnValue({ count: 101 });
 
-    expect(defaultAdapter.collectionToArray(collection)).toEqual({
+    expect(defaultAdapter.extractPayload(collection)).toEqual({
       results: [
         { id: 1, foo: 'bar' },
         { id: 2, foo: 'baz' },
