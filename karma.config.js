@@ -32,6 +32,7 @@ module.exports = config =>
 
     files: [
       'spec/actions/*.js',
+      'spec/adapters/*.js',
       'spec/reducers/*.js',
       'spec/middleware/*.js',
       'spec/sync/*.js',
