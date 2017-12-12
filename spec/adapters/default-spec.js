@@ -10,10 +10,24 @@ describe('adapters default', () => {
   });
 
   test('collectionToArray', () => {
-    const collection = new Collection([{ foo: 'bar' }, { foo: 'baz' }]);
-    expect(defaultAdapter.collectionToArray(collection)).toEqual([
-      { foo: 'bar' },
-      { foo: 'baz' },
+    const collection = new Collection([
+      { id: 1, foo: 'bar' },
+      { id: 2, foo: 'baz' },
     ]);
+    collection.lastFetchOptions = {
+      page: 2,
+      perPage: 10,
+    };
+    spyOn(collection, '_getCacheObject').and.returnValue({ count: 101 });
+
+    expect(defaultAdapter.collectionToArray(collection)).toEqual({
+      results: [
+        { id: 1, foo: 'bar' },
+        { id: 2, foo: 'baz' },
+      ],
+      count: 101,
+      currentPage: 2,
+      totalPages: 11,
+    });
   });
 });
