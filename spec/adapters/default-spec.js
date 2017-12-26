@@ -1,15 +1,13 @@
 import { Collection } from 'brainstem-js';
 import defaultAdapter from '../../lib/adapters/default';
 
-const test = it;
-
 describe('adapters default', () => {
-  test('extractIds', () => {
+  it('returns the right result from extractIds', () => {
     const collection = new Collection([{ id: 1 }, { id: 2 }, { id: 3 }]);
     expect(defaultAdapter.extractIds(collection)).toEqual([1, 2, 3]);
   });
 
-  test('extractPayload', () => {
+  it('returns the right result from extractPayload', () => {
     const collection = new Collection([
       { id: 1, foo: 'bar' },
       { id: 2, foo: 'baz' },
