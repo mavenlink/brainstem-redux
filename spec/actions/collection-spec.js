@@ -26,7 +26,7 @@ describe('collection action creators', () => {
         expect(this.store.dispatch(this.fetch('posts'))).toEqual(jasmine.any(Promise));
       });
 
-      it('resolves with raw attributes when jqXHR is done', function (done) {
+      it('resolves with an object when jqXHR is done', function (done) {
         const postsModels = [new Post({ id: 1, title: 'Bar' }), new Post({ id: 2, title: 'Foo' })];
         const expectation = this.storageManager.stub('posts', {
           response(responseBody) {
@@ -34,7 +34,12 @@ describe('collection action creators', () => {
           },
         });
         this.store.dispatch(this.fetch('posts')).then((response) => {
-          expect(response).toEqual(postsModels.map(model => model.attributes));
+          expect(response).toEqual({
+            count: 2,
+            currentPage: 1,
+            results: postsModels.map(model => model.attributes),
+            totalPages: 1,
+          });
           done();
         });
         expectation.respond();
