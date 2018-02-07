@@ -97,7 +97,7 @@
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
-    "underscore": "^1.8.3",
+    "underscore": ">= 1.4.4",
     "webpack": "^1.13.2",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^1.15.0"
