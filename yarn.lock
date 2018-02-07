@@ -724,14 +724,12 @@ braces@^1.8.2:
     preserve "^0.2.0"
     repeat-element "^1.1.2"
 
-brainstem-js@^0.4.30:
-  version "0.4.30"
-  resolved "https://registry.yarnpkg.com/brainstem-js/-/brainstem-js-0.4.30.tgz#b9d59b78ca2759c5c92f25b23e4bbd43a0ff9a04"
+brainstem-js@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/brainstem-js/-/brainstem-js-0.5.0.tgz#a45a75cebefccd87b40f23cfa25cbc557a50d0c7"
   dependencies:
-    backbone "1.1.2"
     inflection "^1.8.0"
     jquery "2.2.4"
-    underscore "1.4.4"
 
 browserify-aes@0.4.0:
   version "0.4.0"
@@ -3764,11 +3762,7 @@ ultron@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ultron/-/ultron-1.1.0.tgz#b07a2e6a541a815fc6a34ccd4533baec307ca864"
 
-underscore@1.4.4:
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.4.4.tgz#61a6a32010622afa07963bf325203cf12239d604"
-
-underscore@>=1.5.0:
+"underscore@>= 1.4.4", underscore@>=1.5.0:
   version "1.8.3"
   resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.8.3.tgz#4f3fb53b106e6097fcf9cb4109f2a5e9bdfa5022"
 
