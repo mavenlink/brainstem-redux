@@ -59,6 +59,12 @@ describe('makeBrainstemType', () => {
       it('returns the model', () => {
         expect(type.findInState(id, state)).toEqual(model3);
       });
+
+      it('does not call .all', () => {
+        spyOn(type, 'all').and.callThrough();
+        type.findInState(id, state);
+        expect(type.all).not.toHaveBeenCalled();
+      });
     });
 
     describe('finding a model by id in a list', () => {
