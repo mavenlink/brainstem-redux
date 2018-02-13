@@ -65,6 +65,20 @@ describe('makeBrainstemType', () => {
         type.findInState(id, state);
         expect(type.all).not.toHaveBeenCalled();
       });
+
+      describe('with filterPredicate', () => {
+        const typeWithFilterPredicate = makeBrainstemType(brainstemKey, { filterPredicate: thing => thing })
+
+        it('returns the model', () => {
+          expect(typeWithFilterPredicate.findInState(id, state)).toEqual(model3);
+        });
+
+        it('calls .all', () => {
+          spyOn(typeWithFilterPredicate, 'all').and.callThrough();
+          typeWithFilterPredicate.findInState(id, state);
+          expect(typeWithFilterPredicate.all).toHaveBeenCalled();
+        });
+      });
     });
 
     describe('finding a model by id in a list', () => {
