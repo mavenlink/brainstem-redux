@@ -1,6 +1,6 @@
 {
   "name": "brainstem-redux",
-  "version": "0.1.0",
+  "version": "0.1.1-alpha.1",
   "description": "Client-side Brainstem store in Redux",
   "main": "bin/index.js",
   "files": [
@@ -52,6 +52,14 @@
     {
       "name": "Ellie Day",
       "email": "eday@mavenlink.com"
+    },
+    {
+      "name": "CM Liotta",
+      "email": "cmliotta@mavenlink.com"
+    },
+    {
+      "name": "Jason Carter",
+      "email": "jason@mavenlink.com"
     }
   ],
   "repository": {
