@@ -52,6 +52,14 @@
     {
       "name": "Ellie Day",
       "email": "eday@mavenlink.com"
+    },
+    {
+      "name": "CM Liotta",
+      "email": "cmliotta@mavenlink.com"
+    },
+    {
+      "name": "Jason Carter",
+      "email": "jason@mavenlink.com"
     }
   ],
   "repository": {
