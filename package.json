@@ -63,7 +63,7 @@
     "lodash.isobject": "^3.0.2"
   },
   "peerDependencies": {
-    "brainstem-js": "^0.4.30",
+    "brainstem-js": ">= 0.4.30",
     "jquery": "2.2.4",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0"
