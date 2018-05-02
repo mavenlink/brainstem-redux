@@ -1,6 +1,6 @@
 {
   "name": "brainstem-redux",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Client-side Brainstem store in Redux",
   "main": "bin/index.js",
   "files": [
@@ -63,7 +63,7 @@
     "lodash.isobject": "^3.0.2"
   },
   "peerDependencies": {
-    "brainstem-js": "^0.4.30",
+    "brainstem-js": ">= 0.4.30",
     "jquery": "2.2.4",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0"
