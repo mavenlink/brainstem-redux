@@ -8,14 +8,14 @@ jobs:
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
     docker:
-    - image: circleci/build-image:ubuntu-14.04-XXL-upstart-1189-5614f37
+    - image: circleci/node:8-browsers
       command: /sbin/init
     steps:
     - checkout
     - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
     - run:
         working_directory: ~/mavenlink/brainstem-redux
-        command: nvm install 6.10.1 && nvm alias default 6.10.1
+        command: nvm install 8.11.4 && nvm alias default 8.11.4
     - restore_cache:
         keys:
         - v1-dep-{{ .Branch }}-
