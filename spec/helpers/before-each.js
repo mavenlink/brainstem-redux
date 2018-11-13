@@ -1,24 +1,17 @@
-const {
-  StorageManager,
-} = require('brainstem-js');
+import { StorageManager } from 'brainstem-js';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 
-const {
-  applyMiddleware,
-  combineReducers,
-  createStore,
-} = require('redux');
+import thunkMiddleware from 'redux-thunk';
+import syncBrainstemMiddleware from '../../lib/middleware/update-storage-manager';
+import brainstemReducers from '../../lib/reducers';
 
-const thunkMiddleware = require('redux-thunk').default;
-const syncBrainstemMiddleware = require('../../lib/middleware/update-storage-manager');
-const brainstemReducers = require('../../lib/reducers');
+import Posts from '../../example/collections/posts';
+import Users from '../../example/collections/users';
+import postsAutocompleterReducers from '../../example/reducers/posts-autocompleter';
 
-const Posts = require('../../example/collections/posts');
-const Users = require('../../example/collections/users');
-const postsAutocompleterReducers = require('../../example/reducers/posts-autocompleter');
+import updateStoreSync from '../../lib/sync/update-store';
 
-const updateStoreSync = require('../../lib/sync/update-store');
-
-module.exports = function () {
+export default function () {
   this.storageManager = StorageManager.get();
   this.storageManager.addCollection('posts', Posts);
   this.storageManager.addCollection('users', Users);
@@ -36,4 +29,4 @@ module.exports = function () {
 
   // Transforms a storage manager backbone event into a (dispatched) redux brainstem action
   updateStoreSync(this.store);
-};
+}

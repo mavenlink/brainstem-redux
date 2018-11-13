@@ -1,4 +1,4 @@
-const index = require('../api.js');
+import index from '../api';
 
 describe('API', () => {
   it('has all the methods', () => {

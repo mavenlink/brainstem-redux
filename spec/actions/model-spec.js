@@ -1,6 +1,6 @@
-const beforeEachHelpers = require('../helpers/before-each');
-const modelActions = require('../../lib/actions/model');
-const $ = require('jquery');
+import $ from 'jquery';
+import beforeEachHelpers from '../helpers/before-each';
+import modelActions from '../../lib/actions/model';
 
 describe('model action creators', () => {
   beforeEach(function () {
