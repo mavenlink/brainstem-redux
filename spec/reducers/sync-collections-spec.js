@@ -1,4 +1,4 @@
-const syncCollections = require('../../lib/reducers/sync-collections.js');
+import syncCollections from '../../lib/reducers/sync-collections';
 
 describe('syncCollections', () => {
   beforeEach(function () {

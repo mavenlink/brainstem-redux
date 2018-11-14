@@ -1,7 +1,7 @@
-const $ = require('jquery');
-const beforeEachHelpers = require('../helpers/before-each');
-const collectionActions = require('../../lib/actions/collection');
-const Post = require('../../example/models/post');
+import $ from 'jquery';
+import beforeEachHelpers from '../helpers/before-each';
+import collectionActions from '../../lib/actions/collection';
+import Post from '../../example/models/post';
 
 describe('collection action creators', () => {
   beforeEach(function () {

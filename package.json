@@ -1,6 +1,6 @@
 {
   "name": "brainstem-redux",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Client-side Brainstem store in Redux",
   "main": "bin/index.js",
   "files": [
@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "ci:lint": "yarn lint",
-    "ci:test": "yarn karma -- --single-run",
+    "ci:test": "yarn karma --single-run",
     "compile": "webpack --config webpack.compile.config.js",
     "karma": "karma start karma.config.js",
     "lint": "eslint '**/*.js'",

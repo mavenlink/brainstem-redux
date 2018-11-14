@@ -1,5 +1,5 @@
-const beforeEachHelpers = require('../helpers/before-each');
-const stopUpdateStore = require('../../lib/sync/stop-update-store');
+import beforeEachHelpers from '../helpers/before-each';
+import stopUpdateStore from '../../lib/sync/stop-update-store';
 
 describe('stopping listening to events from  storageManager', () => {
   beforeEach(function () {

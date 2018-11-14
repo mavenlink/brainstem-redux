@@ -1,4 +1,4 @@
-const beforeEachHelpers = require('../helpers/before-each');
+import beforeEachHelpers from '../helpers/before-each';
 
 describe('sync-brainstem middleware', () => {
   beforeEach(function () {

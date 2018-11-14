@@ -1,7 +1,7 @@
-const omit = require('lodash.omit'); // eslint-disable-line import/no-extraneous-dependencies
-const collectionActions = require('../../lib/actions/collection');
-const modelActions = require('../../lib/actions/model');
-const makeBrainstemType = require('../../lib/types/make-brainstem-type');
+import omit from 'lodash.omit'; // eslint-disable-line import/no-extraneous-dependencies
+import collectionActions from '../../lib/actions/collection';
+import modelActions from '../../lib/actions/model';
+import makeBrainstemType from '../../lib/types/make-brainstem-type';
 
 describe('makeBrainstemType', () => {
   const brainstemKey = 'KEY';
