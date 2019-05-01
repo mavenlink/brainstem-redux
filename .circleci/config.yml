@@ -8,9 +8,8 @@ workflows:
 
 jobs:
   build_and_test:
-    executor:
-      docker:
-        - image: circleci/node:8-browsers
+    docker:
+      - image: circleci/node:8-browsers
     working_directory: ~/repo
     steps:
       - checkout
