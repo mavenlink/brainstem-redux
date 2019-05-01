@@ -1,36 +1,28 @@
-version: 2
+version: 2.1
+
+workflows:
+  version: 2
+  ci:
+    jobs:
+      - build_and_test
+
 jobs:
-  build:
-    working_directory: ~/mavenlink/brainstem-redux
-    parallelism: 1
-    shell: /bin/bash --login
-    environment:
-      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
-      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+  build_and_test:
     docker:
-    - image: circleci/node:8-browsers
-      command: /sbin/init
+      - image: circleci/node:8-browsers
+    working_directory: ~/repo
     steps:
-    - checkout
-    - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
-    - restore_cache:
-        keys:
-        - v1-dep-{{ .Branch }}-
-        - v1-dep-master-
-        - v1-dep-
-    - run: mkdir -p ~/.cache/yarn
-    - run: yarn install
-    - save_cache:
-        key: v1-dep-{{ .Branch }}-{{ epoch }}
-        paths:
-        - ~/.cache/yarn
-        - ./node_modules
-    - run: yarn test
-    - store_test_results:
-        path: /tmp/circleci-test-results
-    - store_artifacts:
-        path: /tmp/circleci-artifacts
-    - store_artifacts:
-        path: yarn-error.log
-    - store_artifacts:
-        path: /tmp/circleci-test-results
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dep-{{ .Branch }}-
+            - v1-dep-master-
+            - v1-dep-
+      - run: mkdir -p ~/.cache/yarn
+      - run: yarn install
+      - save_cache:
+          key: v1-dep-{{ .Branch }}-{{ epoch }}
+          paths:
+            - ~/.cache/yarn
+            - ./node_modules
+      - run: yarn test
