@@ -11,19 +11,19 @@ jobs:
     executor:
       docker:
         - image: circleci/node:8-browsers
-     working_directory: ~/repo
-     steps:
+    working_directory: ~/repo
+    steps:
       - checkout
       - restore_cache:
           keys:
-          - v1-dep-{{ .Branch }}-
-          - v1-dep-master-
-          - v1-dep-
+            - v1-dep-{{ .Branch }}-
+            - v1-dep-master-
+            - v1-dep-
       - run: mkdir -p ~/.cache/yarn
       - run: yarn install
       - save_cache:
           key: v1-dep-{{ .Branch }}-{{ epoch }}
           paths:
-          - ~/.cache/yarn
-          - ./node_modules
+            - ~/.cache/yarn
+            - ./node_modules
       - run: yarn test
