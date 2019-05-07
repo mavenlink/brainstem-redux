@@ -1,12 +1,12 @@
 import $ from 'jquery';
 import beforeEachHelpers from '../helpers/before-each';
-import collectionActions from '../../lib/actions/collection';
+import fetch from '../../lib/actions/collection';
 import Post from '../../example/models/post';
 
 describe('collection action creators', () => {
   beforeEach(function () {
     beforeEachHelpers.call(this);
-    this.fetch = collectionActions.fetch;
+    this.fetch = fetch;
     this.storageManager.enableExpectations();
   });
 

@@ -100,11 +100,11 @@ Once you've defined your type, you can use its functions in your application.
 
 **Action Creators**
 
-`makeBrainstemType` provides action creators that wrap the `modelActions` and `collectionActions` discussed below.
+`makeBrainstemType` provides action creators that wrap the `fetch`, `validate`, `destroy`, `save` and `fetchCollection` discussed below.
 
 - `fetchAll(options)`
 
-Fetch a collection (wraps `collectionActions.fetch`).
+Fetch a collection (wraps `fetchCollection`).
 
 ```js
 const { makeBrainstemType } = require('brainstem-redux');
@@ -120,7 +120,7 @@ Post.fetchAll({
 
 - `fetch(id, options)`
 
-Fetch a model (wraps `modelActions.fetch`).
+Fetch a model (wraps the model's `fetch`).
 
 ```js
 const { makeBrainstemType } = require('brainstem-redux');
@@ -136,7 +136,7 @@ Post.fetch(42, {
 
 - `save(id, options)`
 
-Save a model (wraps `modelActions.save`)
+Save a model (wraps the model's `save`)
 
 Creating a new model:
 ```js
@@ -162,7 +162,7 @@ Post.save(42, {
 
 - `destroy(id)`
 
-Destroy a model (wraps `modelActions.destroy`).
+Destroy a model (wraps the model's `destroy`).
 
 ```js
 const { makeBrainstemType } = require('brainstem-redux');
@@ -346,7 +346,7 @@ describe('My reducer', () => {
 
 ### Use Brainstem-redux action creators
 
-When you want to fetch, save, or destroy your models or fetch your collections, use the `modelActions` and `collectionActions` to make sure both your store and storage manager get updated. These action creators feature a few things to facilitate most common usages of fetch / save / destroy.
+When you want to fetch, save, destroy, or validate your models, use corresponding `fetch`, `save`, `destroy`, or `validate`. To fetch your collections, use `fetchCollection` to make sure both your store and storage manager get updated.
 
 Each action creator takes an object of options.
 
@@ -358,9 +358,9 @@ Each action creator takes an object of options.
 * Fetch a model
 
 ```js
-const { modelActions } = require('brainstem-redux')
+const { fetch } = require('brainstem-redux')
 
-modelActions.fetch('posts', 42, {
+fetch('posts', 42, {
   fetchOptions: {
     include: ['subject']
   }
@@ -370,9 +370,9 @@ modelActions.fetch('posts', 42, {
 * Save a model (create)
 
 ```js
-const { modelActions } = require('brainstem-redux')
+const { save } = require('brainstem-redux')
 
-modelActions.save('posts', null, {
+save('posts', null, {
   title: 'New post'
 })
 ```
@@ -382,9 +382,9 @@ modelActions.save('posts', null, {
 
 
 ```js
-const { modelActions } = require('brainstem-redux')
+const { save } = require('brainstem-redux')
 
-modelActions.save('posts', 42, {
+save('posts', 42, {
   title: 'Update post'
 })
 ```
@@ -392,33 +392,37 @@ modelActions.save('posts', 42, {
 * Destroy a model
 
 ```js
-const { modelActions } = require('brainstem-redux')
+const { destroy } = require('brainstem-redux')
 
-modelActions.destroy('posts', 42)
+destroy('posts', 42)
 ```
 
 * Fetch a collection
 
 ```js
-const { collectionActions } = require('brainstem-redux')
+const { fetch } = require('brainstem-redux')
 
-collectionActions.fetch('posts', {
+fetch('posts', {
   fetchOptions: {
     include: ['subject']
   }
 })
 ```
 
+
 ## API
 `brainstem-redux` API:
 
 1. `reducer`: store reducer which manages the top-level `brainstem` slice of the store
-2. `updateStore`: event handling of all the collections in your storage manager; dispatches the appropriate actions to the redux store
-3. `stopUpdateStore`: helper function to stop updating your redux store from your storage manager; invoke with your redux store as the first argument (useful for test cleanup)
-4. `updateStorageManager`: *middleware* that syncs the redux store with your storage manager
-5. `makeBrainstemType`: creates a set of action creators, selectors, and reducer helpers to work with your models
-6. `modelActions`: action creators for your models
-7. `collectionActions`: action creators for your collections
+1. `updateStore`: event handling of all the collections in your storage manager; dispatches the appropriate actions to the redux store
+1. `stopUpdateStore`: helper function to stop updating your redux store from your storage manager; invoke with your redux store as the first argument (useful for test cleanup)
+1. `updateStorageManager`: *middleware* that syncs the redux store with your storage manager
+1. `makeBrainstemType`: creates a set of action creators, selectors, and reducer helpers to work with your models
+1. `fetch`: fetch model
+1. `validate`: validate model
+1. `destroy`: destroy model
+1. `save`: save model
+1. `fetchCollection`: fetch your collections
 
 ## Local Development
 

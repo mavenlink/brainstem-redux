@@ -1,6 +1,6 @@
 import omit from 'lodash.omit'; // eslint-disable-line import/no-extraneous-dependencies
-import collectionActions from '../../lib/actions/collection';
-import modelActions from '../../lib/actions/model';
+import * as fetchCollection from '../../lib/actions/collection';
+import * as modelActions from '../../lib/actions/model';
 import makeBrainstemType from '../../lib/types/make-brainstem-type';
 
 describe('makeBrainstemType', () => {
@@ -110,13 +110,13 @@ describe('makeBrainstemType', () => {
 
   describe('fetching a collection of models', () => {
     beforeEach(() => {
-      spyOn(collectionActions, 'fetch').and.returnValue('RESULT');
+      spyOn(fetchCollection, 'default').and.returnValue('RESULT');
     });
 
     it('forwards the request to brainstem-redux', () => {
       const options = { stuff: 'options' };
       expect(type.fetchAll(options)).toEqual('RESULT');
-      expect(collectionActions.fetch).toHaveBeenCalledWith(brainstemKey, options);
+      expect(fetchCollection.default).toHaveBeenCalledWith(brainstemKey, options);
     });
 
     describe('passing in adapter', () => {
@@ -126,7 +126,7 @@ describe('makeBrainstemType', () => {
         });
 
         expect(typeWithAdapter.fetchAll({ foo: 'test' })).toEqual('RESULT');
-        expect(collectionActions.fetch).toHaveBeenCalledWith(brainstemKey, { foo: 'test', adapter: 'adapter' });
+        expect(fetchCollection.default).toHaveBeenCalledWith(brainstemKey, { foo: 'test', adapter: 'adapter' });
       });
     });
   });
