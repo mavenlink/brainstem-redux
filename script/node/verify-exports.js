@@ -9,7 +9,7 @@ const findAllFilesInDirectories = require('./helpers/find-all-files-in-directori
 const directoryPaths = [
   path.join(root, 'lib'),
   path.join(root, 'spec'),
-  path.join(root, 'example')
+  path.join(root, 'example'),
 ];
 
 /**
@@ -88,13 +88,17 @@ function getMixedExports(file) {
   });
 
   if (importStatements.length && moduleExports.length) {
+    // eslint-disable-next-line no-console
     console.log('Bad mixed import/export', file);
+    // eslint-disable-next-line no-console
     console.log([...importStatements, ...moduleExports]);
     isBad = true;
   }
 
   if (exportDefaultCommonJS.length) {
+    // eslint-disable-next-line no-console
     console.log('Bad export default in CommonJS style: ', file);
+    // eslint-disable-next-line no-console
     console.log([...exportDefaultCommonJS]);
     isBad = true;
   }
@@ -112,6 +116,7 @@ function getMixedExports(file) {
  * @return {Array} list of files with violations
  */
 function verifyExports(files) {
+  // eslint-disable-next-line arrow-body-style
   return files.reduce((memo, file) => {
     return memo.concat(getMixedExports(file));
   }, []);
@@ -124,10 +129,13 @@ function verifyExports(files) {
 function main() {
   const files = getJsJsxFiles();
   const mixedImportExports = verifyExports(files);
+  // eslint-disable-next-line no-console
   console.log('Bad import/exports: ', mixedImportExports);
 
   if (mixedImportExports.length > 0) {
+    // eslint-disable-next-line no-console
     console.log('\x1b[31m%s\x1b[0m', 'Bad import/exports: Please check the usage mentioned above by running `node script/node/verify-exports.js` locally!');
+    // eslint-disable-next-line no-console
     console.log('\x1b[36m%s\x1b[0m', 'Also, see RFC: https://github.com/mavenlink/rfc/blob/2019/04-24-no-more-default-export-object-commonjs/2019/04-24-no-more-default-export-object-commonjs.md#prevention.');
   }
   return mixedImportExports.length;
