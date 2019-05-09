@@ -12,6 +12,7 @@
     "compile": "webpack --config webpack.compile.config.js",
     "karma": "karma start karma.config.js",
     "lint": "eslint '**/*.js'",
+    "lint:exports": "node script/node/verify-exports.js",
     "lint-fix": "eslint '**/*.js' --fix",
     "prepublish": "yarn compile",
     "start": "webpack-dev-server --config webpack.dev.config.js",

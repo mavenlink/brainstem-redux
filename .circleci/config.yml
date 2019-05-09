@@ -25,4 +25,9 @@ jobs:
           paths:
             - ~/.cache/yarn
             - ./node_modules
-      - run: yarn test
+      - run:
+          name: Run Tests
+          command: yarn test
+      - run:
+          name: Lint Module Exports
+          command: yarn lint:exports
