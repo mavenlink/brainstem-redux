@@ -70,10 +70,12 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
+    "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "babel-loader": "^8.0.6",
     "backbone": "1.1.2",
     "brainstem-js": "^0.7.1",
+    "core-js": "2.x.x",
     "eslint": "^3.8.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-loader": "^1.6.0",

@@ -10,6 +10,7 @@ module.exports = {
             [
               '@babel/preset-env',
               {
+                corejs: '2.6.9',
                 debug: true,
                 targets: [
                   'IE 11',
@@ -19,6 +20,7 @@ module.exports = {
                   'last 5 Opera versions',
                   'last 5 Safari versions',
                 ],
+                useBuiltIns: 'usage',
               },
             ]
           ],
