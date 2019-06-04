@@ -1,4 +1,5 @@
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // eslint-disable-line import/no-extraneous-dependencies
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // eslint-disable-line import/no-extraneous-dependencies\
+const path = require('path');
 const webpackConfig = require('./webpack.config.js');
 
 module.exports = Object.assign({}, webpackConfig, {
@@ -12,7 +13,7 @@ module.exports = Object.assign({}, webpackConfig, {
   output: {
     filename: 'index.js',
     libraryTarget: 'commonjs2',
-    path: './bin',
+    path: path.join(__dirname, 'bin'),
   },
 
   plugins: [

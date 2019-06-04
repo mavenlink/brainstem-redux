@@ -69,6 +69,9 @@
     "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-loader": "^8.0.6",
     "backbone": "1.1.2",
     "brainstem-js": "^0.7.1",
     "eslint": "^3.8.1",
@@ -91,6 +94,9 @@
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
-    "underscore": ">= 1.4.4"
+    "underscore": ">= 1.4.4",
+    "webpack": "3.11.0",
+    "webpack-bundle-analyzer": "^3.3.2",
+    "webpack-dev-server": "2.11.1"
   }
 }
