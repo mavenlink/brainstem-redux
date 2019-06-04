@@ -1,4 +1,4 @@
-export let posts = {
+export const posts = { // eslint-disable-line import/prefer-default-export
   preFetch(filterText) {
     return {
       type: 'POSTS_AUTOCOMPLETER_REQUEST_POSTS',
