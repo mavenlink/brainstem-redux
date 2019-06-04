@@ -12,7 +12,7 @@
     "compile": "webpack --config webpack.compile.config.js",
     "karma": "karma start karma.config.js",
     "lint": "eslint '**/*.js'",
-    "lint-fix": "eslint '**/*.js' --fix",
+    "lint-fix": "yarn lint --fix",
     "prepublish": "yarn compile",
     "start": "webpack-dev-server --config webpack.dev.config.js",
     "test": "yarn ci:lint && yarn ci:test",
