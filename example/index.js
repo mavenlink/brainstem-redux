@@ -11,11 +11,11 @@ const {
 
 const thunkMiddleware = require('redux-thunk').default;
 const syncBrainstemMiddleware = require('../lib/middleware/update-storage-manager').default;
-const loggerMiddleware = require('./middleware/logger');
+const loggerMiddleware = require('./middleware/logger').default;
 
-const Post = require('./models/post');
-const Posts = require('./collections/posts');
-const Users = require('./collections/users');
+const Post = require('./models/post').default;
+const Posts = require('./collections/posts').default;
+const Users = require('./collections/users').default;
 
 const storageManager = StorageManager.get();
 storageManager.addCollection('posts', Posts);
@@ -24,7 +24,7 @@ storageManager.addCollection('users', Users);
 const store = createStore(
   combineReducers({
     brainstem: require('../lib/reducers/index').default,
-    postsAutocompleter: require('./reducers/posts-autocompleter'),
+    postsAutocompleter: require('./reducers/posts-autocompleter').default,
   }),
   applyMiddleware(
     thunkMiddleware,
@@ -124,7 +124,7 @@ const ReactDom = require('react-dom');
 
 document.addEventListener('DOMContentLoaded', (event) => {
   const { Provider } = require('react-redux');
-  const AllPostsBox = require('./containers/all-posts-box');
+  const AllPostsBox = require('./containers/all-posts-box').default;
 
   ReactDom.render(
     React.createElement(Provider, { store },
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   );
 
 
-  const AutocompletePostsList = require('./containers/all-posts-autocomplete-box');
+  const AutocompletePostsList = require('./containers/all-posts-autocomplete-box').default;
 
   ReactDom.render(
     React.createElement(Provider, { store },

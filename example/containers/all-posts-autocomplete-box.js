@@ -1,5 +1,5 @@
 const { connect } = require('react-redux');
-const PostAutocompleteBox = require('../components/post-autocomplete-box');
+const PostAutocompleteBox = require('../components/post-autocomplete-box').default;
 
 const { fetch: fetchCollection } = require('../../lib/actions/collection').default;
 const actionCreators = require('../actions/posts-autocompleter');
@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-module.exports = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(PostAutocompleteBox);

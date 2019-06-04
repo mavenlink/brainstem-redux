@@ -1,7 +1,7 @@
 const React = require('react');
-const PostList = require('./post-list');
+const PostList = require('./post-list').default;
 
-module.exports = React.createClass({
+export default React.createClass({
   render() {
     return React.DOM.div(null,
       React.DOM.h1(null, 'Posts'),
