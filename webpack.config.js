@@ -6,7 +6,22 @@ module.exports = {
       use: {
         loader: 'babel-loader',
         options: {
-          presets: ['@babel/preset-env'],
+          presets: [
+            [
+              '@babel/preset-env',
+              {
+                debug: true,
+                targets: [
+                  'IE 11',
+                  'last 5 Chrome versions',
+                  'last 5 Edge versions',
+                  'last 5 Firefox versions',
+                  'last 5 Opera versions',
+                  'last 5 Safari versions',
+                ],
+              },
+            ]
+          ],
         },
       },
     }],
