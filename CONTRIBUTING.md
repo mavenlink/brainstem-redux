@@ -7,7 +7,7 @@ In order to develop against a local checkout:
 1. Run `yarn link` in `brainstem-redux`
 1. Run `yarn compile` in `brainstem-redux` **after every change** (to simulate library packaging)
 1. Run `yarn link brainstem-redux` in the targetted project
-1. Retart Webpack in the targetted project
+1. Restart Webpack in the targeted project
 
 ## Running example
 
