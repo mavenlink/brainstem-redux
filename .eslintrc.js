@@ -9,5 +9,6 @@ module.exports = {
     "function-paren-newline": "off",
     "no-restricted-syntax": "off",
     "react/no-deprecated": "off",
+    "import/no-anonymous-default-export": "off",
   },
 };
