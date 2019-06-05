@@ -1,4 +1,4 @@
-import index from '../api';
+import * as index from '../api';
 
 describe('API', () => {
   it('has all the methods', () => {
