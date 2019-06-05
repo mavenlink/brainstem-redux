@@ -8,9 +8,9 @@ module.exports = React.createClass({
 
   render() {
     return React.DOM.ul(null,
-      this.props.posts.map(post =>
+      this.props.posts.map(post => (
         React.createElement(PostListItem, Object.assign({}, post, { key: post.id }))
-      )
+      ))
     );
   },
 });

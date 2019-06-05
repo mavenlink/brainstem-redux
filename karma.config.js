@@ -24,7 +24,7 @@ const karmaWebpackConfig = Object.assign({}, webpackConfig, {
   output: {},
 });
 
-module.exports = config =>
+module.exports = config => (
   config.set({
     browsers: ['Chrome', 'PhantomJS', 'Firefox'],
 
@@ -49,4 +49,5 @@ module.exports = config =>
     webpackMiddleware: {
       noInfo: true,
     },
-  });
+  })
+);
