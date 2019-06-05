@@ -10,7 +10,7 @@ module.exports = {
             [
               '@babel/preset-env',
               {
-                corejs: '2.6.9',
+                corejs: 2,
                 debug: true,
                 targets: [
                   'IE 11',
