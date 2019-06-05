@@ -5,4 +5,7 @@ module.exports = {
     'jsx-a11y',
     'import',
   ],
+  rules: {
+    "import/prefer-default-export": "off",
+  },
 };
