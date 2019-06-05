@@ -23,8 +23,8 @@ export default function () {
     }),
     applyMiddleware(
       thunkMiddleware,
-      syncBrainstemMiddleware
-    )
+      syncBrainstemMiddleware,
+    ),
   );
 
   // Transforms a storage manager backbone event into a (dispatched) redux brainstem action

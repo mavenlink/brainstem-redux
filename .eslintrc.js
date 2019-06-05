@@ -6,7 +6,6 @@ module.exports = {
     'import',
   ],
   rules: {
-    "comma-dangle": "off",
     "function-paren-newline": "off",
     "implicit-arrow-linebreak": "off",
     "import/no-useless-path-segments": "off",
