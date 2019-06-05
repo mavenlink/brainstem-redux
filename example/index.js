@@ -44,7 +44,12 @@ posts.add({ id: 1, title: 'What is redux?', message: 'I do not know but it might
 posts.add({ id: 42, title: 'Life is good', message: 'Gooooood' });
 
 const users = storageManager.storage('users');
-const user = users.add({ id: 1, username: 'acid-burn', email: 'acid-burn@hackers.net', address: { city: 'SF', state: 'CA' } });
+const user = users.add({
+  id: 1,
+  username: 'acid-burn',
+  email: 'acid-burn@hackers.net',
+  address: { city: 'SF', state: 'CA' },
+});
 
 user.set({ username: 'Acid-Burn' }); // change event
 user.set({ username: 'Acid-Burn2', email: 'acid-burn2@hackers.net' }); // change event

@@ -32,7 +32,8 @@ describe('stopping listening to events from  storageManager', () => {
 
     stopUpdateStore(this.store);
 
-    this.posts.remove({ id: 1,
+    this.posts.remove({
+      id: 1,
       title: 'What is redux?',
       message: 'I do not know but it might be awesome',
     });
