@@ -1,3 +1,6 @@
+const React = require('react');
+const ReactDom = require('react-dom');
+
 const {
   BrainstemCollection,
   StorageManager,
@@ -118,9 +121,6 @@ storageManager.stub('posts', {
     responseBody.results = getMatchingPosts('n');
   },
 });
-
-const React = require('react');
-const ReactDom = require('react-dom');
 
 document.addEventListener('DOMContentLoaded', (event) => {
   const { Provider } = require('react-redux');

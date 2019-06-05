@@ -7,7 +7,6 @@ module.exports = {
   ],
   rules: {
     "function-paren-newline": "off",
-    "import/order": "off",
     "import/prefer-default-export": "off",
     "no-restricted-syntax": "off",
     "object-curly-newline": "off",
