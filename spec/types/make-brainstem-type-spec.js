@@ -1,6 +1,6 @@
 import omit from 'lodash.omit'; // eslint-disable-line import/no-extraneous-dependencies
 import * as collectionActions from '../../lib/actions/collection';
-import modelActions from '../../lib/actions/model';
+import * as modelActions from '../../lib/actions/model';
 import makeBrainstemType from '../../lib/types/make-brainstem-type';
 
 describe('makeBrainstemType', () => {

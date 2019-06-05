@@ -8,6 +8,9 @@ describe('API', () => {
     expect(typeof index.stopUpdateStore).toEqual('function');
     expect(typeof index.makeBrainstemType).toEqual('function');
     expect(typeof index.collectionFetch).toEqual('function');
-    expect(index.modelActions).toBeDefined();
+    expect(typeof index.modelDestroy).toEqual('function');
+    expect(typeof index.modelFetch).toEqual('function');
+    expect(typeof index.modelSave).toEqual('function');
+    expect(typeof index.modelValidate).toEqual('function');
   });
 });

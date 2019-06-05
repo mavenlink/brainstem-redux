@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import beforeEachHelpers from '../helpers/before-each';
-import modelActions from '../../lib/actions/model';
+import * as modelActions from '../../lib/actions/model';
 
 describe('model action creators', () => {
   beforeEach(function () {
