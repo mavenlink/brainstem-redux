@@ -1,6 +1,6 @@
 const webpackConfig = require('./webpack.config');
 
-module.exports = config =>
+module.exports = config => (
   config.set({
     browsers: ['Chrome', 'PhantomJS', 'Firefox'],
 
@@ -25,4 +25,5 @@ module.exports = config =>
     webpackMiddleware: {
       noInfo: true,
     },
-  });
+  })
+);

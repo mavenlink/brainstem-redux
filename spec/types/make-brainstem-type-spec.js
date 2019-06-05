@@ -37,10 +37,8 @@ describe('makeBrainstemType', () => {
 
     describe('finding a model by id', () => {
       describe('when the model is present', () => {
-        const id = model2.id;
-
         it('returns the model', () => {
-          expect(type.find(id, models)).toEqual(model2);
+          expect(type.find(model2.id, models)).toEqual(model2);
         });
       });
 
@@ -54,10 +52,8 @@ describe('makeBrainstemType', () => {
     });
 
     describe('finding a model by id in the state', () => {
-      const id = model3.id;
-
       it('returns the model', () => {
-        expect(type.findInState(id, state)).toEqual(model3);
+        expect(type.findInState(model3.id, state)).toEqual(model3);
       });
     });
 
@@ -65,10 +61,8 @@ describe('makeBrainstemType', () => {
       const modelList = [model1, model2, model3];
 
       describe('when the model is present', () => {
-        const id = model2.id;
-
         it('returns the model', () => {
-          expect(type.findInList(id, modelList)).toEqual(model2);
+          expect(type.findInList(model2.id, modelList)).toEqual(model2);
         });
       });
 
