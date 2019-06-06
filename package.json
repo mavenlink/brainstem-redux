@@ -2,18 +2,12 @@
   "name": "brainstem-redux",
   "version": "0.1.3-babel7.2",
   "description": "Client-side Brainstem store in Redux",
-  "main": "bin/index.js",
-  "files": [
-    "bin/index.js"
-  ],
   "scripts": {
     "ci:lint": "yarn lint",
     "ci:test": "yarn karma --single-run",
-    "compile": "webpack --config webpack.compile.config.js",
     "karma": "karma start karma.config.js",
     "lint": "eslint '**/*.js'",
     "lint-fix": "yarn lint --fix",
-    "prepublish": "yarn compile",
     "start": "webpack-dev-server --config webpack.dev.config.js",
     "test": "yarn ci:lint && yarn ci:test",
     "test:watch": "yarn karma"
