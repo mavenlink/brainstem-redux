@@ -1,5 +1,6 @@
 .circleci/
 .github/
+bin/
 example/
 spec/
 .eslintignore
