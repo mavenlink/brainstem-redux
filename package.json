@@ -1,6 +1,6 @@
 {
   "name": "brainstem-redux",
-  "version": "0.1.3-babel7.4",
+  "version": "0.1.3-babel7.5",
   "description": "Client-side Brainstem store in Redux",
   "scripts": {
     "ci:lint": "yarn lint",
