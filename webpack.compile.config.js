@@ -3,7 +3,7 @@ const path = require('path');
 const webpackConfig = require('./webpack.config.js');
 
 module.exports = Object.assign({}, webpackConfig, {
-  entry: './api.js',
+  entry: './index.js',
 
   externals: {
     'brainstem-js': 'brainstem-js',
