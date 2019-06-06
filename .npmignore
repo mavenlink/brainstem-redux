@@ -1,7 +1,7 @@
 .circleci/
 .github/
-spec/
 example/
+spec/
 .eslintignore
 .eslintrc.js
 CONTRIBUTING.md
