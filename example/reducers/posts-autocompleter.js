@@ -4,7 +4,7 @@ const initialState = {
   isFetching: false,
 };
 
-module.exports = (state = initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case 'POSTS_AUTOCOMPLETER_REQUEST_POSTS':
       return Object.assign({}, state, {

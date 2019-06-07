@@ -1,7 +1,7 @@
 const React = require('react');
-const PostListItem = require('./post-list-item');
+const PostListItem = require('./post-list-item').default;
 
-module.exports = React.createClass({
+export default React.createClass({
   getDefaultProps() {
     return { posts: [] };
   },

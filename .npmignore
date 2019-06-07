@@ -1,2 +1,12 @@
-spec/
+.circleci/
+.github/
+bin/
 example/
+spec/
+.eslintignore
+.eslintrc.js
+CONTRIBUTING.md
+karma.config.js
+README.md
+webpack.config.js
+webpack.dev.config.js

@@ -15,4 +15,4 @@ const Post = Model.extend({
   }
 });
 
-module.exports = Post;
+export default Post;

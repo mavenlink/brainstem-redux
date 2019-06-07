@@ -1,8 +1,8 @@
 const React = require('react');
-const PostFilterInput = require('./post-filter-input');
-const PostList = require('./post-list');
+const PostFilterInput = require('./post-filter-input').default;
+const PostList = require('./post-list').default;
 
-module.exports = React.createClass({
+export default React.createClass({
   visiblePosts() {
     return this.props.allPosts.filter(post => post.message.indexOf(this.props.filterText) >= 0);
   },

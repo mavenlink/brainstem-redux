@@ -1,5 +1,5 @@
 import { Collection } from 'brainstem-js';
-import defaultAdapter from '../../lib/adapters/default';
+import * as defaultAdapter from '../../lib/adapters/default';
 
 describe('adapters default', () => {
   it('returns the right result from extractIds', () => {

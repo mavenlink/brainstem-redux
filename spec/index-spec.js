@@ -1,4 +1,4 @@
-import index from '../api';
+import * as index from '../index';
 
 describe('API', () => {
   it('has all the methods', () => {
@@ -7,7 +7,10 @@ describe('API', () => {
     expect(typeof index.updateStorageManager).toEqual('function');
     expect(typeof index.stopUpdateStore).toEqual('function');
     expect(typeof index.makeBrainstemType).toEqual('function');
-    expect(index.modelActions).toBeDefined();
-    expect(index.collectionActions).toBeDefined();
+    expect(typeof index.collectionFetch).toEqual('function');
+    expect(typeof index.modelDestroy).toEqual('function');
+    expect(typeof index.modelFetch).toEqual('function');
+    expect(typeof index.modelSave).toEqual('function');
+    expect(typeof index.modelValidate).toEqual('function');
   });
 });

@@ -1,7 +1,7 @@
-const { connect } = require('react-redux');
-const PostAutocompleteBox = require('../components/post-autocomplete-box');
+import { fetch as collectionFetch } from '../../lib/actions/collection';
 
-const { fetch: fetchCollection } = require('../../lib/actions/collection').default;
+const { connect } = require('react-redux');
+const PostAutocompleteBox = require('../components/post-autocomplete-box').default;
 const actionCreators = require('../actions/posts-autocompleter');
 
 const mapStateToProps = (state) => {
@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onInput: (event) => {
       dispatch(
-        fetchCollection('posts', {
+        collectionFetch('posts', {
           fetchOptions: { search: event.target.value },
           preFetchAction: actionCreators.posts.preFetch(event.target.value),
           postFetchAction: actionCreators.posts.postFetch,
@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-module.exports = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(PostAutocompleteBox);

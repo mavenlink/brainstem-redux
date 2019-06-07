@@ -10,6 +10,13 @@
 [![npm version](https://img.shields.io/npm/v/brainstem-redux.svg?style=flat-square)](https://www.npmjs.com/package/brainstem-redux)
 [![npm downloads](https://img.shields.io/npm/dm/brainstem-redux.svg?style=flat-square)](https://www.npmjs.com/package/brainstem-redux)
 
+## Table of Contents
+
+1. [Dependencies](./README.md#dependencies)
+1. [Usage](./README.md#usage)
+1. [API](./README.md#api)
+1. [Contributing (and local development)](./CONTRIBUTING.md)
+
 ## Dependencies
 
     npm install --save brainstem-js redux redux-thunk
@@ -419,14 +426,3 @@ collectionActions.fetch('posts', {
 5. `makeBrainstemType`: creates a set of action creators, selectors, and reducer helpers to work with your models
 6. `modelActions`: action creators for your models
 7. `collectionActions`: action creators for your collections
-
-## Local Development
-
-In order to develop against a local checkout, run `yarn link` in `brainstem-redux`, then `yarn link brainstem-redux` in the project you want to use it in and restart webpack. Also, make sure to `yarn compile` when making changes in `brainstem-redux`.
-
-## Running example
-
-1. run `yarn start`
-2. navigate to `http://localhost:8080/webpack-dev-server/`
-3. click on `example`
-4. view example app and type an approved string into the search bar 

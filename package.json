@@ -1,19 +1,13 @@
 {
   "name": "brainstem-redux",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Client-side Brainstem store in Redux",
-  "main": "bin/index.js",
-  "files": [
-    "bin/index.js"
-  ],
   "scripts": {
     "ci:lint": "yarn lint",
     "ci:test": "yarn karma --single-run",
-    "compile": "webpack --config webpack.compile.config.js",
     "karma": "karma start karma.config.js",
     "lint": "eslint '**/*.js'",
-    "lint-fix": "eslint '**/*.js' --fix",
-    "prepublish": "yarn compile",
+    "lint-fix": "yarn lint --fix",
     "start": "webpack-dev-server --config webpack.dev.config.js",
     "test": "yarn ci:lint && yarn ci:test",
     "test:watch": "yarn karma"
@@ -69,13 +63,13 @@
     "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
-    "babel-core": "^6.18.0",
-    "babel-loader": "^6.2.5",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-runtime": "^6.15.0",
-    "babel-preset-es2015": "^6.18.0",
+    "@babel/core": "^7.4.5",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "babel-loader": "^8.0.6",
     "backbone": "1.1.2",
     "brainstem-js": "^0.7.1",
+    "core-js": "2.x.x",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-loader": "^1.6.0",
@@ -90,7 +84,7 @@
     "karma-jasmine": "^1.0.2",
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^1.8.0",
+    "karma-webpack": "^3.0.5",
     "lodash.omit": "^4.5.0",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
@@ -98,8 +92,8 @@
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
     "underscore": ">= 1.4.4",
-    "webpack": "^1.13.2",
-    "webpack-bundle-analyzer": "^2.9.0",
-    "webpack-dev-server": "^1.15.0"
+    "webpack": "3.11.0",
+    "webpack-bundle-analyzer": "^3.3.2",
+    "webpack-dev-server": "2.11.1"
   }
 }
