@@ -15,10 +15,26 @@ describe('syncCollections', () => {
     const action = {
       payload: {
         collections: collectionsToMerge,
+        preserveRemovedModels: true,
       },
     };
     const expectedCollections = {
       users: { 1: { name: 'user1' }, 2: { name: 'user20' }, 3: { name: 'user3' } },
+      workspaces: { 1: { name: 'w1' }, 2: { name: 'w1' } },
+      roles: {},
+    };
+    expect(syncCollections(this.initialState, action)).toEqual(expectedCollections);
+  });
+
+  it('merges new collection models into the state, and prunes removed models', function () {
+    const action = {
+      payload: {
+        collections: collectionsToMerge,
+        preserveRemovedModels: false,
+      },
+    };
+    const expectedCollections = {
+      users: { 2: { name: 'user20' }, 3: { name: 'user3' } },
       workspaces: { 1: { name: 'w1' }, 2: { name: 'w1' } },
       roles: {},
     };
@@ -38,6 +54,7 @@ describe('syncCollections', () => {
               1: { id: 1, newAttribute: 'baz' },
             },
           },
+          preserveRemovedModels: true,
         },
       };
 
