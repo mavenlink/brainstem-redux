@@ -78,7 +78,7 @@ describe('model action creators', () => {
         expect(save).toHaveBeenCalled();
       });
 
-      it('returns a deferred when the model is invalid', () => {
+      it('returns a deferred when the model is invalid', (done) => {
         spyOn($, 'ajax').and.returnValue($.Deferred()); // eslint-disable-line new-cap
 
         const attributes = {};
@@ -90,7 +90,10 @@ describe('model action creators', () => {
         expect(xhr.resolve).toBeUndefined();
         expect(xhr.reject).toBeUndefined();
         expect(xhr.done).toEqual(jasmine.any(Function));
-        expect(xhr.fail).toEqual(jasmine.any(Function));
+        xhr.fail((error) => {
+          expect(error.message).toEqual('needs a user');
+          done();
+        });
       });
     });
 
