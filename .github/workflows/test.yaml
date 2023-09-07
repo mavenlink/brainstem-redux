@@ -26,5 +26,7 @@ jobs:
           key: yarn-lock-${{ hashFiles('yarn.lock') }}
       - run: yarn install
       - name: Setup Display
-        run: xvfb -ac :99 -screen 0 1280x1024x16 > /dev/null 2>&1 &
+        run: |
+          xvfb -ac :99 -screen 0 1280x1024x16 > /dev/null 2>&1 &
+          exec "$@"
       - run: yarn test
