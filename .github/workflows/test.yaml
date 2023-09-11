@@ -54,20 +54,21 @@ jobs:
           echo "CHROME_LINK=${CHROME_LINK}"
           curl -sL -o  chrome-linux64.zip $CHROME_LINK
           echo "downloaded chrome"
+          unzip chrome-linux64.zip
+          echo "unziped chrome"
+          sudo mv chrome-linux64 /opt/chrome
+          sudo chmod +x /opt/chrome/chrome
+          ln /opt/chrome/chrome /usr/local/bin
+          echo "installed chrome"
+          /opt/chrome/chrome --version
+          chrome --version
+      - name: Get Chrome Driver
+        run: |
+          LAST_KNOWN_GOOD_VERSIONS_WITH_DL=$(curl -sL https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json)
           CHROME_DRIVER_LINK=$( echo "$LAST_KNOWN_GOOD_VERSIONS_WITH_DL" | jq '.channels.Stable.downloads.chromedriver[] | select(.platform=="linux64")| .url' | sed s/\"//g )
           echo "CHROME_DRIVER_LINK=${CHROME_DRIVER_LINK}"
           curl -sL -o chrome-driver-linux64.zip $CHROME_DRIVER_LINK
           echo "downloaded chromedriver"
-          unzip chrome-linux64.zip
-          echo "unziped chrome"
-          sudo mv chrome-linux64 /usr/local/bin/chrome
-          sudo chmod +x /usr/local/bin/chrome
-          echo "installed chrome"
-          /usr/local/bin/chrome --version
-          echo $PATH
-          echo $PATH | grep /usr/local/bin
-          ls -l /usr/local/bin
-          chrome --version
           unzip chrome-driver-linux64.zip
           echo "unzipped chromedriver"
           sudo mv chrome-driver-linux64 /usr/local/bin/chromedriver
