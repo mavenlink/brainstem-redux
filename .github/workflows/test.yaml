@@ -50,11 +50,11 @@ jobs:
         run: |
           LAST_KNOWN_GOOD_VERSIONS_WITH_DL=$(curl -sL https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json)
           echo "LAST_KNOWN_GOOD_VERSIONS_WITH_DL=${LAST_KNOWN_GOOD_VERSIONS_WITH_DL}"
-          CHROME_LINK=$( echo "$LAST_KNOWN_GOOD_VERSIONS_WITH_DL" | jq '.channels.Stable.downloads.chrome[] | select(.platform=="linux64")| .url' )
+          CHROME_LINK=$( echo "$LAST_KNOWN_GOOD_VERSIONS_WITH_DL" | jq '.channels.Stable.downloads.chrome[] | select(.platform=="linux64")| .url' | | sed s/\"//g )
           echo "CHROME_LINK=${CHROME_LINK}"
           curl -sL -o  chrome-linux64.zip $CHROME_LINK
           echo "downloaded chrome"
-          CHROME_DRIVER_LINK=$( echo "$LAST_KNOWN_GOOD_VERSIONS_WITH_DL" | jq '.channels.Stable.downloads.chromedriver[] | select(.platform=="linux64")| .url' )
+          CHROME_DRIVER_LINK=$( echo "$LAST_KNOWN_GOOD_VERSIONS_WITH_DL" | jq '.channels.Stable.downloads.chromedriver[] | select(.platform=="linux64")| .url' | sed s/\"//g )
           echo "CHROME_DRIVER_LINK=${CHROME_DRIVER_LINK}"
           curl -sL -o chrome-driver-linux64.zip $CHROME_DRIVER_LINK
           echo "downloaded chromedriver"
