@@ -25,10 +25,6 @@ jobs:
           path: node_modules
           key: yarn-lock-${{ hashFiles('yarn.lock') }}
       - run: yarn install
-      - name: Install browser prerequisites
-        run: |
-          sudo apt-get install -y software-properties-common bzip2 libgconf-2-4
-
       - name: Setup FireFox
         env:
           FIREFOX_URL: https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US
@@ -57,12 +53,16 @@ jobs:
           rm -rf google-chrome-stable_current_amd64.deb
           sudo sed -i 's|HERE/chrome"|HERE/chrome" --disable-setuid-sandbox --no-sandbox|g'         "/opt/google/chrome/google-chrome"
           google-chrome --version
-      - name: setup Chromdriver
+      - name: setup Chromedriver
         run: |
           CHROME_VERSION="$(google-chrome --version)"
+          echo "CHROME_VERSION=${CHROME_VERSION}"
           export CHROMEDRIVER_RELEASE="$(echo $CHROME_VERSION | sed 's/^Google Chrome //')"
+          echo "CHROMEDRIVER_RELEASE=${CHROMEDRIVER_RELEASE}"
           export CHROMEDRIVER_RELEASE=${CHROMEDRIVER_RELEASE%%.*}
+          echo "CHROMEDRIVER_RELEASE=${CHROMEDRIVER_RELEASE}"
           CHROMEDRIVER_VERSION=$(curl --silent --show-error --location --fail --retry 4 --retry-delay 5 http://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROMEDRIVER_RELEASE})
+          echo "CHROMEDRIVER_VERSION=${CHROMEDRIVER_VERSION}"
           curl --silent --show-error --location --fail --retry 4 --retry-delay 5 --output /tmp/chromedriver_linux64.zip
           "http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
           cd /tmp
