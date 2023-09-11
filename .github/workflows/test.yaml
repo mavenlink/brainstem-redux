@@ -46,31 +46,45 @@ jobs:
           sudo mv geckodriver /usr/local/bin/geckodriver
           sudo chmod +x /usr/local/bin/geckodriver
           geckodriver --version
-      - name: Setup Chrome
+      - name: Get Chrome
         run: |
-          wget -O google-chrome-stable_current_amd64.deb -t 5 "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-          (sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -fy install)
-          rm -rf google-chrome-stable_current_amd64.deb
-          sudo sed -i 's|HERE/chrome"|HERE/chrome" --disable-setuid-sandbox --no-sandbox|g'         "/opt/google/chrome/google-chrome"
-          google-chrome --version
-      - name: setup Chromedriver
-        run: |
-          CHROME_VERSION="$(google-chrome --version)"
-          echo "CHROME_VERSION=${CHROME_VERSION}"
-          export CHROMEDRIVER_RELEASE="$(echo $CHROME_VERSION | sed 's/^Google Chrome //')"
-          echo "CHROMEDRIVER_RELEASE=${CHROMEDRIVER_RELEASE}"
-          export CHROMEDRIVER_RELEASE=${CHROMEDRIVER_RELEASE%%.*}
-          echo "CHROMEDRIVER_RELEASE=${CHROMEDRIVER_RELEASE}"
-          CHROMEDRIVER_VERSION=$(curl --silent --show-error --location --fail --retry 4 --retry-delay 5 http://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROMEDRIVER_RELEASE})
-          echo "CHROMEDRIVER_VERSION=${CHROMEDRIVER_VERSION}"
-          curl --silent --show-error --location --fail --retry 4 --retry-delay 5 --output /tmp/chromedriver_linux64.zip
-          "http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
-          cd /tmp
-          unzip chromedriver_linux64.zip
-          rm -rf chromedriver_linux64.zip
-          sudo mv chromedriver /usr/local/bin/chromedriver
+          LAST_KNOWN_GOOD_VERSIONS_WITH_DL=$(curl -sL https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json)
+          CHROME_LINK=$( echo "$LAST_KNOWN_GOOD_VERSIONS_WITH_DL" | jq '.channels.Stable.downloads.chrome[] | select(.platform=="linux64")| .url' )
+          curl -sL -o  chrome-linux64.zip $CHROME_LINK
+          CHROME_DRIVER_LINK=$( echo "$LAST_KNOWN_GOOD_VERSIONS_WITH_DL" | jq '.channels.Stable.downloads.chromedriver[] | select(.platform=="linux64")| .url' )
+          curl -sL -o chrome-driver-linux64.zip $CHROME_DRIVER_LINK
+          unzip chrome-linux64.zip
+          sudo mv chrome-linux64 /usr/local/bin/chrome
+          sudo chmod +x /usr/local/bin/chrome
+          chrome --version
+          unzip chrome-driver-linux64.zip
+          sudo mv chrome-driver-linux64 /usr/local/bin/chromedriver
           sudo chmod +x /usr/local/bin/chromedriver
           chromedriver --version
+
+      # - name: Setup Chrome
+      #   run: |
+      #     wget -O google-chrome-stable_current_amd64.deb -t 5 "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+      #     (sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -fy install)
+      #     rm -rf google-chrome-stable_current_amd64.deb
+      #     sudo sed -i 's|HERE/chrome"|HERE/chrome" --disable-setuid-sandbox --no-sandbox|g'         "/opt/google/chrome/google-chrome"
+      #     google-chrome --version
+      # - name: setup Chromedriver
+      #   run: |
+      #     CHROME_VERSION="$(google-chrome --version)"
+      #     echo "CHROME_VERSION=${CHROME_VERSION}"
+      #     export CHROMEDRIVER_RELEASE="$(echo $CHROME_VERSION | sed 's/^Google Chrome //')"
+      #     echo "CHROMEDRIVER_RELEASE=${CHROMEDRIVER_RELEASE}"
+      #     export CHROMEDRIVER_RELEASE=${CHROMEDRIVER_RELEASE%%.*}
+      #     echo "CHROMEDRIVER_RELEASE=${CHROMEDRIVER_RELEASE}"
+      #     curl --silent --show-error --location --fail --retry 4 --retry-delay 5 --output /tmp/chromedriver_linux64.zip
+      #     "https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_${CHROMEDRIVER_RELEASE}"
+      #     cd /tmp
+      #     unzip chromedriver_linux64.zip
+      #     rm -rf chromedriver_linux64.zip
+      #     sudo mv chromedriver /usr/local/bin/chromedriver
+      #     sudo chmod +x /usr/local/bin/chromedriver
+      #     chromedriver --version
       - name: Setup Display
         run: |
           sudo apt-get install -y libxss1
