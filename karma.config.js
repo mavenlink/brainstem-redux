@@ -2,7 +2,7 @@ const webpackConfig = require('./webpack.config');
 
 module.exports = config => (
   config.set({
-    browsers: ['Chrome', 'PhantomJS', 'Firefox'],
+    browsers: ['Chrome', 'FirefoxHeadless'],
 
     frameworks: ['jasmine'],
 
