@@ -94,7 +94,7 @@
     "underscore": ">= 1.4.4",
     "webpack": "3.11.0",
     "webpack-bundle-analyzer": "^3.3.2",
-    "webpack-dev-server": "2.11.1",
+    "webpack-dev-server": "^5.0.4",
     "yarn-deduplicate": "^6.0.2"
   }
 }
