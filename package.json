@@ -55,6 +55,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "eslint-plugin-react-hooks": "^4.6.0",
     "lodash.isobject": "^3.0.2"
   },
   "peerDependencies": {

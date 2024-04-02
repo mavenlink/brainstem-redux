@@ -4,7 +4,7 @@ const PostList = require('./post-list').default;
 
 export default React.createClass({
   visiblePosts() {
-    return this.props.allPosts.filter(post => post.message.indexOf(this.props.filterText) >= 0);
+    return this.props.allPosts.filter((post) => post.message.indexOf(this.props.filterText) >= 0);
   },
 
   render() {
