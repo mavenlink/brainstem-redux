@@ -37,7 +37,7 @@ describe('collection action creators', () => {
           expect(response).toEqual({
             count: 2,
             currentPage: 1,
-            results: postsModels.map(model => model.attributes),
+            results: postsModels.map((model) => model.attributes),
             totalPages: 1,
           });
           done();

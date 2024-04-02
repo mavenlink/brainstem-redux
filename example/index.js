@@ -76,7 +76,7 @@ const getMatchingPosts = (text) => {
     new Post({ id: 903, message: 'whos an autocomplete post' }),
     new Post({ id: 904, message: 'you are not an autocomplete post' }),
     new Post({ id: 905, message: 'no' }),
-  ].filter(postModel => postModel.get('message').indexOf(text) > -1);
+  ].filter((postModel) => postModel.get('message').indexOf(text) > -1);
 };
 
 storageManager.stub('posts', {
@@ -137,7 +137,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     ),
     document.getElementById('all-posts-list')
   );
-
 
   const AutocompletePostsList = require('./containers/all-posts-autocomplete-box').default;
 

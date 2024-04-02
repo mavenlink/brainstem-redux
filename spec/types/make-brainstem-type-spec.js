@@ -29,7 +29,7 @@ describe('makeBrainstemType', () => {
     describe('looking up all models in the state that return true for a filterPredicate passed into options', () => {
       it('returns all models in the state tree', () => {
         const typeWithDefaultScope = makeBrainstemType(brainstemKey, {
-          filterPredicate: model => model.id === '5',
+          filterPredicate: (model) => model.id === '5',
         });
         expect(typeWithDefaultScope.all(state)).toEqual({ [model1.id]: model1 });
       });
@@ -214,11 +214,11 @@ describe('makeBrainstemType', () => {
     });
 
     describe('when the origin is not the brainstem storage manager', () => {
-      const action = Object.assign(
-        {},
-        modelAction,
-        { meta: { origin: 'OTHER' } },
-      );
+      const action = {
+
+        ...modelAction,
+        meta: { origin: 'OTHER' },
+      };
 
       it('does not match', () => {
         itDoesNotMatch(action);
@@ -234,11 +234,11 @@ describe('makeBrainstemType', () => {
     });
 
     describe('when the action is for a different model', () => {
-      const action = Object.assign(
-        {},
-        modelAction,
-        { payload: { brainstemKey: 'OTHER_KEY' } },
-      );
+      const action = {
+
+        ...modelAction,
+        payload: { brainstemKey: 'OTHER_KEY' },
+      };
 
       it('does not match', () => {
         itDoesNotMatch(action);
@@ -246,11 +246,11 @@ describe('makeBrainstemType', () => {
     });
 
     describe('when there is no brainstem key', () => {
-      const action = Object.assign(
-        {},
-        modelAction,
-        { payload: {} },
-      );
+      const action = {
+
+        ...modelAction,
+        payload: {},
+      };
 
       it('does not match', () => {
         itDoesNotMatch(action);

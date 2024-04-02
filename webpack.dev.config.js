@@ -1,9 +1,10 @@
-const webpackConfig = require('./webpack.config.js');
+const webpackConfig = require('./webpack.config.js'); // eslint-disable-line
 
-module.exports = Object.assign({}, webpackConfig, {
+module.exports = {
+  ...webpackConfig,
   entry: './example/index.js',
 
   output: {
     filename: 'example-bundle.js',
   },
-});
+};

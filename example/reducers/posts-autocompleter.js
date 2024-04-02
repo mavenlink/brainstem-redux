@@ -7,15 +7,17 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'POSTS_AUTOCOMPLETER_REQUEST_POSTS':
-      return Object.assign({}, state, {
+      return {
+        ...state,
         filterText: action.payload.filterText,
         isFetching: true,
-      });
+      };
     case 'POSTS_AUTOCOMPLETER_SYNC_POSTS':
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: false,
         posts: action.payload.posts,
-      });
+      };
     default:
       return state;
   }
