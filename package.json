@@ -64,9 +64,9 @@
     "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/polyfill": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
+    "@babel/core": "^7.24.3",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.24.3",
     "babel-loader": "^8.0.6",
     "backbone": "1.1.2",
     "brainstem-js": "^0.7.1",
