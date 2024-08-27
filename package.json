@@ -93,7 +93,7 @@
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "underscore": ">= 1.4.4",
-    "webpack": "3.11.0",
+    "webpack": "5.94.0",
     "webpack-dev-server": "^2.11.5",
     "yarn-deduplicate": "^6.0.2"
   }
